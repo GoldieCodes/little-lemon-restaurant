@@ -1,7 +1,9 @@
+import logo from "../assets/icons_assets/logo.svg"
+
 function Nav() {
   return (
     <nav>
-      <img src="../assets/icons_assets/logo.svg" alt="Little Lemon Logo" />
+      <img src={logo} alt="Little Lemon Logo" />
       <ul>
         <li>
           <a href="#">Home</a>

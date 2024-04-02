@@ -1,10 +1,9 @@
+import logoWhite from "../assets/icons_assets/logo-white.png"
+
 function Footer() {
   return (
     <footer>
-      <img
-        src="../assets/icons_assets/logo-white.png"
-        alt="Little Lemon Logo"
-      />
+      <img src={logoWhite} alt="Little Lemon Logo" />
       <ul>
         <h4>Navigation</h4>
         <li>
