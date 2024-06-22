@@ -24,6 +24,7 @@ export default function Home() {
             height={400}
             placeholder="blur"
             blurDataURL="/restaurantfood.jpg"
+            alt="restaurant food"
             className="mt-16 h-[70vh] w-[35%] object-cover rounded-3xl mr-20"
           />
         </div>
