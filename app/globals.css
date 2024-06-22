@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+h1 {
+  @apply font-medium text-3xl font-serif;
+}
+h2 {
+  @apply text-xl font-extrabold font-sans uppercase text-dark;
+}
+h3 {
+  @apply text-2xl font-serif text-dark;
+}
+h4 {
+  @apply text-base font-sans font-extrabold;
+}
+h5 {
+  @apply font-bold font-sans text-lg;
+}
+h6 {
+  @apply text-sm font-bold font-sans text-ash;
+}
+p {
+  @apply font-sans text-base;
+}
+.price-tag {
+  @apply text-base font-bold text-brownish;
+}
+button {
+  @apply bg-yellow text-dark hover:bg-opacity-60 font-bold rounded-2xl py-3 px-4 shadow-xl;
+}
+footer > main a,
+footer > main p {
+  @apply text-ash/75;
+}
+.wrapper {
+  @apply w-[1120px] m-auto;
+}
+.star-rating {
+  @apply flex text-yellow text-[2rem] font-bold;
+}
