@@ -1,5 +1,4 @@
 import Image from "next/image"
-import Link from "next/link"
 import MenuItems from "@/components/MenuItems"
 import { Button } from "@/components/MenuItems"
 import Reviews from "@/components/Reviews"

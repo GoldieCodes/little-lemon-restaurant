@@ -2,6 +2,7 @@ import { Markazi_Text, Karla } from "next/font/google"
 import "./globals.css"
 import Nav from "../components/Nav"
 import Footer from "../components/Footer"
+import Background from "@/components/Background"
 
 const markazi = Markazi_Text({
   subsets: ["latin"],
@@ -26,10 +27,12 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${karla.variable} ${markazi.variable}`}>
-      <body className="bg-ash/35">
-        <Nav />
-        {children}
-        <Footer />
+      <body>
+        <Background>
+          <Nav />
+          {children}
+          <Footer />
+        </Background>
       </body>
     </html>
   )
