@@ -39,3 +39,12 @@ footer > main p {
 .star-rating {
   @apply flex text-yellow text-[2rem] font-bold;
 }
+.activeNav {
+  @apply bg-ash rounded-md;
+}
+.navHover {
+  @apply hover:text-brownish;
+}
+.loginNav {
+  @apply text-ash hover:text-brownish;
+}

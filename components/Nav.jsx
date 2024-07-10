@@ -2,33 +2,55 @@
 import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
+import { getAuth } from "firebase/auth"
+import { app } from "@/app/firebase"
 
 export default function Nav() {
+  const currentPath = usePathname()
+
   return (
     <header className="wrapper flex justify-between items-center py-6">
       <Link href="/">
-        <Image
-          src="/logo.svg"
-          alt="Little Lemon logo"
-          width={150}
-          height={150}
-        />
+        {currentPath === "/login" || currentPath === "/create-account" ? (
+          <Image
+            src="/logo-white.png"
+            alt="Little Lemon logo"
+            width={150}
+            height={150}
+          />
+        ) : (
+          <Image
+            src="/logo.svg"
+            alt="Little Lemon logo"
+            width={150}
+            height={150}
+          />
+        )}
       </Link>
-      <nav className="font-bold text-base font-sans text-green">
+      <nav className="font-bold text-sm font-sans text-green">
         <NavLinks />
       </nav>
     </header>
   )
 }
+
 export const NavLinks = () => {
   const currentPath = usePathname()
+  const auth = getAuth()
+  const user = auth.currentUser
 
   return (
     <>
       <Link
         href="/"
         className={`p-3
-          ${currentPath === "/" ? "bg-ash rounded-md" : "hover:text-brownish"}
+          ${
+            currentPath === "/"
+              ? "bg-ash rounded-md"
+              : currentPath === "/login" || currentPath === "/create-account"
+              ? "text-ash hover:text-brownish"
+              : "hover:text-brownish"
+          }
         `}
       >
         Home
@@ -38,8 +60,10 @@ export const NavLinks = () => {
         className={`p-3
           ${
             currentPath === "/about"
-              ? "bg-ash rounded-md"
-              : "hover:text-brownish"
+              ? "activeNav"
+              : currentPath === "/login" || currentPath === "/create-account"
+              ? "loginNav"
+              : "navHover"
           }
         `}
       >
@@ -50,8 +74,10 @@ export const NavLinks = () => {
         className={`p-3
           ${
             currentPath === "/reservation"
-              ? "bg-ash rounded-md"
-              : "hover:text-brownish"
+              ? "activeNav"
+              : currentPath === "/login" || currentPath === "/create-account"
+              ? "loginNav"
+              : "navHover"
           }
         `}
       >
@@ -62,8 +88,10 @@ export const NavLinks = () => {
         className={`p-3
           ${
             currentPath === "/menu"
-              ? "bg-ash rounded-md"
-              : "hover:text-brownish"
+              ? "activeNav"
+              : currentPath === "/login" || currentPath === "/create-account"
+              ? "loginNav"
+              : "navHover"
           }
         `}
       >
@@ -74,25 +102,33 @@ export const NavLinks = () => {
         className={`p-3
           ${
             currentPath === "/order-online"
-              ? "bg-ash rounded-md"
-              : "hover:text-brownish"
+              ? "activeNav"
+              : currentPath === "/login" || currentPath === "/create-account"
+              ? "loginNav"
+              : "navHover"
           }
         `}
       >
         Order Online
       </Link>
-      <Link
-        href="/login"
-        className={`p-3
+      {user !== null ? (
+        <p>Hi, {user.name} Logout</p>
+      ) : (
+        <Link
+          href="/login"
+          className={`p-3
           ${
             currentPath === "/login"
-              ? "bg-ash rounded-md"
-              : "hover:text-brownish"
+              ? "activeNav"
+              : currentPath === "/login" || currentPath === "/create-account"
+              ? "loginNav"
+              : "navHover"
           }
         `}
-      >
-        Login
-      </Link>
+        >
+          Login
+        </Link>
+      )}
     </>
   )
 }

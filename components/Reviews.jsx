@@ -95,7 +95,7 @@ export default function Reviews() {
           </p>
         </div>
       </div>
-      <p className="paragraph p-2">{review.review}</p>
+      <p className="text-sm p-2">{review.review}</p>
     </article>
   ))
   return testimonials

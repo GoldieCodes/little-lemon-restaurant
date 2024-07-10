@@ -1,3 +1,4 @@
+"use client"
 import FormFramework from "@/components/FormFramework"
 
 export default function Login() {

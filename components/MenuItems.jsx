@@ -2,14 +2,16 @@
 import Image from "next/image"
 import Link from "next/link"
 import { BiCycling } from "react-icons/bi"
+import { useState } from "react"
+import { createContext } from "react"
 
 // These are the menu items below, I put them in a separate file together with a component for buttons because they are
 // client - side components, i.e. they have interactivity and therefore require javascript in the browser. Also it
 // generally makes my code on the main page cleaner.
 
-const menus = [
+export const menus = [
   {
-    id: 1,
+    id: 0,
     img: { src: "/greek_salad.jpg", alt: "Greek Salad dish" },
     title: "Greek Salad",
     price: "$12.99",
@@ -18,7 +20,7 @@ const menus = [
     action: "Order a delivery",
   },
   {
-    id: 2,
+    id: 1,
     img: { src: "/bruchetta.svg", alt: "Bruchetta dish" },
     title: "Bruchetta",
     price: "$12.99",
@@ -27,7 +29,7 @@ const menus = [
     action: "Order a delivery",
   },
   {
-    id: 3,
+    id: 2,
     img: { src: "/lemon dessert.jpg", alt: "Lemon Dessert dish" },
     title: "Lemon Dessert",
     price: "$12.99",
@@ -38,6 +40,8 @@ const menus = [
 ]
 
 export default function MenuItems() {
+  const [clickedCard, setCard] = useState()
+
   return (
     <>
       {menus.map((menu) => (
@@ -61,11 +65,14 @@ export default function MenuItems() {
             </span>
             <p className="text-green">{menu.description}</p>
             <Link
-              href="/#"
-              className="flex gap-2 content-center font-bold text-lg hover:underline"
+              href={`/order-online/${menu.title.toLowerCase()}`}
+              className="flex items-center gap-1 content-center font-bold text-[1.1rem] underline hover:text-[#2f7010]"
+              onClick={() => {
+                setCard(menu)
+              }}
             >
               {menu.action}
-              <BiCycling className="text-[25px] font-bold" />
+              <BiCycling className="text-[22px] font-bold" />
             </Link>
           </div>
         </article>

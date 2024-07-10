@@ -14,7 +14,7 @@ export default function Footer() {
         />
         <nav className="flex flex-col col-span-2">
           <h6>Navigation</h6>
-          <div className="flex flex-col text-base">
+          <div className="flex flex-col text-sm">
             <Link href="/" className="hover:text-brownish">
               Home
             </Link>
@@ -37,15 +37,23 @@ export default function Footer() {
         </nav>
         <nav className="col-span-2">
           <h6>Contact</h6>
-          <p>Address</p>
-          <p>Phone number</p>
-          <p>Email</p>
+          <p className="text-sm">
+            Address
+            <br />
+            Phone number
+            <br />
+            Email
+          </p>
         </nav>
         <nav className="col-span-2">
           <h6>Social Media Links</h6>
-          <p>Address</p>
-          <p>Phone number</p>
-          <p>Email</p>
+          <p className="text-sm">
+            Address
+            <br />
+            Phone number
+            <br />
+            Email
+          </p>
         </nav>
       </main>
     </footer>
