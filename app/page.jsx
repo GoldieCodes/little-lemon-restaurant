@@ -6,7 +6,7 @@ import Reviews from "@/components/Reviews"
 export default function Home() {
   return (
     <>
-      <main className="h-[70vh] bg-[#1D222D]">
+      <main className="h-[70vh] bg-green">
         <div className="wrapper flex gap-10 justify-between">
           <div className="w-[40%] place-self-center">
             <h1 className="text-yellow leading-7">Little Lemon</h1>

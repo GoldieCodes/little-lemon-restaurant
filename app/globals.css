@@ -48,3 +48,6 @@ footer > main p {
 .loginNav {
   @apply text-ash hover:text-brownish;
 }
+.formError {
+  @apply text-[red] font-semibold text-xs;
+}

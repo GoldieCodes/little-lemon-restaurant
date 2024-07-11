@@ -2,8 +2,6 @@
 import Image from "next/image"
 import Link from "next/link"
 import { BiCycling } from "react-icons/bi"
-import { useState } from "react"
-import { createContext } from "react"
 
 // These are the menu items below, I put them in a separate file together with a component for buttons because they are
 // client - side components, i.e. they have interactivity and therefore require javascript in the browser. Also it
@@ -14,7 +12,7 @@ export const menus = [
     id: 0,
     img: { src: "/greek_salad.jpg", alt: "Greek Salad dish" },
     title: "Greek Salad",
-    price: "$12.99",
+    price: 32.12,
     description:
       "The famous Greek salad of crispy lettuce, peppers, olives and our Chicago style feta cheese, garnished with crunchy garlic and rosemary croutons.",
     action: "Order a delivery",
@@ -23,7 +21,7 @@ export const menus = [
     id: 1,
     img: { src: "/bruchetta.svg", alt: "Bruchetta dish" },
     title: "Bruchetta",
-    price: "$12.99",
+    price: 12.99,
     description:
       "Our Bruchetta is made from grilled bread that has been smeared with garlic and seasoned with salt and olive oil.",
     action: "Order a delivery",
@@ -32,7 +30,7 @@ export const menus = [
     id: 2,
     img: { src: "/lemon dessert.jpg", alt: "Lemon Dessert dish" },
     title: "Lemon Dessert",
-    price: "$12.99",
+    price: 8.99,
     description:
       "This comes straight from grandma's recipe book, every last ingredient has been secured and is authentic as can be imagined.",
     action: "Order a delivery",
@@ -40,8 +38,6 @@ export const menus = [
 ]
 
 export default function MenuItems() {
-  const [clickedCard, setCard] = useState()
-
   return (
     <>
       {menus.map((menu) => (
@@ -60,16 +56,15 @@ export default function MenuItems() {
             <span className="flex justify-between">
               <h4>{menu.title}</h4>
               <p role="price-tag" className="price-tag">
-                {menu.price}
+                ${menu.price}
               </p>
             </span>
             <p className="text-green">{menu.description}</p>
             <Link
-              href={`/order-online/${menu.title.toLowerCase()}`}
+              href={`/order-online/${menu.id}/${menu.title
+                .toLowerCase()
+                .replace(" ", "-")}`}
               className="flex items-center gap-1 content-center font-bold text-[1.1rem] underline hover:text-[#2f7010]"
-              onClick={() => {
-                setCard(menu)
-              }}
             >
               {menu.action}
               <BiCycling className="text-[22px] font-bold" />

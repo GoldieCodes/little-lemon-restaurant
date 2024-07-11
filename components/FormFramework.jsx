@@ -28,7 +28,7 @@ export const InputField = ({ label, ...props }) => {
         {...props}
       />
       {meta.touched && meta.error ? (
-        <div className="text-[red] font-semibold text-xs">{meta.error}</div>
+        <div className="formError">{meta.error}</div>
       ) : null}
     </div>
   )
