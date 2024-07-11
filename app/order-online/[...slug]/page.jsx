@@ -14,11 +14,10 @@ export default function ({ params }) {
   return (
     <div className="wrapper space-y-2 grid grid-cols-12">
       <article className="col-span-6">
-        <h3 className="my-3">Your Order</h3>
-
         {menus.map((menu) =>
           params.slug[0] == menu.id ? (
             <>
+              <h3 className="my-3">{menu.title}</h3>
               <div className="relative h-[50vh]">
                 <Image
                   src={menu.img.src}
@@ -30,7 +29,7 @@ export default function ({ params }) {
               </div>
               <div className="py-5 space-y-4">
                 <span className="flex justify-between">
-                  <h4>{menu.title}</h4>
+                  <h4>Per dish:</h4>
                   <p role="price-tag" className="price-tag">
                     ${menu.price}
                   </p>
@@ -55,7 +54,7 @@ export default function ({ params }) {
                     </span>{" "}
                   </p>
                   <p role="price-tag" className="font-bold">
-                    Price: ${(menu.price * orderNum).toFixed(2)}
+                    Total: ${(menu.price * orderNum).toFixed(2)}
                   </p>
                 </span>
               </div>
@@ -130,7 +129,7 @@ export default function ({ params }) {
         </Formik>
         <div className="mt-4">
           <p className="flex items-center gap-2 text-sm mt-5">
-            Want to change your order?{" "}
+            Want to change this item?{" "}
             <span className="bg-brownish text-lg p-1 font-extrabold text-[white] rounded-full shadow-lg">
               <IoMdArrowRoundBack />
             </span>
