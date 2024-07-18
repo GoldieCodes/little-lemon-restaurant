@@ -1,5 +1,5 @@
-"use client"
 import FormFramework from "@/components/FormFramework"
+import { signInWithEmailAndPassword } from "firebase/auth"
 
 export default function Login() {
   return (
@@ -13,4 +13,26 @@ export default function Login() {
       redirectLink="/create-account"
     />
   )
+}
+
+export function handleLogin(
+  auth,
+  email,
+  password,
+  router,
+  setErrors,
+  setSuccess
+) {
+  signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      // Signed in
+      const user = userCredential.user
+      setSuccess("Signing you in...")
+      setTimeout(() => router.push("/menu"), 300)
+
+      // ...
+    })
+    .catch((error) => {
+      setErrors(error.message)
+    })
 }

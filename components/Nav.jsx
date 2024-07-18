@@ -4,6 +4,7 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { getAuth } from "firebase/auth"
 import { app } from "@/app/firebase"
+import { userManagerParams } from "@/app/login/LoginChecker"
 
 export default function Nav() {
   const currentPath = usePathname()
@@ -37,7 +38,7 @@ export default function Nav() {
 export const NavLinks = () => {
   const currentPath = usePathname()
   const auth = getAuth()
-  const user = auth.currentUser
+  const user = userManagerParams()
 
   return (
     <>
@@ -112,7 +113,7 @@ export const NavLinks = () => {
         Order Online
       </Link>
       {user !== null ? (
-        <p>Hi, {user.name} Logout</p>
+        <p>Hi, User ...Logout</p>
       ) : (
         <Link
           href="/login"

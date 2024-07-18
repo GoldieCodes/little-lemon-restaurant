@@ -3,14 +3,12 @@ import { ImWarning, ImUserCheck } from "react-icons/im"
 import Link from "next/link"
 import { Formik, Form, useField } from "formik"
 import * as Yup from "yup"
-import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-} from "firebase/auth"
 import { app, auth } from "@/app/firebase"
 import { usePathname } from "next/navigation"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
+import { handleCreateUser } from "@/app/create-account/page"
+import { handleLogin } from "@/app/login/page"
 
 export const InputField = ({ label, ...props }) => {
   const [field, meta] = useField(props)
@@ -70,31 +68,17 @@ export default function FormFramework({
         })}
         onSubmit={({ email, password }) => {
           path === "/create-account"
-            ? createUserWithEmailAndPassword(auth, email, password)
-                .then((userCredential) => {
-                  // Signed in
-                  const user = userCredential.user
-                  setSuccess("Account created")
-                  setTimeout(() => {
-                    router.push("/menu")
-                  }, 800)
-                  // ...
-                })
-                .catch((error) => {
-                  setErrors(error.message)
-                })
+            ? handleCreateUser(
+                auth,
+                name,
+                email,
+                password,
+                router,
+                setSuccess,
+                setErrors
+              )
             : path === "/login"
-            ? signInWithEmailAndPassword(auth, email, password)
-                .then((userCredential) => {
-                  // Signed in
-                  const user = userCredential.user
-                  setSuccess("Signing you in...")
-                  router.push("/menu")
-                  // ...
-                })
-                .catch((error) => {
-                  setErrors(error.message)
-                })
+            ? handleLogin(auth, email, password, router, setErrors, setSuccess)
             : null
         }}
       >

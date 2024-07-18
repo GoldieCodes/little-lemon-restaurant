@@ -3,6 +3,7 @@ import "./globals.css"
 import Nav from "../components/Nav"
 import Footer from "../components/Footer"
 import Background from "@/components/Background"
+import LoginChecker from "./login/LoginChecker"
 
 const markazi = Markazi_Text({
   subsets: ["latin"],
@@ -28,11 +29,13 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${karla.variable} ${markazi.variable}`}>
       <body>
-        <Background>
-          <Nav />
-          {children}
-          <Footer />
-        </Background>
+        <LoginChecker>
+          <Background>
+            <Nav />
+            {children}
+            <Footer />
+          </Background>
+        </LoginChecker>
       </body>
     </html>
   )
