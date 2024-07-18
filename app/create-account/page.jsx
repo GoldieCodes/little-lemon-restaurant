@@ -1,9 +1,7 @@
-"use client"
 import FormFramework from "@/components/FormFramework"
-import { useRouter } from "next/navigation"
 import { createUserWithEmailAndPassword } from "firebase/auth"
-import { addDoc, collection } from "firebase/firestore"
-import { db } from "@/app/firebase"
+// import { addDoc, collection } from "firebase/firestore"
+// import { db } from "@/app/firebase"
 import { app, auth } from "@/app/firebase"
 
 export default function CreateAccount() {
@@ -19,8 +17,6 @@ export default function CreateAccount() {
     />
   )
 }
-
-export const router = () => useRouter()
 
 export const handleCreateUser = async (
   name,

@@ -1,4 +1,3 @@
-"use client"
 import FormFramework from "@/components/FormFramework"
 import { signInWithEmailAndPassword } from "firebase/auth"
 import { app, auth } from "@/app/firebase"
