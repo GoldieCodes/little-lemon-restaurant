@@ -8,7 +8,7 @@ import { Formik, Form } from "formik"
 import { InputField } from "@/components/FormFramework"
 import * as Yup from "yup"
 
-export default function ({ params }) {
+export default function Order({ params }) {
   const [orderNum, setOrderNum] = useState(1)
 
   return (
