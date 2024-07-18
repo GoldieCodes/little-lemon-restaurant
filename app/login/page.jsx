@@ -1,5 +1,6 @@
 import FormFramework from "@/components/FormFramework"
 import { signInWithEmailAndPassword } from "firebase/auth"
+import { app, auth } from "@/app/firebase"
 
 export default function Login() {
   return (
@@ -15,14 +16,7 @@ export default function Login() {
   )
 }
 
-export function handleLogin(
-  auth,
-  email,
-  password,
-  router,
-  setErrors,
-  setSuccess
-) {
+export function handleLogin(email, password, router, setErrors, setSuccess) {
   signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       // Signed in

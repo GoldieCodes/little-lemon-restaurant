@@ -3,7 +3,6 @@ import { ImWarning, ImUserCheck } from "react-icons/im"
 import Link from "next/link"
 import { Formik, Form, useField } from "formik"
 import * as Yup from "yup"
-import { app, auth } from "@/app/firebase"
 import { usePathname } from "next/navigation"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
@@ -69,7 +68,6 @@ export default function FormFramework({
         onSubmit={({ email, password }) => {
           path === "/create-account"
             ? handleCreateUser(
-                auth,
                 name,
                 email,
                 password,
@@ -78,7 +76,7 @@ export default function FormFramework({
                 setErrors
               )
             : path === "/login"
-            ? handleLogin(auth, email, password, router, setErrors, setSuccess)
+            ? handleLogin(email, password, router, setErrors, setSuccess)
             : null
         }}
       >

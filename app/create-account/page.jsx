@@ -1,5 +1,6 @@
 import FormFramework from "@/components/FormFramework"
 import { createUserWithEmailAndPassword } from "firebase/auth"
+import { app, auth } from "@/app/firebase"
 
 export default function CreateAccount() {
   return (
@@ -16,7 +17,6 @@ export default function CreateAccount() {
 }
 
 export function handleCreateUser(
-  auth,
   name,
   email,
   password,
