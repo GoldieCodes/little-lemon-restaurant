@@ -30,11 +30,11 @@ export default function RootLayout({ children }) {
     <html lang="en" className={`${karla.variable} ${markazi.variable}`}>
       <body>
         <Background>
-          {/* <LoginChecker> */}
-          <Nav />
-          {children}
-          <Footer />
-          {/* </LoginChecker> */}
+          <LoginChecker>
+            <Nav />
+            {children}
+            <Footer />
+          </LoginChecker>
         </Background>
       </body>
     </html>

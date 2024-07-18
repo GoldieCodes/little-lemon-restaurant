@@ -30,28 +30,27 @@ export const handleCreateUser = async (
   setErrors,
   setSuccess
 ) => {
-  try {
-    const docRef = await addDoc(collection(db, "users"), {
-      firstName: name,
-      email: email,
-    })
-    console.log("Document written with ID: ", docRef.id)
-  } catch (e) {
-    console.error("Error adding document: ", e)
-  }
+  // try {
+  //   const docRef = await addDoc(collection(db, "users"), {
+  //     firstName: name,
+  //     email: email,
+  //   })
+  //   console.log("Document written with ID: ", docRef.id)
+  // } catch (e) {
+  //   console.error("Error adding document: ", e)
+  // }
 
-  const createUser = () =>
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // Signed in
-        const user = userCredential.user
-        setSuccess("Account created")
-        setTimeout(() => {
-          router.push("/menu")
-        }, 500)
-        // ...
-      })
-      .catch((error) => {
-        setErrors(error.message)
-      })
+  createUserWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      // Signed in
+      const user = userCredential.user
+      setSuccess("Account created")
+      setTimeout(() => {
+        router.push("/menu")
+      }, 500)
+      // ...
+    })
+    .catch((error) => {
+      setErrors(error.message)
+    })
 }
