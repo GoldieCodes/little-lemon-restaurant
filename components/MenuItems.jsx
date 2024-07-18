@@ -42,7 +42,7 @@ export default function MenuItems() {
     <>
       {menus.map((menu) => (
         <article
-          className="max-h-[62vh] shadow-lg bg-ash rounded-lg"
+          className="max-h-[65vh] shadow-lg bg-ash rounded-lg"
           key={menu.id}
         >
           <Image
@@ -59,7 +59,7 @@ export default function MenuItems() {
                 ${menu.price}
               </p>
             </span>
-            <p className="text-green">{menu.description}</p>
+            <p className="text-green text-[1.1rem]">{menu.description}</p>
             <Link
               href={`/order-online/${menu.id}/${menu.title
                 .toLowerCase()

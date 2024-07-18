@@ -80,7 +80,7 @@ export default function Reviews() {
       key={review.pic}
       className="bg-[#ebe4db57] p-4 space-y-4 rounded-lg"
     >
-      <div>{review.rating}</div>
+      <div className="grid justify-center">{review.rating}</div>
       <div className="flex justify-around items-center">
         <Image
           width={100}
@@ -91,8 +91,8 @@ export default function Reviews() {
           className="rounded-full"
         />
         <div>
-          <p className="text-sm font-bold">{review.name}</p>
-          <p className="text-sm italic flex items-center">
+          <p className="text-sm font-bold text-green">{review.name}</p>
+          <p className="text-sm italic text-brownish flex items-center">
             <BiSolidMap />
             {review.locale}.
           </p>

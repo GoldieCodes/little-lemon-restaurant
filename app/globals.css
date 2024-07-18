@@ -9,7 +9,7 @@ h2 {
   @apply text-xl font-extrabold font-sans uppercase text-dark;
 }
 h3 {
-  @apply text-2xl font-serif text-dark;
+  @apply text-[3rem] font-serif text-dark;
 }
 h4 {
   @apply text-base font-sans font-extrabold;
