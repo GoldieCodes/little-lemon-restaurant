@@ -3,14 +3,10 @@ import { ImWarning, ImUserCheck } from "react-icons/im"
 import Link from "next/link"
 import { Formik, Form, useField } from "formik"
 import * as Yup from "yup"
-import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-} from "firebase/auth"
-import { app, auth } from "@/app/firebase"
 import { usePathname } from "next/navigation"
-import { useRouter } from "next/navigation"
 import { useState } from "react"
+import { handleCreateUser } from "@/app/create-account/page"
+import { handleLogin } from "@/app/login/page"
 
 export const InputField = ({ label, ...props }) => {
   const [field, meta] = useField(props)
@@ -43,7 +39,6 @@ export default function FormFramework({
   redirectLink,
 }) {
   const path = usePathname()
-  const router = useRouter()
   const [hasErrors, setErrors] = useState(null)
   const [success, setSuccess] = useState(null)
 
@@ -61,6 +56,13 @@ export default function FormFramework({
           password: "",
         }}
         validationSchema={Yup.object({
+          name: Yup.string()
+            .required("Please choose a username to proceed")
+            .max(12, "Username can't be more than 12 characters")
+            .matches(
+              /^[A-Za-z0-9]+$/,
+              "Username can only have alphabets and numbers, no spaces allowed"
+            ),
           email: Yup.string()
             .email("Please enter a valid email address")
             .required("This field is required"),
@@ -68,33 +70,12 @@ export default function FormFramework({
             .required("Please enter a password")
             .min(6, "Password should be at least 6 characters"),
         })}
-        onSubmit={({ email, password }) => {
+        onSubmit={({ name, email, password }) => {
+          setSuccess("loading...")
           path === "/create-account"
-            ? createUserWithEmailAndPassword(auth, email, password)
-                .then((userCredential) => {
-                  // Signed in
-                  const user = userCredential.user
-                  setSuccess("Account created")
-                  setTimeout(() => {
-                    router.push("/menu")
-                  }, 800)
-                  // ...
-                })
-                .catch((error) => {
-                  setErrors(error.message)
-                })
+            ? handleCreateUser(name, email, password, setErrors, setSuccess)
             : path === "/login"
-            ? signInWithEmailAndPassword(auth, email, password)
-                .then((userCredential) => {
-                  // Signed in
-                  const user = userCredential.user
-                  setSuccess("Signing you in...")
-                  router.push("/menu")
-                  // ...
-                })
-                .catch((error) => {
-                  setErrors(error.message)
-                })
+            ? handleLogin(email, password, setErrors, setErrors)
             : null
         }}
       >

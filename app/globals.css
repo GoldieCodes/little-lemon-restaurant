@@ -12,10 +12,10 @@ h3 {
   @apply text-2xl font-serif text-dark;
 }
 h4 {
-  @apply text-base font-sans font-extrabold;
+  @apply text-base font-sans font-extrabold text-dark;
 }
 h5 {
-  @apply font-bold font-sans text-lg;
+  @apply font-bold font-sans text-lg text-dark;
 }
 h6 {
   @apply text-sm font-bold font-sans text-ash;
@@ -27,7 +27,7 @@ p {
   @apply text-base font-bold text-brownish;
 }
 button {
-  @apply bg-yellow text-dark hover:bg-opacity-60 font-bold rounded-2xl py-3 px-4 shadow-xl;
+  @apply bg-yellow text-dark hover:bg-opacity-60 active:translate-y-1 font-bold rounded-2xl py-3 px-4 shadow-xl;
 }
 footer > main a,
 footer > main p {

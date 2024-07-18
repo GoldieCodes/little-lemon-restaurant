@@ -17,7 +17,7 @@ export default function ({ params }) {
         {menus.map((menu) =>
           params.slug[0] == menu.id ? (
             <>
-              <h3 className="my-3">{menu.title}</h3>
+              <h3 className="my-3 text-[green]">{menu.title}</h3>
               <div className="relative h-[50vh]">
                 <Image
                   src={menu.img.src}
@@ -116,7 +116,7 @@ export default function ({ params }) {
             <InputField
               name="address"
               type="text"
-              label="Home address"
+              label="Delivery address"
               placeholder="House number, street, city and state."
             />
             <button

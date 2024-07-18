@@ -15,7 +15,11 @@ export default function Home() {
               We are a family owned Mediterranean restaurant focused on
               traditional recipes served with a modern twist.
             </p>
-            <Button url="/#" text="Reserve a table" styles="" />
+            <Button
+              url="/reservation"
+              text="Reserve a table"
+              styles="hover:bg-[#ffe567]"
+            />
           </div>
           <Image
             src="/restaurantfood.jpg"

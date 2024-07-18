@@ -7,13 +7,15 @@ import { menus } from "@/components/MenuItems"
 import { BiDish } from "react-icons/bi"
 import Image from "next/image"
 import Link from "next/link"
+import { collection, addDoc } from "firebase/firestore"
+import { db } from "../firebase"
 
 export default function OrderOnline() {
   const [selectedDish, setDish] = useState("select")
   const [orderNum, setOrderNum] = useState(1)
 
   return (
-    <div className="wrapper space-y-4 grid content-center">
+    <div className="wrapper space-y-4">
       <h1 className="border-b-2 border-yellow/45 text-2xl text-green">
         What would you like to order?
       </h1>
@@ -25,7 +27,9 @@ export default function OrderOnline() {
           email: "",
           address: "",
         }}
-        onSubmit={() => {}}
+        onSubmit={(values) => {
+          addOrderToDb(...values)
+        }}
         validationSchema={Yup.object({
           products: Yup.string()
             .required("You need to select a dish to proceed")
@@ -43,9 +47,9 @@ export default function OrderOnline() {
           address: Yup.string().required("Please enter a delivery address"),
         })}
       >
-        <Form>
-          <article className="flex justify-between items-center my-14">
-            <div className="w-1/2">
+        <Form className="grid grid-cols-12">
+          <article className="col-span-6 space-y-16 my-12">
+            <div>
               <Field
                 id="products"
                 name="products"
@@ -69,7 +73,7 @@ export default function OrderOnline() {
             </div>
 
             {selectedDish !== "select" ? (
-              <div className="min-h-[40vh] w-2/5 shadow-lg rounded-xl">
+              <div className="min-h-[40vh] shadow-lg rounded-xl">
                 <div className="relative w-[89%] h-[230px] m-auto">
                   <Image
                     src={menus[Number(selectedDish)].img.src}
@@ -117,7 +121,7 @@ export default function OrderOnline() {
                 </div>
               </div>
             ) : (
-              <div className="min-h-[40vh] w-2/5 shadow-lg rounded-xl grid place-content-center">
+              <div className="min-h-[40vh] shadow-lg rounded-xl grid place-content-center">
                 <p className="flex items-center gap-2 text-md font-bold text-dark/50">
                   <span className="text-3xl">
                     <BiDish />
@@ -128,8 +132,8 @@ export default function OrderOnline() {
             )}
           </article>
 
-          <h2 className="mb-5 mt-10 text-green">Delivery Details</h2>
-          <div className="grid grid-cols-2 gap-x-16 gap-y-8">
+          <div className="col-start-8 col-end-13 space-y-5">
+            <h4 className="mb-5 mt-10">Delivery Details</h4>
             <InputField
               name="name"
               type="text"
@@ -154,15 +158,26 @@ export default function OrderOnline() {
               label="Home address"
               placeholder="House number, street, city and state."
             />
+
+            <button
+              className="w-full mx-auto mt-11 text-base bg-yellow/65 hover:bg-yellow active:translate-y-1"
+              type="submit"
+            >
+              <Link href="/payment">Go to Payment</Link>
+            </button>
           </div>
-          <button
-            className="w-[20%] block mx-auto mt-11 text-base bg-yellow/65 hover:bg-yellow active:translate-y-1"
-            type="submit"
-          >
-            <Link href="/payment">Go to Payment</Link>
-          </button>
         </Form>
       </Formik>
     </div>
   )
+}
+
+const addOrderToDb = (...values) => {
+  try {
+    const docRef = addDoc(collection(db, "Orders"), {
+      ...values,
+    })
+  } catch (error) {
+    console.log(error)
+  }
 }

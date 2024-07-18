@@ -78,9 +78,9 @@ export default function MenuItems() {
 
 //this is a generic button component for any button or link. It should be used because it is currently on a client-side
 //component file
-export const Button = ({ text, url, styles }) => {
+export const Button = ({ text, url, styles, onClick }) => {
   return (
-    <button className={styles}>
+    <button className={styles} onClick={onClick}>
       <Link href={url}>{text}</Link>
     </button>
   )
