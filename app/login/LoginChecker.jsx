@@ -5,7 +5,7 @@ import { useState, useEffect, createContext, useContext } from "react"
 
 const UserManager = createContext({})
 
-export default function UserLoginWatcher({ children }) {
+export default function LoginChecker({ children }) {
   const [currentUser, setCurrentUser] = useState(null)
 
   useEffect(() => {

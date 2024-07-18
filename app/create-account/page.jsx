@@ -26,6 +26,7 @@ export const handleCreateUser = async (
   name,
   email,
   password,
+  router,
   setErrors,
   setSuccess
 ) => {

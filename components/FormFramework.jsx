@@ -7,6 +7,7 @@ import { usePathname } from "next/navigation"
 import { useState } from "react"
 import { handleCreateUser } from "@/app/create-account/page"
 import { handleLogin } from "@/app/login/page"
+import { useRouter } from "next/navigation"
 
 export const InputField = ({ label, ...props }) => {
   const [field, meta] = useField(props)
@@ -41,6 +42,7 @@ export default function FormFramework({
   const path = usePathname()
   const [hasErrors, setErrors] = useState(null)
   const [success, setSuccess] = useState(null)
+  const router = useRouter()
 
   return (
     <div className="w-[60%] mx-auto my-28 bg-[white]/70 rounded-md p-12 backdrop-blur-[7px]">
@@ -73,9 +75,16 @@ export default function FormFramework({
         onSubmit={({ name, email, password }) => {
           setSuccess("loading...")
           path === "/create-account"
-            ? handleCreateUser(name, email, password, setErrors, setSuccess)
+            ? handleCreateUser(
+                name,
+                email,
+                password,
+                router,
+                setErrors,
+                setSuccess
+              )
             : path === "/login"
-            ? handleLogin(email, password, setErrors, setErrors)
+            ? handleLogin(email, password, router, setErrors, setSuccess)
             : null
         }}
       >
