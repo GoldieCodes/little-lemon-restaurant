@@ -3,8 +3,10 @@ import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { getAuth } from "firebase/auth"
-import { app } from "@/app/firebase"
+import { app, auth } from "@/app/firebase"
 import { userManagerParams } from "@/app/login/LoginChecker"
+import { useState } from "react"
+import { signOut } from "firebase/auth"
 
 export default function Nav() {
   const currentPath = usePathname()
@@ -39,6 +41,7 @@ export const NavLinks = () => {
   const currentPath = usePathname()
   const auth = getAuth()
   const user = userManagerParams()
+  const [hideLogOutBtn, setLogOutBtn] = useState(true)
 
   return (
     <>
@@ -113,7 +116,25 @@ export const NavLinks = () => {
         Order Online
       </Link>
       {user !== null ? (
-        <p>Hi, User ...Logout</p>
+        <div
+          className="relative inline-block min-w-32 p-3"
+          onMouseLeave={() => setLogOutBtn(true)}
+        >
+          <p
+            className="flex items-center gap-1 cursor-pointer text-sm font-sans text-green mb-2"
+            onMouseEnter={() => setLogOutBtn(false)}
+          >
+            Hi User
+          </p>
+          <button
+            className={`py-[6px] px-6 bg-pinkish hover:bg-yellow ${
+              hideLogOutBtn ? "invisible" : "visible"
+            }`}
+            onClick={() => SignOut()}
+          >
+            Log out
+          </button>
+        </div>
       ) : (
         <Link
           href="/login"
@@ -132,4 +153,14 @@ export const NavLinks = () => {
       )}
     </>
   )
+}
+//this function is used in the LogOut button above to sign out a user
+function SignOut() {
+  signOut(auth)
+    .then(() => {
+      console.log("the person is now signed out")
+    })
+    .catch((error) => {
+      console.log("an error occurred: " + error)
+    })
 }
