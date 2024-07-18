@@ -1,1 +1,3 @@
-;<div>Hi, You'll pay here</div>
+export default function Payment() {
+  return <div>Hi, You'll pay here</div>
+}
