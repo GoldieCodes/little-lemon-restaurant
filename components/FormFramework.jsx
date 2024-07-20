@@ -59,7 +59,6 @@ export default function FormFramework({
         }}
         validationSchema={Yup.object({
           name: Yup.string()
-            .required("Please choose a username to proceed")
             .max(12, "Username can't be more than 12 characters")
             .matches(
               /^[A-Za-z0-9]+$/,
@@ -73,7 +72,6 @@ export default function FormFramework({
             .min(6, "Password should be at least 6 characters"),
         })}
         onSubmit={({ name, email, password }) => {
-          setSuccess("loading...")
           path === "/create-account"
             ? handleCreateUser(
                 name,

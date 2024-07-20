@@ -7,9 +7,13 @@ import { IoMdArrowRoundBack } from "react-icons/io"
 import { Formik, Form } from "formik"
 import { InputField } from "@/components/FormFramework"
 import * as Yup from "yup"
+import { addOrderToDb } from "../page"
+import { loggedinUserParams } from "@/app/login/LoginChecker"
 
 export default function ({ params }) {
   const [orderNum, setOrderNum] = useState(1)
+  const { currentUser } = loggedinUserParams()
+  const [dish, setDish] = useState()
 
   return (
     <div className="wrapper space-y-2 grid grid-cols-12">
@@ -76,7 +80,9 @@ export default function ({ params }) {
             email: "",
             address: "",
           }}
-          onSubmit={() => {}}
+          onSubmit={(values) => {
+            addOrderToDb(currentUser, orderNum, values)
+          }}
           validationSchema={Yup.object({
             products: Yup.string()
               .required("You need to select a dish to proceed")

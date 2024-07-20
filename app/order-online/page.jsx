@@ -3,16 +3,19 @@ import { Formik, Form, Field, ErrorMessage } from "formik"
 import { InputField } from "@/components/FormFramework"
 import * as Yup from "yup"
 import { useState } from "react"
+import { useRouter } from "next/navigation"
 import { menus } from "@/components/MenuItems"
 import { BiDish } from "react-icons/bi"
 import Image from "next/image"
-import Link from "next/link"
-import { collection, addDoc } from "firebase/firestore"
+import { doc, setDoc } from "firebase/firestore"
 import { db } from "../firebase"
+import { loggedinUserParams } from "../login/LoginChecker"
 
 export default function OrderOnline() {
   const [selectedDish, setDish] = useState("select")
   const [orderNum, setOrderNum] = useState(1)
+  const { currentUser } = loggedinUserParams()
+  const router = useRouter()
 
   return (
     <div className="wrapper space-y-4">
@@ -28,7 +31,8 @@ export default function OrderOnline() {
           address: "",
         }}
         onSubmit={(values) => {
-          addOrderToDb(...values)
+          addOrderToDb(currentUser, orderNum, values)
+          router.push("/payment")
         }}
         validationSchema={Yup.object({
           products: Yup.string()
@@ -163,7 +167,7 @@ export default function OrderOnline() {
               className="w-full mx-auto mt-11 text-base bg-yellow/65 hover:bg-yellow active:translate-y-1"
               type="submit"
             >
-              <Link href="/payment">Go to Payment</Link>
+              Go to Payment
             </button>
           </div>
         </Form>
@@ -172,9 +176,10 @@ export default function OrderOnline() {
   )
 }
 
-const addOrderToDb = (...values) => {
+export const addOrderToDb = async (currentUser, orderNum, values) => {
   try {
-    const docRef = addDoc(collection(db, "Orders"), {
+    await setDoc(doc(db, "orders", currentUser), {
+      orderNum,
       ...values,
     })
   } catch (error) {
