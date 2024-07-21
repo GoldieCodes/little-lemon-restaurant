@@ -6,6 +6,9 @@ import {
   BiSolidMap,
 } from "react-icons/bi"
 import Image from "next/image"
+import Slider from "react-slick"
+import "slick-carousel/slick/slick.css"
+import "slick-carousel/slick/slick-theme.css"
 
 const customers = [
   {
@@ -78,7 +81,7 @@ export default function Reviews() {
   const testimonials = customers.map((review) => (
     <article
       key={review.pic}
-      className="bg-[#ebe4db57] p-4 space-y-4 rounded-lg"
+      className="bg-[#ebe4db57] px-5 pt-7 rounded-lg space-y-7 h-[55vh]"
     >
       <div className="grid justify-center">{review.rating}</div>
       <div className="flex justify-around items-center">
@@ -101,5 +104,44 @@ export default function Reviews() {
       <p className="text-sm p-2">{review.review}</p>
     </article>
   ))
-  return testimonials
+
+  function SampleNextArrow(props) {
+    const { className, style, onClick } = props
+    return <div className={className} style={{ ...style }} onClick={onClick} />
+  }
+
+  function SamplePrevArrow(props) {
+    const { className, style, onClick } = props
+    return <div className={className} style={{ ...style }} onClick={onClick} />
+  }
+
+  var settings = {
+    dots: true,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    nextArrow: <SampleNextArrow />,
+    prevArrow: <SamplePrevArrow />,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          initialSlide: 2,
+        },
+      },
+    ],
+  }
+
+  return <Slider {...settings}>{testimonials}</Slider>
 }

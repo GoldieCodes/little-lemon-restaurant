@@ -7,9 +7,13 @@ import { IoMdArrowRoundBack } from "react-icons/io"
 import { Formik, Form } from "formik"
 import { InputField } from "@/components/FormFramework"
 import * as Yup from "yup"
+import { addOrderToDb } from "../page"
+import { loggedinUserParams } from "@/app/login/LoginChecker"
 
 export default function Order({ params }) {
   const [orderNum, setOrderNum] = useState(1)
+  const { currentUser } = loggedinUserParams()
+  const [dish, setDish] = useState()
 
   return (
     <div className="wrapper space-y-2 grid grid-cols-12">
@@ -17,7 +21,7 @@ export default function Order({ params }) {
         {menus.map((menu) =>
           params.slug[0] == menu.id ? (
             <>
-              <h3 className="my-3">{menu.title}</h3>
+              <h3 className="my-3 text-[green]">{menu.title}</h3>
               <div className="relative h-[50vh]">
                 <Image
                   src={menu.img.src}
@@ -76,7 +80,9 @@ export default function Order({ params }) {
             email: "",
             address: "",
           }}
-          onSubmit={() => {}}
+          onSubmit={(values) => {
+            addOrderToDb(currentUser, orderNum, values)
+          }}
           validationSchema={Yup.object({
             products: Yup.string()
               .required("You need to select a dish to proceed")
@@ -116,7 +122,7 @@ export default function Order({ params }) {
             <InputField
               name="address"
               type="text"
-              label="Home address"
+              label="Delivery address"
               placeholder="House number, street, city and state."
             />
             <button

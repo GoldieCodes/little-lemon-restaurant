@@ -4,8 +4,10 @@ import Link from "next/link"
 import { Formik, Form, useField } from "formik"
 import * as Yup from "yup"
 import { usePathname } from "next/navigation"
-import { useRouter } from "next/navigation"
 import { useState } from "react"
+import { handleCreateUser } from "@/app/create-account/page"
+import { handleLogin } from "@/app/login/page"
+import { useRouter } from "next/navigation"
 import { handleCreateUser } from "@/app/create-account/page"
 import { handleLogin } from "@/app/login/page"
 
@@ -40,9 +42,9 @@ export default function FormFramework({
   redirectLink,
 }) {
   const path = usePathname()
-  const router = useRouter()
   const [hasErrors, setErrors] = useState(null)
   const [success, setSuccess] = useState(null)
+  const router = useRouter()
 
   return (
     <div className="w-[60%] mx-auto my-28 bg-[white]/70 rounded-md p-12 backdrop-blur-[7px]">
@@ -58,6 +60,12 @@ export default function FormFramework({
           password: "",
         }}
         validationSchema={Yup.object({
+          name: Yup.string()
+            .max(12, "Username can't be more than 12 characters")
+            .matches(
+              /^[A-Za-z0-9]+$/,
+              "Username can only have alphabets and numbers, no spaces allowed"
+            ),
           email: Yup.string()
             .email("Please enter a valid email address")
             .required("This field is required"),
@@ -65,15 +73,15 @@ export default function FormFramework({
             .required("Please enter a password")
             .min(6, "Password should be at least 6 characters"),
         })}
-        onSubmit={({ email, password }) => {
+        onSubmit={({ name, email, password }) => {
           path === "/create-account"
             ? handleCreateUser(
                 name,
                 email,
                 password,
                 router,
-                setSuccess,
-                setErrors
+                setErrors,
+                setSuccess
               )
             : path === "/login"
             ? handleLogin(email, password, router, setErrors, setSuccess)

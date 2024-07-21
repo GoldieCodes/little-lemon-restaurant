@@ -15,7 +15,11 @@ export default function Home() {
               We are a family owned Mediterranean restaurant focused on
               traditional recipes served with a modern twist.
             </p>
-            <Button url="/#" text="Reserve a table" styles="" />
+            <Button
+              url="/reservation"
+              text="Reserve a table"
+              styles="hover:bg-[#ffe567]"
+            />
           </div>
           <Image
             src="/restaurantfood.jpg"
@@ -41,9 +45,8 @@ export default function Home() {
       </section>
       <section className="w-[1120px] mt-36 mb-48 mx-auto">
         <h2 className="mb-10 text-center">Testimonials</h2>
-        <div className="grid grid-cols-4 gap-4">
-          <Reviews />
-        </div>
+
+        <Reviews />
       </section>
       <section className="wrapper grid grid-cols-12 h-[50vh] grid-rows-[10vh]">
         <div className="col-span-6">
@@ -64,14 +67,14 @@ export default function Home() {
           height={350}
           src="/Mario and Adrian A.jpg"
           alt="Mario and Adrian in the kitchen"
-          className="w-[250px] col-span-3 h-[48vh] mt-[-70px] mr-[-40px] object-cover border-4 border-dark justify-self-end"
+          className="col-span-3 h-[50vh] mt-[-70px] mr-[-40px] object-cover border-4 border-dark justify-self-end"
         />
         <Image
           width={350}
           height={350}
           src="/Mario and Adrian B.jpg"
           alt="Mario and Adrian baking together"
-          className="w-[250px] col-span-3 h-[48vh] object-cover border-4 border-dark self-start justify-self-start"
+          className="col-span-3 h-[50vh] object-cover border-4 border-dark self-start justify-self-start"
         />
       </section>
     </>

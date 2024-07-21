@@ -1,3 +1,3 @@
-export default function Payment() {
-  return <div>Hi, You'll pay here</div>
+export default function PaymentPage() {
+  return <div className="wrapper h-[50vh]">Coming soon...</div>
 }

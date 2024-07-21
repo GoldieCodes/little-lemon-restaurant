@@ -1,7 +1,8 @@
 import FormFramework from "@/components/FormFramework"
 import { createUserWithEmailAndPassword } from "firebase/auth"
-import { app, auth, db } from "@/app/firebase"
-import { collection, addDoc } from "firebase/firestore"
+import { doc, setDoc } from "firebase/firestore"
+import { db } from "@/app/firebase"
+import { app, auth } from "@/app/firebase"
 
 export default function CreateAccount() {
   return (
@@ -17,33 +18,24 @@ export default function CreateAccount() {
   )
 }
 
-export async function handleCreateUser(
+export const handleCreateUser = async (
   name,
   email,
   password,
   router,
-  setSuccess,
-  setErrors
-) {
-  try {
-    const docRef = await addDoc(collection(db, "users"), {
-      firstName: name,
-      email: email,
-    })
-    console.log("Document written with ID: ", docRef.id)
-  } catch (e) {
-    console.error("Error adding document: ", e)
-  }
-
+  setErrors,
+  setSuccess
+) => {
   createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
+    .then(async (userCredential) => {
       // Signed in
-      const user = userCredential.user
       setSuccess("Account created")
       setTimeout(() => {
         router.push("/menu")
       }, 500)
       // ...
+      const userRef = userCredential.user.uid
+      await setDoc(doc(db, "users", userRef), { username: name, email: email })
     })
     .catch((error) => {
       setErrors(error.message)
