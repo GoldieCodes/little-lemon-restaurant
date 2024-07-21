@@ -51,3 +51,22 @@ footer > main p {
 .formError {
   @apply text-[red] font-semibold text-xs;
 }
+.slick-dots li.slick-active button:before {
+  @apply !text-[green];
+}
+.slick-dots {
+  @apply !bottom-[-45px];
+}
+.slick-slide {
+  @apply !pr-8;
+}
+.slick-slide:last-child {
+  @apply !pr-0;
+}
+.slick-prev:before,
+.slick-next:before {
+  @apply !text-2xl !text-green;
+}
+.slick-next {
+  @apply !w-auto;
+}

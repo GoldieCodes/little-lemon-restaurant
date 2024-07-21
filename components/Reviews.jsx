@@ -6,11 +6,9 @@ import {
   BiSolidMap,
 } from "react-icons/bi"
 import Image from "next/image"
-import "swiper/css/bundle"
-import { useRef, useEffect } from "react"
-import { register } from "swiper/element/bundle"
-
-register()
+import Slider from "react-slick"
+import "slick-carousel/slick/slick.css"
+import "slick-carousel/slick/slick-theme.css"
 
 const customers = [
   {
@@ -80,53 +78,70 @@ const customers = [
 ]
 
 export default function Reviews() {
-  const slider = useRef()
-
   const testimonials = customers.map((review) => (
-    <swiper-slide key={review.pic}>
-      <article className="bg-[#ebe4db57] px-5 pt-7 rounded-lg space-y-4 h-[55vh]">
-        <div>{review.rating}</div>
-        <div className="flex justify-around items-center">
-          <Image
-            width={100}
-            height={100}
-            objectFit="cover"
-            src={review.pic}
-            alt={`${review.name} profile pic`}
-            className="rounded-full"
-          />
-          <div>
-            <p className="text-sm font-bold">{review.name}</p>
-            <p className="text-sm italic flex items-center">
-              <BiSolidMap />
-              {review.locale}.
-            </p>
-          </div>
+    <article
+      key={review.pic}
+      className="bg-[#ebe4db57] px-5 pt-7 rounded-lg space-y-7 h-[55vh]"
+    >
+      <div>{review.rating}</div>
+      <div className="flex justify-around items-center">
+        <Image
+          width={100}
+          height={100}
+          objectFit="cover"
+          src={review.pic}
+          alt={`${review.name} profile pic`}
+          className="rounded-full"
+        />
+        <div>
+          <p className="text-sm font-bold">{review.name}</p>
+          <p className="text-sm italic flex items-center">
+            <BiSolidMap />
+            {review.locale}.
+          </p>
         </div>
-        <p className="text-sm p-2">{review.review}</p>
-      </article>
-    </swiper-slide>
+      </div>
+      <p className="text-sm p-2">{review.review}</p>
+    </article>
   ))
 
-  useEffect(() => {
-    // listen for Swiper events using addEventListener
-    slider.current.addEventListener("swiperprogress", (e) => {
-      const [swiper, progress] = e.detail
-    })
+  function SampleNextArrow(props) {
+    const { className, style, onClick } = props
+    return <div className={className} style={{ ...style }} onClick={onClick} />
+  }
 
-    slider.current.addEventListener("swiperslidechange", (e) => {})
-  }, [])
+  function SamplePrevArrow(props) {
+    const { className, style, onClick } = props
+    return <div className={className} style={{ ...style }} onClick={onClick} />
+  }
 
-  return (
-    <swiper-container
-      slides-per-view="3"
-      navigation="true"
-      pagination="true"
-      space-between="50"
-      autoplay="true"
-      ref={slider}
-    >
-      {testimonials}
-    </swiper-container>
-  )
+  var settings = {
+    dots: true,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    nextArrow: <SampleNextArrow />,
+    prevArrow: <SamplePrevArrow />,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          initialSlide: 2,
+        },
+      },
+    ],
+  }
+
+  return <Slider {...settings}>{testimonials}</Slider>
 }
