@@ -29,13 +29,13 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${karla.variable} ${markazi.variable}`}>
       <body>
-        <Background>
-          <LoginChecker>
+        <LoginChecker>
+          <Background>
             <Nav />
             {children}
             <Footer />
-          </LoginChecker>
-        </Background>
+          </Background>
+        </LoginChecker>
       </body>
     </html>
   )

@@ -12,9 +12,8 @@ export default function LoginChecker({ children }) {
 
   useEffect(() => {
     onAuthStateChanged(auth, async (user) => {
-      setCurrentUser(user.uid)
-
       if (user !== null) {
+        setCurrentUser(user.uid)
         const docSnap = await getDoc(doc(db, "users", user.uid))
         const userProfileData = docSnap.data()
         userProfileData.username

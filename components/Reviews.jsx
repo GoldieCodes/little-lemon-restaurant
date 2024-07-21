@@ -6,6 +6,11 @@ import {
   BiSolidMap,
 } from "react-icons/bi"
 import Image from "next/image"
+import "swiper/css/bundle"
+import { useRef, useEffect } from "react"
+import { register } from "swiper/element/bundle"
+
+register()
 
 const customers = [
   {
@@ -75,31 +80,53 @@ const customers = [
 ]
 
 export default function Reviews() {
+  const slider = useRef()
+
   const testimonials = customers.map((review) => (
-    <article
-      key={review.pic}
-      className="bg-[#ebe4db57] p-4 space-y-4 rounded-lg"
-    >
-      <div>{review.rating}</div>
-      <div className="flex justify-around items-center">
-        <Image
-          width={100}
-          height={100}
-          objectFit="cover"
-          src={review.pic}
-          alt={`${review.name} profile pic`}
-          className="rounded-full"
-        />
-        <div>
-          <p className="text-sm font-bold">{review.name}</p>
-          <p className="text-sm italic flex items-center">
-            <BiSolidMap />
-            {review.locale}.
-          </p>
+    <swiper-slide key={review.pic}>
+      <article className="bg-[#ebe4db57] px-5 pt-7 rounded-lg space-y-4 h-[55vh]">
+        <div>{review.rating}</div>
+        <div className="flex justify-around items-center">
+          <Image
+            width={100}
+            height={100}
+            objectFit="cover"
+            src={review.pic}
+            alt={`${review.name} profile pic`}
+            className="rounded-full"
+          />
+          <div>
+            <p className="text-sm font-bold">{review.name}</p>
+            <p className="text-sm italic flex items-center">
+              <BiSolidMap />
+              {review.locale}.
+            </p>
+          </div>
         </div>
-      </div>
-      <p className="text-sm p-2">{review.review}</p>
-    </article>
+        <p className="text-sm p-2">{review.review}</p>
+      </article>
+    </swiper-slide>
   ))
-  return testimonials
+
+  useEffect(() => {
+    // listen for Swiper events using addEventListener
+    slider.current.addEventListener("swiperprogress", (e) => {
+      const [swiper, progress] = e.detail
+    })
+
+    slider.current.addEventListener("swiperslidechange", (e) => {})
+  }, [])
+
+  return (
+    <swiper-container
+      slides-per-view="3"
+      navigation="true"
+      pagination="true"
+      space-between="50"
+      autoplay="true"
+      ref={slider}
+    >
+      {testimonials}
+    </swiper-container>
+  )
 }
