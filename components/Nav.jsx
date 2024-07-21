@@ -2,7 +2,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { loggedinUserParams } from "@/app/login/LoginChecker"
+import { LoggedinUserParams } from "@/app/login/LoginChecker"
 import { app, auth } from "@/app/firebase"
 import { useState } from "react"
 import { FaCaretDown } from "react-icons/fa"
@@ -39,7 +39,19 @@ export default function Nav() {
 export const NavLinks = () => {
   const currentPath = usePathname()
   const [hideLogOutBtn, setLogOutBtn] = useState(true)
-  const userParams = loggedinUserParams()
+  const userParams = LoggedinUserParams()
+
+  //this function is used in the LogOut button above to sign out a user
+  function SignOut() {
+    signOut(auth)
+      .then(() => {
+        console.log("the person is now signed out")
+        userParams.setCurrentUser(null)
+      })
+      .catch((error) => {
+        console.log("an error occurred: " + error)
+      })
+  }
 
   return (
     <nav className="font-semibold text-sm font-sans text-green flex items-start">
@@ -114,9 +126,9 @@ export const NavLinks = () => {
         Order Online
       </Link>
       {/*   
-    userParams is the value object from the Context API I defined in the LoginChecker file
-    currentUser is one of the values gotten from the Context provider 
-*/}
+        userParams is the value object from the Context API I defined in the LoginChecker file
+        currentUser is one of the values gotten from the Context provider 
+      */}
       {userParams.currentUser !== null ? (
         <div
           className="relative inline-block min-w-32 p-3"
@@ -155,15 +167,4 @@ export const NavLinks = () => {
       )}
     </nav>
   )
-}
-
-//this function is used in the LogOut button above to sign out a user
-function SignOut() {
-  signOut(auth)
-    .then(() => {
-      console.log("the person is now signed out")
-    })
-    .catch((error) => {
-      console.log("an error occurred: " + error)
-    })
 }

@@ -8,11 +8,11 @@ import { Formik, Form } from "formik"
 import { InputField } from "@/components/FormFramework"
 import * as Yup from "yup"
 import { addOrderToDb } from "../page"
-import { loggedinUserParams } from "@/app/login/LoginChecker"
+import { LoggedinUserParams } from "@/app/login/LoginChecker"
 
 export default function Order({ params }) {
   const [orderNum, setOrderNum] = useState(1)
-  const { currentUser } = loggedinUserParams()
+  const { currentUser } = LoggedinUserParams()
   const [dish, setDish] = useState()
 
   return (

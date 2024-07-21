@@ -24,9 +24,9 @@ export default function LoginChecker({ children }) {
   }, [])
 
   return (
-    <UserManager.Provider value={{ currentUser, username }}>
+    <UserManager.Provider value={{ currentUser, username, setCurrentUser }}>
       {children}
     </UserManager.Provider>
   )
 }
-export const loggedinUserParams = () => useContext(UserManager)
+export const LoggedinUserParams = () => useContext(UserManager)

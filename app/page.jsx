@@ -43,12 +43,12 @@ export default function Home() {
           <MenuItems />
         </div>
       </section>
-      <section className="w-[1120px] mt-36 mb-48 mx-auto">
+      <section className="w-[1120px] mt-36 mb-80 mx-auto">
         <h2 className="mb-10 text-center">Testimonials</h2>
 
         <Reviews />
       </section>
-      <section className="wrapper grid grid-cols-12 h-[50vh] grid-rows-[10vh]">
+      <section className="wrapper grid grid-cols-12 h-[50vh] grid-rows-[10vh] !mb-48">
         <div className="col-span-6">
           <h2 className="mb-1">Little Lemon</h2>
           <h5 className="text-brownish mb-5">Chicago</h5>
@@ -62,20 +62,22 @@ export default function Home() {
           </p>
         </div>
 
-        <Image
-          width={350}
-          height={350}
-          src="/Mario and Adrian A.jpg"
-          alt="Mario and Adrian in the kitchen"
-          className="col-span-3 h-[50vh] mt-[-70px] mr-[-40px] object-cover border-4 border-dark justify-self-end"
-        />
-        <Image
-          width={350}
-          height={350}
-          src="/Mario and Adrian B.jpg"
-          alt="Mario and Adrian baking together"
-          className="col-span-3 h-[50vh] object-cover border-4 border-dark self-start justify-self-start"
-        />
+        <div className="relative h-[70vh] w-[32vw]">
+          <Image
+            layout="fill"
+            src="/Mario and Adrian A.jpg"
+            alt="Mario and Adrian in the kitchen"
+            className="col-span-3 mt-[-20vh] mr-[-40px] object-cover border-4 border-dark justify-self-end"
+          />
+        </div>
+        <div className="relative h-[70vh] w-[32vw] mt-[-12vh] col-span-3 border-[3px] border-dark self-start justify-self-start">
+          {/* <Image
+            layout="fill"
+            src="/Mario and Adrian B.jpg"
+            alt="Mario and Adrian baking together"
+            className="col-span-3 object-cover border-4 border-dark self-start justify-self-start"
+          /> */}
+        </div>
       </section>
     </>
   )

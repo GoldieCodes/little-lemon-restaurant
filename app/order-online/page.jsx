@@ -9,12 +9,12 @@ import { BiDish } from "react-icons/bi"
 import Image from "next/image"
 import { doc, setDoc } from "firebase/firestore"
 import { db } from "../firebase"
-import { loggedinUserParams } from "../login/LoginChecker"
+import { LoggedinUserParams } from "../login/LoginChecker"
 
 export default function OrderOnline() {
   const [selectedDish, setDish] = useState("select")
   const [orderNum, setOrderNum] = useState(1)
-  const { currentUser } = loggedinUserParams()
+  const { currentUser } = LoggedinUserParams()
   const router = useRouter()
 
   return (
