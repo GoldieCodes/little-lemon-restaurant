@@ -30,9 +30,6 @@ export default function Footer() {
             <Link href="/order-online" className="hover:text-brownish">
               Order Online
             </Link>
-            <Link href="/login" className="hover:text-brownish">
-              Login
-            </Link>
           </div>
         </nav>
         <nav className="col-span-2">

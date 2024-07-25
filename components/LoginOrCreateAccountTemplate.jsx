@@ -1,6 +1,6 @@
 "use client"
 import Link from "next/link"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import * as Yup from "yup"
 import { Formik, Form, useField } from "formik"
 import { usePathname, useRouter } from "next/navigation"
@@ -19,7 +19,7 @@ export const InputField = ({ label, ...props }) => {
         {label}
       </label>
       <input
-        className="w-full rounded-lg p-3 my-2 border-2 border-ash font-sans"
+        className="w-full rounded-lg p-3 my-2 border-2 border-ash font-sans outline-2 outline-pinkish"
         {...field}
         {...props}
       />
@@ -30,7 +30,7 @@ export const InputField = ({ label, ...props }) => {
   )
 }
 
-export default function FormFramework({
+export default function LoginOrCreateAccountTemplate({
   heading,
   subheading,
   buttonText,
@@ -70,7 +70,8 @@ export default function FormFramework({
             .required("Please enter a password")
             .min(6, "Password should be at least 6 characters"),
         })}
-        onSubmit={({ name, email, password }) => {
+        onSubmit={({ name, email, password }, { setSubmitting }) => {
+          setSubmitting(true)
           path === "/create-account"
             ? handleCreateUser(
                 name,
@@ -78,36 +79,45 @@ export default function FormFramework({
                 password,
                 router,
                 setErrors,
-                setSuccess
+                setSuccess,
+                setSubmitting
               )
             : path === "/login"
-            ? handleLogin(email, password, router, setErrors, setSuccess)
+            ? handleLogin(
+                email,
+                password,
+                router,
+                setErrors,
+                setSuccess,
+                setSubmitting
+              )
             : null
         }}
       >
-        <Form>
-          {path === "/create-account" ? (
+        {({ isSubmitting }) => (
+          <Form>
+            {path === "/create-account" ? (
+              <InputField
+                name="name"
+                type="text"
+                placeholder="Your firstname or nickname"
+              />
+            ) : null}
+            <InputField name="email" type="text" placeholder="Email address" />
             <InputField
-              name="name"
-              type="text"
-              placeholder="Your firstname or nickname"
+              name="password"
+              type="password"
+              placeholder="Enter your password"
             />
-          ) : null}
-          <InputField name="email" type="text" placeholder="Email address" />
-          <InputField
-            name="password"
-            type="password"
-            placeholder="Enter your password"
-          />
-
-          <button
-            className="w-full block mx-auto mt-2 mb-5 text-base bg-yellow/65 hover:bg-yellow active:translate-y-1"
-            type="submit"
-          >
-            {buttonText}
-          </button>
-        </Form>
+            <FormSubmitBtn
+              buttonText={buttonText}
+              isSubmitting={isSubmitting}
+            />
+          </Form>
+        )}
       </Formik>
+
+      {/* This is the text beneath the form fields that will say extra stuff like "Don't have an account?" or "Forgot password?" */}
       <p className="text-sm">
         {alternative + " "}
         <Link
@@ -118,6 +128,7 @@ export default function FormFramework({
         </Link>
       </p>
 
+      {/* This is responsible for the box that shows up when the form has a submission error from Firebase or indicates success to the user */}
       {hasErrors !== null ? (
         <p
           role="error message"
@@ -133,5 +144,24 @@ export default function FormFramework({
         </div>
       ) : null}
     </div>
+  )
+}
+
+//I extracted this form submit button so that I can use it in any form component. It has a loading spinner
+export const FormSubmitBtn = ({ buttonText, isSubmitting }) => {
+  return (
+    <button
+      className="w-full block mx-auto mt-2 mb-5 text-base bg-yellow/65 hover:bg-yellow active:translate-y-1 transition-all disabled:cursor-not-allowed disabled:hover:bg-yellow/50"
+      type="submit"
+      disabled={isSubmitting}
+    >
+      {isSubmitting ? (
+        <span class="inline-block h-6 w-6 border-4 rounded-full border-[green] border-t-[transparent] animate-spin">
+          {/* This span is the spinner. It doesn't need any content. The CSS styling on it creates the spinner */}
+        </span>
+      ) : (
+        buttonText
+      )}
+    </button>
   )
 }

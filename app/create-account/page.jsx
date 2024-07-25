@@ -1,4 +1,4 @@
-import FormFramework from "@/components/FormFramework"
+import LoginOrCreateAccountTemplate from "@/components/LoginOrCreateAccountTemplate"
 import { createUserWithEmailAndPassword } from "firebase/auth"
 import { doc, setDoc } from "firebase/firestore"
 import { db } from "@/app/firebase"
@@ -6,7 +6,7 @@ import { app, auth } from "@/app/firebase"
 
 export default function CreateAccount() {
   return (
-    <FormFramework
+    <LoginOrCreateAccountTemplate
       heading="Join the Little Lemon Family"
       subheading="Create an account to enjoy personalized dining experiences, special
         offers, and easy reservations."
@@ -24,7 +24,8 @@ export const handleCreateUser = async (
   password,
   router,
   setErrors,
-  setSuccess
+  setSuccess,
+  setSubmitting
 ) => {
   createUserWithEmailAndPassword(auth, email, password)
     .then(async (userCredential) => {
@@ -33,11 +34,14 @@ export const handleCreateUser = async (
       setTimeout(() => {
         router.push("/menu")
       }, 500)
-      // ...
+      setSubmitting(false)
+      // these lines below, save the user's entered details to Firebase Firestore db
       const userRef = userCredential.user.uid
       await setDoc(doc(db, "users", userRef), { username: name, email: email })
     })
     .catch((error) => {
       setErrors(error.message)
+      setTimeout(() => setErrors(null), 8000)
+      setSubmitting(false)
     })
 }

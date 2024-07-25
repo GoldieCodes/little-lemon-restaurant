@@ -1,6 +1,6 @@
 "use client"
 import { Formik, Form, Field, ErrorMessage } from "formik"
-import { InputField } from "@/components/FormFramework"
+import { InputField } from "@/components/LoginOrCreateAccountTemplate"
 import * as Yup from "yup"
 import { useState } from "react"
 import { useRouter } from "next/navigation"
@@ -10,6 +10,7 @@ import Image from "next/image"
 import { doc, setDoc } from "firebase/firestore"
 import { db } from "../firebase"
 import { LoggedinUserParams } from "../login/LoginChecker"
+import { orderQuantity } from "./orderQuantity"
 
 export default function OrderOnline() {
   const [selectedDish, setDish] = useState("select")
@@ -36,7 +37,7 @@ export default function OrderOnline() {
         }}
         validationSchema={Yup.object({
           products: Yup.string()
-            .required("You need to select a dish to proceed")
+            .required("You need to select a dish to place an order")
             .notOneOf(["select"], "You haven't selected a dish"),
           name: Yup.string().required("Enter your name"),
           phone_number: Yup.string()
@@ -62,7 +63,7 @@ export default function OrderOnline() {
                   setDish(event.target.value)
                 }}
                 className="w-full rounded-full p-6 my-4 shadow-md border-2
-                 border-[green] bg-pinkish/15"
+                 border-[green] bg-[white]/15 outline-1 outline-brownish"
               >
                 <option value="select">Select a menu item</option>
                 {menus.map((menu) => (
@@ -95,26 +96,7 @@ export default function OrderOnline() {
                     </p>
                   </span>
                   <span className="flex justify-between">
-                    <p>
-                      Quantity:{" "}
-                      <span
-                        onClick={() =>
-                          orderNum === 0
-                            ? null
-                            : setOrderNum((prev) => prev - 1)
-                        }
-                        className="cursor-pointer bg-ash py-[1px] px-2 rounded-lg"
-                      >
-                        -
-                      </span>{" "}
-                      {orderNum}{" "}
-                      <span
-                        onClick={() => setOrderNum((prev) => prev + 1)}
-                        className="cursor-pointer bg-ash py-[1px] px-2 rounded-lg"
-                      >
-                        +
-                      </span>{" "}
-                    </p>
+                    {orderQuantity(orderNum, setOrderNum)}
                     <p role="price-tag" className="font-bold">
                       Total: $
                       {(menus[Number(selectedDish)].price * orderNum).toFixed(
@@ -164,7 +146,7 @@ export default function OrderOnline() {
             />
 
             <button
-              className="w-full mx-auto mt-11 text-base bg-yellow/65 hover:bg-yellow active:translate-y-1"
+              className="w-full mx-auto text-base bg-yellow/65 hover:bg-yellow active:translate-y-1 transition-all"
               type="submit"
             >
               Go to Payment

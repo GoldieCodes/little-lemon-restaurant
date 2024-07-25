@@ -5,15 +5,15 @@ import Image from "next/image"
 import { useState } from "react"
 import { IoMdArrowRoundBack } from "react-icons/io"
 import { Formik, Form } from "formik"
-import { InputField } from "@/components/FormFramework"
+import { InputField } from "@/components/LoginOrCreateAccountTemplate"
 import * as Yup from "yup"
 import { addOrderToDb } from "../page"
 import { LoggedinUserParams } from "@/app/login/LoginChecker"
+import { orderQuantity } from "../orderQuantity"
 
 export default function Order({ params }) {
   const [orderNum, setOrderNum] = useState(1)
   const { currentUser } = LoggedinUserParams()
-  const [dish, setDish] = useState()
 
   return (
     <div className="wrapper space-y-2 grid grid-cols-12">
@@ -39,24 +39,7 @@ export default function Order({ params }) {
                   </p>
                 </span>
                 <span className="flex justify-between">
-                  <p>
-                    Quantity:{" "}
-                    <span
-                      onClick={() =>
-                        orderNum === 0 ? null : setOrderNum((prev) => prev - 1)
-                      }
-                      className="cursor-pointer bg-ash py-[1px] px-2 rounded-lg"
-                    >
-                      -
-                    </span>{" "}
-                    {orderNum}{" "}
-                    <span
-                      onClick={() => setOrderNum((prev) => prev + 1)}
-                      className="cursor-pointer bg-ash py-[1px] px-2 rounded-lg"
-                    >
-                      +
-                    </span>{" "}
-                  </p>
+                  {orderQuantity(orderNum, setOrderNum)}
                   <p role="price-tag" className="font-bold">
                     Total: ${(menu.price * orderNum).toFixed(2)}
                   </p>
@@ -126,7 +109,7 @@ export default function Order({ params }) {
               placeholder="House number, street, city and state."
             />
             <button
-              className="block w-full mt-5 text-base bg-yellow/65 hover:bg-yellow active:translate-y-1"
+              className="block w-full mt-5 text-base bg-yellow/65 hover:bg-yellow active:translate-y-1 transition-all"
               type="submit"
             >
               <Link href="/payment">Go to Payment</Link>

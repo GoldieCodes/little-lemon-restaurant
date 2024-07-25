@@ -4,7 +4,7 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { LoggedinUserParams } from "@/app/login/LoginChecker"
 import { app, auth } from "@/app/firebase"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { FaCaretDown } from "react-icons/fa"
 import { signOut } from "firebase/auth"
 
@@ -41,13 +41,15 @@ export const NavLinks = () => {
   const [hideLogOutBtn, setLogOutBtn] = useState(true)
   const userParams = LoggedinUserParams()
 
+  //I used useEffect here because the UI was always showing the logout button whenever a new login is done
+  //So the useEffect here always fires whenever the currentUser state changes, to hide the button (in case it is not hidden)
+  //You can comment out this line and try a new login to see what the UI would do
+  useEffect(() => setLogOutBtn(true), [userParams.currentUser])
+
   //this function is used in the LogOut button above to sign out a user
   function SignOut() {
     signOut(auth)
-      .then(() => {
-        console.log("the person is now signed out")
-        userParams.setCurrentUser(null)
-      })
+      .then(() => {})
       .catch((error) => {
         console.log("an error occurred: " + error)
       })
@@ -60,10 +62,10 @@ export const NavLinks = () => {
         className={`p-3
           ${
             currentPath === "/"
-              ? "bg-ash rounded-md"
+              ? "activeNav"
               : currentPath === "/login" || currentPath === "/create-account"
-              ? "text-ash hover:text-brownish"
-              : "hover:text-brownish"
+              ? "loginNav"
+              : "navHover"
           }
         `}
       >
@@ -131,14 +133,17 @@ export const NavLinks = () => {
       */}
       {userParams.currentUser !== null ? (
         <div
-          className="relative inline-block min-w-32 p-3"
+          className="relative group inline-block min-w-32 p-3"
           onMouseLeave={() => setLogOutBtn(true)}
         >
           <p
-            className="flex items-center gap-1 cursor-pointer text-sm font-sans text-green mb-2"
+            className=" flex items-center gap-1 cursor-pointer text-sm font-sans text-green mb-2"
             onMouseEnter={() => setLogOutBtn(false)}
           >
-            Hi, {userParams.username} <FaCaretDown />
+            Hi, {userParams.username}{" "}
+            <span className="group-hover:rotate-180 transition-all duration-300">
+              <FaCaretDown />
+            </span>
           </p>
           <button
             className={`absolute py-[6px] px-6 bg-pinkish hover:bg-yellow ${

@@ -21,13 +21,13 @@ h6 {
   @apply text-sm font-bold font-sans text-ash;
 }
 p {
-  @apply font-sans text-base;
+  @apply font-sans text-base text-[#4d5855];
 }
 .price-tag {
   @apply text-base font-bold text-brownish;
 }
 button {
-  @apply bg-yellow text-dark hover:bg-opacity-60 active:translate-y-1 font-bold rounded-2xl py-3 px-4 shadow-xl;
+  @apply bg-yellow text-dark hover:bg-opacity-60 active:translate-y-1 transition-all font-bold rounded-2xl py-3 px-4 shadow-xl;
 }
 footer > main a,
 footer > main p {
@@ -43,10 +43,10 @@ footer > main p {
   @apply bg-ash rounded-md;
 }
 .navHover {
-  @apply hover:text-brownish;
+  @apply hover:text-brownish transition-all;
 }
 .loginNav {
-  @apply text-ash hover:text-brownish;
+  @apply text-ash hover:text-brownish transition-all;
 }
 .formError {
   @apply text-[red] font-semibold text-xs;

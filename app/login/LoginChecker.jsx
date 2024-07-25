@@ -12,7 +12,9 @@ export default function LoginChecker({ children }) {
 
   useEffect(() => {
     onAuthStateChanged(auth, async (user) => {
-      if (user !== null) {
+      if (user == null) {
+        setCurrentUser(user) //sets currentUser to null
+      } else {
         setCurrentUser(user.uid)
         const docSnap = await getDoc(doc(db, "users", user.uid))
         const userProfileData = docSnap.data()
@@ -24,7 +26,7 @@ export default function LoginChecker({ children }) {
   }, [])
 
   return (
-    <UserManager.Provider value={{ currentUser, username, setCurrentUser }}>
+    <UserManager.Provider value={{ currentUser, username }}>
       {children}
     </UserManager.Provider>
   )

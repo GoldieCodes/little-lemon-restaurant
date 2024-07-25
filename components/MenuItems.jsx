@@ -37,7 +37,9 @@ export const menus = [
   },
 ]
 
-export default function MenuItems() {
+//the MenuItems is a component I designed to render the menu items from their array, but I am using props
+//to pass in the particular menu array that will be used, so that it can be reusable for different arrays
+export default function MenuItems({ menus }) {
   return (
     <>
       {menus.map((menu) => (
@@ -64,10 +66,10 @@ export default function MenuItems() {
               href={`/order-online/${menu.id}/${menu.title
                 .toLowerCase()
                 .replace(" ", "-")}`}
-              className="flex items-center gap-1 content-center font-bold text-[1.1rem] underline hover:text-[#2f7010]"
+              className="group flex items-center gap-1 content-center font-bold text-[1.1rem] underline hover:text-[#2f7010]"
             >
               {menu.action}
-              <BiCycling className="text-[22px] font-bold" />
+              <BiCycling className="text-[22px] font-bold group-hover:animate-bounce transition-all" />
             </Link>
           </div>
         </article>

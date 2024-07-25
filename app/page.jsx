@@ -1,5 +1,6 @@
 import Image from "next/image"
 import MenuItems from "@/components/MenuItems"
+import { menus } from "@/components/MenuItems"
 import { Button } from "@/components/MenuItems"
 import Reviews from "@/components/Reviews"
 
@@ -40,7 +41,7 @@ export default function Home() {
           styles="col-span-1 justify-self-end"
         />
         <div className="mt-14 col-span-full grid grid-cols-3 gap-10">
-          <MenuItems />
+          <MenuItems menus={menus} />
         </div>
       </section>
       <section className="w-[1120px] mt-36 mb-80 mx-auto">
@@ -67,17 +68,10 @@ export default function Home() {
             layout="fill"
             src="/Mario and Adrian A.jpg"
             alt="Mario and Adrian in the kitchen"
-            className="col-span-3 mt-[-20vh] mr-[-40px] object-cover border-4 border-dark justify-self-end"
+            className="col-span-3 mt-[-20vh] mr-[-40px] object-cover border-4 border-dark justify-self-end z-10"
           />
         </div>
-        <div className="relative h-[70vh] w-[32vw] mt-[-12vh] col-span-3 border-[3px] border-dark self-start justify-self-start">
-          {/* <Image
-            layout="fill"
-            src="/Mario and Adrian B.jpg"
-            alt="Mario and Adrian baking together"
-            className="col-span-3 object-cover border-4 border-dark self-start justify-self-start"
-          /> */}
-        </div>
+        <div className="relative h-[70vh] w-[31vw] mt-[-14vh] col-span-3 border-[3px] border-dark self-start justify-self-start"></div>
       </section>
     </>
   )

@@ -10,7 +10,7 @@ import Slider from "react-slick"
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 
-const customers = [
+const customerReviews = [
   {
     rating: (
       <span className="star-rating">
@@ -78,10 +78,12 @@ const customers = [
 ]
 
 export default function Reviews() {
-  const testimonials = customers.map((review) => (
+  //this code renders and styles the UI for the testimonials from the customerReviews array and saves
+  //it in the const testimonials. Then I passed it into the Slider component (scroll down to see that).
+  const testimonials = customerReviews.map((review) => (
     <article
       key={review.pic}
-      className="bg-[#ebe4db57] px-5 pt-7 rounded-lg space-y-4 h-[55vh]"
+      className="bg-[#ebe4db57] px-5 pt-7 rounded-lg space-y-4 h-[55vh] shadow-md"
     >
       <div className="grid justify-center">{review.rating}</div>
       <div className="flex justify-around items-center">
@@ -105,6 +107,7 @@ export default function Reviews() {
     </article>
   ))
 
+  //I had to write these two functions because without them the buttons for the carousel refused to work
   function SampleNextArrow(props) {
     const { className, style, onClick } = props
     return <div className={className} style={{ ...style }} onClick={onClick} />
@@ -115,10 +118,13 @@ export default function Reviews() {
     return <div className={className} style={{ ...style }} onClick={onClick} />
   }
 
+  //These codes are for the Reack Slick carousel library, plus the two functions above
   var settings = {
     dots: true,
-    infinite: false,
-    speed: 500,
+    infinite: true,
+    speed: 5000,
+    autoplay: true,
+    autoplaySpeed: 8000,
     slidesToShow: 3,
     slidesToScroll: 1,
     nextArrow: <SampleNextArrow />,
@@ -143,5 +149,5 @@ export default function Reviews() {
     ],
   }
 
-  return <Slider {...settings}>{testimonials}</Slider>
+  return <Slider {...settings}>{testimonials}</Slider> //this Slider component is from the React Slick library
 }

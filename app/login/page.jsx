@@ -1,10 +1,10 @@
-import FormFramework from "@/components/FormFramework"
+import LoginOrCreateAccountTemplate from "@/components/LoginOrCreateAccountTemplate"
 import { signInWithEmailAndPassword } from "firebase/auth"
 import { app, auth } from "@/app/firebase"
 
 export default function Login() {
   return (
-    <FormFramework
+    <LoginOrCreateAccountTemplate
       heading="Welcome Back!"
       subheading="Please log in to continue enjoying exclusive member benefits and make
         reservations."
@@ -16,17 +16,26 @@ export default function Login() {
   )
 }
 
-export function handleLogin(email, password, router, setErrors, setSuccess) {
+export function handleLogin(
+  email,
+  password,
+  router,
+  setErrors,
+  setSuccess,
+  setSubmitting
+) {
   signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       // Signed in
       const user = userCredential.user
-      setSuccess("Signing you in...")
-      setTimeout(() => router.push("/menu"), 300)
-
+      setSuccess("Signed in...")
+      setTimeout(() => router.push("/menu"), 500)
+      setSubmitting(false)
       // ...
     })
     .catch((error) => {
       setErrors(error.message)
+      setTimeout(() => setErrors(null), 8000)
+      setSubmitting(false)
     })
 }
