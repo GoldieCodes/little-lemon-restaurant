@@ -10,7 +10,7 @@ import Image from "next/image"
 import { doc, setDoc } from "firebase/firestore"
 import { db } from "../firebase"
 import { LoggedinUserParams } from "../login/LoginChecker"
-import { OrderQuantity } from "./OrderQuantity"
+import { OrderQuantity } from "@/components/OrderQuantity"
 
 export default function OrderOnline() {
   const [selectedDish, setDish] = useState("select")

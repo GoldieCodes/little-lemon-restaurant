@@ -8,7 +8,7 @@ import { InputField } from "@/components/LoginOrCreateAccountTemplate"
 import * as Yup from "yup"
 import { addOrderToDb } from "../page"
 import { LoggedinUserParams } from "@/app/login/LoginChecker"
-import { OrderQuantity } from "../OrderQuantity"
+import { OrderQuantity } from "@/components/OrderQuantity"
 import { useState } from "react"
 
 export default function Order({ params }) {
