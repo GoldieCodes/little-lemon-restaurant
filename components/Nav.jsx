@@ -13,7 +13,7 @@ export default function Nav() {
   const currentPath = usePathname()
 
   return (
-    <header className="wrapper flex justify-between items-start py-6">
+    <header className="wrapper flex justify-between items-center py-4">
       <Link href="/">
         {currentPath === "/login" || currentPath === "/create-account" ? (
           <Image
@@ -51,7 +51,7 @@ export const NavLinks = () => {
   }, [userParams.currentUser])
 
   return (
-    <nav className="font-semibold text-sm font-sans text-green flex items-start">
+    <nav className="font-semibold text-sm font-sans text-green flex items-center">
       <Link
         href="/"
         className={`p-3
@@ -168,7 +168,7 @@ export const NavLinks = () => {
             onMouseLeave={() => setLogOutBtn(true)}
           >
             <p
-              className=" flex items-center gap-1 cursor-pointer text-sm font-sans text-green mb-2"
+              className=" flex items-center gap-1 cursor-pointer text-sm font-sans text-green"
               onMouseEnter={() => setLogOutBtn(false)}
             >
               Hi, {userParams.username}{" "}
@@ -177,7 +177,7 @@ export const NavLinks = () => {
               </span>
             </p>
             <button
-              className={`absolute py-[6px] px-6 bg-pinkish hover:bg-yellow ${
+              className={`absolute top-12 z-50 py-[6px] px-6 bg-pinkish hover:bg-yellow ${
                 hideLogOutBtn ? "invisible" : "visible"
               }`}
               onClick={() => SignOut()}

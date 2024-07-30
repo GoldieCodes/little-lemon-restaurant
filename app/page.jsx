@@ -19,7 +19,7 @@ export default function Home() {
             <Button
               url="/reservation"
               text="Reserve a table"
-              styles="hover:bg-[#ffe567]"
+              styles="bg-yellow hover:!bg-[#ffe252]"
             />
           </div>
           <Image
