@@ -13,6 +13,7 @@ module.exports = {
       dark: "#333333",
       pinkish: "#FBDABB",
       brownish: "#EE9972",
+      orange: "#ff9100",
     },
     fontFamily: {
       sans: ["var(--font-karla)"],

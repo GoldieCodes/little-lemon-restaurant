@@ -3,10 +3,11 @@ import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { LoggedinUserParams } from "@/app/login/LoginChecker"
-import { app, auth } from "@/app/firebase"
+import { SignOut } from "@/app/login/page"
 import { useEffect, useState } from "react"
 import { FaCaretDown } from "react-icons/fa"
-import { signOut } from "firebase/auth"
+import { FaBasketShopping } from "react-icons/fa6"
+import { CartContextParams } from "@/app/cart/CartContext"
 
 export default function Nav() {
   const currentPath = usePathname()
@@ -40,20 +41,14 @@ export const NavLinks = () => {
   const currentPath = usePathname()
   const [hideLogOutBtn, setLogOutBtn] = useState(true)
   const userParams = LoggedinUserParams()
+  const { cartNumber, newItemAdded } = CartContextParams()
 
   //I used useEffect here because the UI was always showing the logout button whenever a new login is done
   //So the useEffect here always fires whenever the currentUser state changes, to hide the button (in case it is not hidden)
   //You can comment out this line and try a new login to see what the UI would do
-  useEffect(() => setLogOutBtn(true), [userParams.currentUser])
-
-  //this function is used in the LogOut button above to sign out a user
-  function SignOut() {
-    signOut(auth)
-      .then(() => {})
-      .catch((error) => {
-        console.log("an error occurred: " + error)
-      })
-  }
+  useEffect(() => {
+    setLogOutBtn(true)
+  }, [userParams.currentUser])
 
   return (
     <nav className="font-semibold text-sm font-sans text-green flex items-start">
@@ -132,28 +127,65 @@ export const NavLinks = () => {
         currentUser is one of the values gotten from the Context provider 
       */}
       {userParams.currentUser !== null ? (
-        <div
-          className="relative group inline-block min-w-32 p-3"
-          onMouseLeave={() => setLogOutBtn(true)}
-        >
-          <p
-            className=" flex items-center gap-1 cursor-pointer text-sm font-sans text-green mb-2"
-            onMouseEnter={() => setLogOutBtn(false)}
+        <>
+          <span className="p-3 relative">
+            <Link
+              href="/cart"
+              className={`text-xl 
+            ${
+              currentPath === "/cart"
+                ? "activeNav text-brownish"
+                : currentPath === "/login" || currentPath === "/create-account"
+                ? "loginNav"
+                : "navHover"
+            }
+                    `}
+            >
+              <FaBasketShopping />
+            </Link>
+
+            {cartNumber > 0 ? (
+              <span class="absolute flex h-3 w-3 top-[0.3rem] right-3">
+                <span
+                  role="items in cart"
+                  className={`absolute leading-[1] rounded-full ${
+                    newItemAdded
+                      ? "animate-ping absolute inline-flex h-full w-full text-[0px] p-[0.3rem] bg-orange opacity-75"
+                      : "-top-1 text-xs py-[0.3rem] px-[0.4rem] bg-[#fcd860e7]"
+                  }`}
+                >
+                  {cartNumber}
+                </span>
+                {newItemAdded ? (
+                  <span class="relative inline-flex rounded-full h-3 w-3 bg-orange"></span>
+                ) : null}
+              </span>
+            ) : null}
+          </span>
+
+          <div
+            className="relative group inline-block min-w-32 p-3"
+            onMouseLeave={() => setLogOutBtn(true)}
           >
-            Hi, {userParams.username}{" "}
-            <span className="group-hover:rotate-180 transition-all duration-300">
-              <FaCaretDown />
-            </span>
-          </p>
-          <button
-            className={`absolute py-[6px] px-6 bg-pinkish hover:bg-yellow ${
-              hideLogOutBtn ? "invisible" : "visible"
-            }`}
-            onClick={() => SignOut()}
-          >
-            Log out
-          </button>
-        </div>
+            <p
+              className=" flex items-center gap-1 cursor-pointer text-sm font-sans text-green mb-2"
+              onMouseEnter={() => setLogOutBtn(false)}
+            >
+              Hi, {userParams.username}{" "}
+              <span className="group-hover:rotate-180 transition-all duration-300">
+                <FaCaretDown />
+              </span>
+            </p>
+            <button
+              className={`absolute py-[6px] px-6 bg-pinkish hover:bg-yellow ${
+                hideLogOutBtn ? "invisible" : "visible"
+              }`}
+              onClick={() => SignOut()}
+            >
+              Log out
+            </button>
+          </div>
+        </>
       ) : (
         <Link
           href="/login"

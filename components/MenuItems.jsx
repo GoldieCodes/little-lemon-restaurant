@@ -2,6 +2,9 @@
 import Image from "next/image"
 import Link from "next/link"
 import { BiCycling } from "react-icons/bi"
+import { BsFillCartPlusFill } from "react-icons/bs"
+import { MdAdd } from "react-icons/md"
+import { CartContextParams } from "@/app/cart/CartContext"
 
 // These are the menu items below, I put them in a separate file together with a component for buttons because they are
 // client - side components, i.e. they have interactivity and therefore require javascript in the browser. Also it
@@ -40,11 +43,15 @@ export const menus = [
 //the MenuItems is a component I designed to render the menu items from their array, but I am using props
 //to pass in the particular menu array that will be used, so that it can be reusable for different arrays
 export default function MenuItems({ menus }) {
+  //You cannot initialize values from useContext inside a function that is attached to an event handler (i.e. the onClick). It's against the rules of hooks
+  //So I created the onClick handler function in the Context file and then passed it as a context value, which I'm using below
+  const { addToCart } = CartContextParams()
+
   return (
     <>
       {menus.map((menu) => (
         <article
-          className="max-h-[65vh] shadow-lg bg-ash rounded-lg"
+          className="max-h-[67vh] shadow-lg bg-ash rounded-lg"
           key={menu.id}
         >
           <Image
@@ -62,15 +69,25 @@ export default function MenuItems({ menus }) {
               </p>
             </span>
             <p className="text-green text-[1.1rem]">{menu.description}</p>
-            <Link
-              href={`/order-online/${menu.id}/${menu.title
-                .toLowerCase()
-                .replace(" ", "-")}`}
-              className="group flex items-center gap-1 content-center font-bold text-[1.1rem] underline hover:text-[#2f7010]"
-            >
-              {menu.action}
-              <BiCycling className="text-[22px] font-bold group-hover:animate-bounce transition-all" />
-            </Link>
+            <div className="flex justify-between items-center">
+              <Link
+                href={`/order-online/${menu.id}/${menu.title
+                  .toLowerCase()
+                  .replace(" ", "-")}`}
+                className="group flex items-center gap-1 content-center font-bold text-[1.1rem] underline hover:text-[#2f7010]"
+              >
+                {menu.action}
+                <BiCycling className="text-[22px] font-bold group-hover:translate-x-2 duration-500 transition-all" />
+              </Link>
+              <button
+                className="flex gap-2 items-center rounded-lg shadow-none bg-opacity-55 group hover:bg-opacity-100"
+                onClick={() => addToCart(menu)}
+              >
+                {" "}
+                <MdAdd /> Cart
+                <BsFillCartPlusFill className="group-hover:animate-bounce" />
+              </button>
+            </div>
           </div>
         </article>
       ))}

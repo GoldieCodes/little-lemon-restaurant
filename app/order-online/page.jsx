@@ -10,7 +10,7 @@ import Image from "next/image"
 import { doc, setDoc } from "firebase/firestore"
 import { db } from "../firebase"
 import { LoggedinUserParams } from "../login/LoginChecker"
-import { orderQuantity } from "./orderQuantity"
+import { OrderQuantity } from "./OrderQuantity"
 
 export default function OrderOnline() {
   const [selectedDish, setDish] = useState("select")
@@ -96,7 +96,11 @@ export default function OrderOnline() {
                     </p>
                   </span>
                   <span className="flex justify-between">
-                    {orderQuantity(orderNum, setOrderNum)}
+                    <OrderQuantity
+                      orderNum={orderNum}
+                      setOrderNum={setOrderNum}
+                      text={"Quantity:"}
+                    />
                     <p role="price-tag" className="font-bold">
                       Total: $
                       {(menus[Number(selectedDish)].price * orderNum).toFixed(

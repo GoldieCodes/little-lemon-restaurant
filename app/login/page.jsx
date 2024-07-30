@@ -1,6 +1,7 @@
 import LoginOrCreateAccountTemplate from "@/components/LoginOrCreateAccountTemplate"
 import { signInWithEmailAndPassword } from "firebase/auth"
 import { app, auth } from "@/app/firebase"
+import { signOut } from "firebase/auth"
 
 export default function Login() {
   return (
@@ -37,5 +38,14 @@ export function handleLogin(
       setErrors(error.message)
       setTimeout(() => setErrors(null), 8000)
       setSubmitting(false)
+    })
+}
+
+//this function is used in the LogOut button on the Nav component
+export function SignOut() {
+  signOut(auth)
+    .then(() => {})
+    .catch((error) => {
+      console.log("an error occurred: " + error)
     })
 }

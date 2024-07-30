@@ -2,18 +2,18 @@
 import { menus } from "@/components/MenuItems"
 import Link from "next/link"
 import Image from "next/image"
-import { useState } from "react"
 import { IoMdArrowRoundBack } from "react-icons/io"
 import { Formik, Form } from "formik"
 import { InputField } from "@/components/LoginOrCreateAccountTemplate"
 import * as Yup from "yup"
 import { addOrderToDb } from "../page"
 import { LoggedinUserParams } from "@/app/login/LoginChecker"
-import { orderQuantity } from "../orderQuantity"
+import { OrderQuantity } from "../OrderQuantity"
+import { useState } from "react"
 
 export default function Order({ params }) {
-  const [orderNum, setOrderNum] = useState(1)
   const { currentUser } = LoggedinUserParams()
+  const [orderNum, setOrderNum] = useState(1)
 
   return (
     <div className="wrapper space-y-2 grid grid-cols-12">
@@ -39,7 +39,11 @@ export default function Order({ params }) {
                   </p>
                 </span>
                 <span className="flex justify-between">
-                  {orderQuantity(orderNum, setOrderNum)}
+                  <OrderQuantity
+                    orderNum={orderNum}
+                    setOrderNum={setOrderNum}
+                    text={"Quantity:"}
+                  />
                   <p role="price-tag" className="font-bold">
                     Total: ${(menu.price * orderNum).toFixed(2)}
                   </p>

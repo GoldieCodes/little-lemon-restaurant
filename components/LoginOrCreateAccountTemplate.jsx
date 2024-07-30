@@ -156,7 +156,7 @@ export const FormSubmitBtn = ({ buttonText, isSubmitting }) => {
       disabled={isSubmitting}
     >
       {isSubmitting ? (
-        <span class="inline-block h-6 w-6 border-4 rounded-full border-[green] border-t-[transparent] animate-spin">
+        <span className="inline-block h-6 w-6 border-4 rounded-full border-[green] border-t-[transparent] animate-spin">
           {/* This span is the spinner. It doesn't need any content. The CSS styling on it creates the spinner */}
         </span>
       ) : (
