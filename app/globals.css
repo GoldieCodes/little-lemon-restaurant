@@ -79,3 +79,6 @@ footer > main p {
 .Toastify__toast {
   @apply font-bold font-sans;
 }
+.Toastify__close-button.Toastify__close-button--colored {
+  @apply !text-dark;
+}
