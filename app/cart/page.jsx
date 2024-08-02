@@ -47,16 +47,17 @@ export default function Cart() {
                   objectFit="cover"
                 />
               </div>
-              <div className="bg-[white] w-1/2 shadow-md p-6 space-y-7 grid content-center">
+              <div className="bg-[white] w-1/2 shadow-md p-4 space-y-3 grid content-center">
                 <span className="flex justify-between">
                   <h4>{menu.title}</h4>
                   <p role="price-tag" className="price-tag">
                     ${menu.numOfOrderPrice}
                   </p>
                 </span>
-                <div className="py-5 flex justify-between items-center">
+                <p className="line-clamp-2 text-sm">{menu.description}</p>
+                <div className="py-2 flex justify-between items-center">
                   <button
-                    className="shadow-none bg-pinkish/50 hover:bg-pinkish rounded-lg"
+                    className="shadow-none bg-ash hover:bg-green/30 rounded-lg text-sm"
                     onClick={() => removeFromCart(menu.id)}
                   >
                     Remove item
@@ -64,14 +65,14 @@ export default function Cart() {
                   <p>
                     <span
                       onClick={() => decreaseOrderNum(menu.id)}
-                      className="cursor-pointer bg-ash px-5 py-3 rounded-lg mr-4 ml-2 hover:bg-green/30"
+                      className="cursor-pointer bg-pinkish/50 hover:bg-pinkish px-4 py-2 rounded-lg mr-4 ml-2"
                     >
                       -
                     </span>{" "}
                     <span className="font-bold">{menu.quantity} </span>
                     <span
                       onClick={() => increaseOrderNum(menu.id)}
-                      className="cursor-pointer bg-ash px-5 py-3 rounded-lg ml-4 hover:bg-green/30"
+                      className="cursor-pointer bg-pinkish/50 hover:bg-pinkish px-4 py-2 rounded-lg ml-4"
                     >
                       +
                     </span>

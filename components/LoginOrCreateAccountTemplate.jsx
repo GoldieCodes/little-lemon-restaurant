@@ -1,6 +1,6 @@
 "use client"
 import Link from "next/link"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import * as Yup from "yup"
 import { Formik, Form, useField } from "formik"
 import { usePathname, useRouter } from "next/navigation"
@@ -151,7 +151,7 @@ export default function LoginOrCreateAccountTemplate({
 export const FormSubmitBtn = ({ buttonText, isSubmitting }) => {
   return (
     <button
-      className="w-full block mx-auto mt-2 mb-5 text-base bg-yellow/65 hover:bg-yellow active:translate-y-1 transition-all disabled:cursor-not-allowed disabled:hover:bg-yellow/50"
+      className="w-full mt-2 mb-4 block disabled:cursor-not-allowed disabled:hover:bg-yellow/50"
       type="submit"
       disabled={isSubmitting}
     >

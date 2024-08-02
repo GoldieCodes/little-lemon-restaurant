@@ -46,7 +46,6 @@ export default function Home() {
       </section>
       <section className="w-[1120px] mt-36 mb-80 mx-auto">
         <h2 className="mb-10 text-center">Testimonials</h2>
-
         <Reviews />
       </section>
       <section className="wrapper grid grid-cols-12 h-[50vh] grid-rows-[10vh] !mb-48">

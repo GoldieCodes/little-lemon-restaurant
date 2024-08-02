@@ -1,16 +1,16 @@
 "use client"
 import { createContext, useContext, useState, useEffect } from "react"
-import { useRouter } from "next/navigation"
 import { getDocs, collection } from "firebase/firestore"
 import { db } from "../firebase"
 import { LoggedinUserParams } from "../login/LoginChecker"
 import { doc, setDoc, deleteDoc, getDoc, updateDoc } from "firebase/firestore"
 import { toast } from "react-toastify"
+import useRedirectToLogin from "@/hooks/useRedirectToLogin"
 
 const CartVariables = createContext()
 
 export default function CartContext({ children }) {
-  const router = useRouter()
+  const redirect = useRedirectToLogin("Login to add items to cart")
   const [cartNumber, setCartNumber] = useState(0)
   const [newItemAdded, setNewItemAdded] = useState(false)
   const [cartData, setCartData] = useState([])
@@ -36,23 +36,20 @@ export default function CartContext({ children }) {
   //This function is used in the add to cart button on the menu items, to add the item to the db
   const addToCart = async (menu) => {
     if (currentUser == null) {
-      toast.error("Login to add items to cart")
-      setTimeout(() => {
-        router.push("/login")
-      }, 500)
+      redirect()
     } else {
       const docRef = doc(db, "users", currentUser, "cart", menu.id.toString())
       const cartItem = await getDoc(docRef)
       if (cartItem.exists()) {
-        toast.info("This dish is already in your cart", {
+        toast.warn("This dish is already in your cart", {
           autoClose: 3500,
-          theme: "colored",
         })
       } else {
         await setDoc(docRef, {
           title: menu.title,
           price: menu.price,
           img: menu.img,
+          description: menu.description,
           id: menu.id,
           quantity: 1,
           numOfOrderPrice: menu.price,

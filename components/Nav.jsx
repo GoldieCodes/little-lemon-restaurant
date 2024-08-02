@@ -145,7 +145,7 @@ export const NavLinks = () => {
             </Link>
 
             {cartNumber > 0 ? (
-              <span class="absolute flex h-3 w-3 top-[0.3rem] right-3">
+              <span className="absolute flex h-3 w-3 top-[0.3rem] right-3">
                 <span
                   role="items in cart"
                   className={`absolute leading-[1] rounded-full ${
@@ -157,7 +157,7 @@ export const NavLinks = () => {
                   {cartNumber}
                 </span>
                 {newItemAdded ? (
-                  <span class="relative inline-flex rounded-full h-3 w-3 bg-orange"></span>
+                  <span className="relative inline-flex rounded-full h-3 w-3 bg-orange"></span>
                 ) : null}
               </span>
             ) : null}

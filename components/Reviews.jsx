@@ -83,7 +83,7 @@ export default function Reviews() {
   const testimonials = customerReviews.map((review) => (
     <article
       key={review.pic}
-      className="bg-[#ebe4db57] px-5 pt-7 rounded-lg space-y-4 h-[55vh] shadow-md"
+      className="bg-ash/5 px-5 pt-7 rounded-lg space-y-4 h-[55vh] shadow-md"
     >
       <div className="grid justify-center">{review.rating}</div>
       <div className="flex justify-around items-center">
