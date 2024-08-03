@@ -1,6 +1,6 @@
 "use client"
 import { MdTableBar } from "react-icons/md"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { LoggedinUserParams } from "../login/LoginChecker"
 import { Formik, Form, Field, ErrorMessage } from "formik"
 import * as Yup from "yup"
@@ -9,11 +9,24 @@ import { FormSubmitBtn } from "@/components/LoginOrCreateAccountTemplate"
 import { toast } from "react-toastify"
 import { db } from "../firebase"
 import { doc, getDocs, collection, addDoc, deleteDoc } from "firebase/firestore"
+import { fetchAPI, submitAPI } from "@/public/api"
+import { useRouter } from "next/navigation"
 
 export default function Reservation() {
   const { currentUser } = LoggedinUserParams()
+  const [dateInput, setDateInput] = useState()
   const [reservations, setReservations] = useState([])
+  const [availableTimes, setAvailableTimes] = useState([])
   const redirect = useRedirectToLogin("Please login to make a reservation")
+  const router = useRouter()
+
+  useEffect(() => {
+    if (dateInput) {
+      console.log(dateInput)
+      const initializeTimes = fetchAPI(new Date(dateInput))
+      setAvailableTimes(initializeTimes)
+    }
+  }, [dateInput])
 
   useEffect(() => {
     getReservationsFromDB()
@@ -70,18 +83,18 @@ export default function Reservation() {
           Make a Table Reservation
         </h1>
       </header>
-
       <main className="grid grid-cols-12 gap-12 mt-8">
         <Formik
           initialValues={{
             date: "",
-            time: "17:00",
+            time: "",
             guests: 2,
             occasion: "",
           }}
-          onSubmit={({ ...values }, { setSubmitting }) =>
+          onSubmit={({ ...values }, { setSubmitting }) => {
             createReservation(values, setSubmitting)
-          }
+            if (submitAPI(values)) router.push("/confirmed-booking")
+          }}
           validationSchema={Yup.object({
             date: Yup.date()
               .min(
@@ -89,24 +102,20 @@ export default function Reservation() {
                 "Date cannot be in the past"
               )
               .required("Please enter a date for your reservation"),
-            time: Yup.string().oneOf(
-              ["17:00", "18:00", "19:00", "20:00", "21:00", "22:00"],
-              "Invalid selection"
-            ),
+            time: Yup.string()
+              .required("Select an available time")
+              .oneOf(availableTimes, "Invalid selection"),
             guests: Yup.number()
               .integer("Invalid number of guests")
               .min(1, "There must be at least one person")
               .max(10, "Sorry, you can't have more than 10 guests.")
               .required("Indicate the number of persons expected"),
             occasion: Yup.string()
-              .oneOf(
-                ["Birthday", "Anniversary", "Casual"],
-                "You haven't picked the occasion"
-              )
-              .required("Tell us the occasion"),
+              .oneOf(["Birthday", "Anniversary", "Casual"], "Invalid selection")
+              .required("You haven't picked the occasion"),
           })}
         >
-          {({ isSubmitting }) => (
+          {({ isSubmitting, values }) => (
             <Form className="col-span-7 space-y-5">
               <div className="field">
                 <label
@@ -119,6 +128,7 @@ export default function Reservation() {
                   name="date"
                   type="date"
                   className="w-full rounded-lg p-3 my-2 border-2 border-ash font-sans outline-2 outline-pinkish"
+                  onBlur={() => setDateInput(values.date)}
                 />
                 <span className="formError">
                   <ErrorMessage name="date" />
@@ -136,12 +146,16 @@ export default function Reservation() {
                   name="time"
                   className="w-full rounded-lg p-3 my-2 border-2 border-ash font-sans outline-2 outline-pinkish"
                 >
-                  <option value="17:00">17:00</option>
-                  <option value="18:00">18:00</option>
-                  <option value="19:00">19:00</option>
-                  <option value="20:00">20:00</option>
-                  <option value="21:00">21:00</option>
-                  <option value="22:00">22:00</option>
+                  <option>Select from these available times</option>
+                  {availableTimes.length > 0 ? (
+                    availableTimes.map((time) => (
+                      <option value={time} key={time}>
+                        {time}
+                      </option>
+                    ))
+                  ) : (
+                    <option value="no-date">You haven't picked a date</option>
+                  )}
                 </Field>
                 <span className="formError">
                   <ErrorMessage name="time" />
@@ -184,10 +198,12 @@ export default function Reservation() {
                   <ErrorMessage name="occasion" />
                 </p>
               </div>
-              <FormSubmitBtn
-                buttonText="Create reservation"
-                isSubmitting={isSubmitting}
-              />
+              <div className="!mt-10">
+                <FormSubmitBtn
+                  buttonText="Create reservation"
+                  isSubmitting={isSubmitting}
+                />
+              </div>
             </Form>
           )}
         </Formik>

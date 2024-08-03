@@ -40,7 +40,7 @@ footer > main p {
   @apply flex text-yellow text-[2rem] font-bold;
 }
 .activeNav {
-  @apply bg-ash rounded-md;
+  @apply bg-ash rounded-md text-[green];
 }
 .navHover {
   @apply hover:text-brownish transition-all;

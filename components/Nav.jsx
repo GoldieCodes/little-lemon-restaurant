@@ -41,7 +41,7 @@ export const NavLinks = () => {
   const currentPath = usePathname()
   const [hideLogOutBtn, setLogOutBtn] = useState(true)
   const userParams = LoggedinUserParams()
-  const { cartNumber, newItemAdded } = CartContextParams()
+  const { cartNumber, newItemAdded } = CartContextParams(null)
 
   //I used useEffect here because the UI was always showing the logout button whenever a new login is done
   //So the useEffect here always fires whenever the currentUser state changes, to hide the button (in case it is not hidden)
@@ -134,7 +134,7 @@ export const NavLinks = () => {
               className={`text-xl 
             ${
               currentPath === "/cart"
-                ? "activeNav text-brownish"
+                ? "activeNav"
                 : currentPath === "/login" || currentPath === "/create-account"
                 ? "loginNav"
                 : "navHover"
