@@ -159,7 +159,7 @@ export default function OrderOnline() {
         </Form>
       </Formik>
     </div>
-  )
+  );
 }
 
 export const addOrderToDb = async (currentUser, orderNum, values) => {

@@ -1,7 +1,9 @@
+"use client"
 import LoginOrCreateAccountTemplate from "@/components/LoginOrCreateAccountTemplate"
 import { signInWithEmailAndPassword } from "firebase/auth"
 import { app, auth } from "@/app/firebase"
 import { signOut } from "firebase/auth"
+import useRedirectToLogin from "@/hooks/useRedirectToLogin"
 
 export default function Login() {
   return (
@@ -42,10 +44,27 @@ export function handleLogin(
 }
 
 //this function is used in the LogOut button on the Nav component
-export function SignOut() {
-  signOut(auth)
-    .then(() => {})
-    .catch((error) => {
-      console.log("an error occurred: " + error)
-    })
+export function LogOutBtn({ hideLogOutBtn }) {
+  const redirect = useRedirectToLogin("Login to access customer privileges")
+
+  function SignOut() {
+    signOut(auth)
+      .then(() => {
+        redirect()
+      })
+      .catch((error) => {
+        console.log("an error occurred: " + error)
+      })
+  }
+
+  return (
+    <button
+      className={`absolute top-12 z-50 py-[6px] px-6 bg-pinkish hover:bg-yellow ${
+        hideLogOutBtn ? "invisible" : "visible"
+      }`}
+      onClick={() => SignOut()}
+    >
+      Log out
+    </button>
+  )
 }

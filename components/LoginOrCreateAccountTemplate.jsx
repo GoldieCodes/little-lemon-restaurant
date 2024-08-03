@@ -144,7 +144,7 @@ export default function LoginOrCreateAccountTemplate({
         </div>
       ) : null}
     </div>
-  )
+  );
 }
 
 //I extracted this form submit button so that I can use it in any form component. It has a loading spinner

@@ -3,7 +3,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { LoggedinUserParams } from "@/app/login/LoginChecker"
-import { SignOut } from "@/app/login/page"
+import { LogOutBtn } from "@/app/login/page"
 import { useEffect, useState } from "react"
 import { FaCaretDown } from "react-icons/fa"
 import { FaBasketShopping } from "react-icons/fa6"
@@ -176,14 +176,7 @@ export const NavLinks = () => {
                 <FaCaretDown />
               </span>
             </p>
-            <button
-              className={`absolute top-12 z-50 py-[6px] px-6 bg-pinkish hover:bg-yellow ${
-                hideLogOutBtn ? "invisible" : "visible"
-              }`}
-              onClick={() => SignOut()}
-            >
-              Log out
-            </button>
+            <LogOutBtn hideLogOutBtn={hideLogOutBtn} />
           </div>
         </>
       ) : (

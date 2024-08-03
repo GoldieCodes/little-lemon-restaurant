@@ -136,5 +136,5 @@ export default function Order({ params }) {
         </div>
       </main>
     </div>
-  )
+  );
 }
