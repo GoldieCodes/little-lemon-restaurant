@@ -77,13 +77,13 @@ export default function Reservation() {
   }
 
   return (
-    <div className="wrapper">
+    <div className="wrapper !my-0">
       <header className="mb-8">
-        <h1 className="border-b-2 border-yellow/45 text-2xl text-green">
+        <h1 className="border-b-2 border-yellow/45 text-green">
           Make a Table Reservation
         </h1>
       </header>
-      <main className="grid grid-cols-12 gap-12 mt-8">
+      <main className="md:grid grid-cols-12 gap-12 mt-8">
         <Formik
           initialValues={{
             date: "",
@@ -116,16 +116,18 @@ export default function Reservation() {
           })}
         >
           {({ isSubmitting, values }) => (
-            <Form className="col-span-7 space-y-5">
+            <Form className="md:col-span-7 space-y-5">
               <div className="field">
                 <label
                   htmlFor="date"
+                  aria-label="On Click"
                   className="text-green font-semibold text-sm"
                 >
                   Date
                 </label>
                 <Field
                   name="date"
+                  id="date"
                   type="date"
                   className="w-full rounded-lg p-3 my-2 border-2 border-ash font-sans outline-2 outline-pinkish"
                   onBlur={() => setDateInput(values.date)}
@@ -137,6 +139,7 @@ export default function Reservation() {
               <div className="field">
                 <label
                   htmlFor="time"
+                  aria-label="On Click"
                   className="text-green font-semibold text-sm"
                 >
                   Time
@@ -144,6 +147,7 @@ export default function Reservation() {
                 <Field
                   as="select"
                   name="time"
+                  id="time"
                   className="w-full rounded-lg p-3 my-2 border-2 border-ash font-sans outline-2 outline-pinkish"
                 >
                   <option>Select from these available times</option>
@@ -164,12 +168,14 @@ export default function Reservation() {
               <div className="field">
                 <label
                   htmlFor="guests"
+                  aria-label="On Click"
                   className="text-green font-semibold text-sm"
                 >
                   Number of guests
                 </label>
                 <Field
                   name="guests"
+                  id="guests"
                   type="number"
                   min="1"
                   className="w-full rounded-lg p-3 my-2 border-2 border-ash font-sans outline-2 outline-pinkish"
@@ -179,7 +185,8 @@ export default function Reservation() {
 
               <div className="field">
                 <label
-                  htmlFor="time"
+                  htmlFor="occasion"
+                  aria-label="On Click"
                   className="text-green font-semibold text-sm"
                 >
                   Occasion
@@ -187,6 +194,7 @@ export default function Reservation() {
                 <Field
                   as="select"
                   name="occasion"
+                  id="occasion"
                   className="w-full rounded-lg p-3 my-2 border-2 border-ash font-sans outline-2 outline-pinkish"
                 >
                   <option>What's the occasion?</option>
@@ -208,8 +216,8 @@ export default function Reservation() {
           )}
         </Formik>
 
-        <div className="col-span-5">
-          <h4>Your Reservations</h4>
+        <div className="mt-14 md:mt-0 md:col-span-5">
+          <h2 className="capitalize text-lg">Your Reservations</h2>
           {reservations.length == 0 ? (
             <p className="text-[#9cab99] flex gap-4 items-center place-self-center mt-5">
               <span className="text-2xl text-green/40">

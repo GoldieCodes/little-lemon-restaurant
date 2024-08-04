@@ -4,15 +4,15 @@ import Link from "next/link"
 export default function Footer() {
   return (
     <footer className="bg-green py-12 mt-16">
-      <main className="w-[1120px] m-auto grid grid-cols-12">
+      <main className="wrapper flex flex-wrap justify-between space-y-5">
         <Image
           src="/logo-white.png"
           alt="Little Lemon Logo"
           width={250}
           height={250}
-          className="col-span-6 self-center"
+          className="xs:hidden md:flex self-center"
         />
-        <nav className="flex flex-col col-span-2">
+        <nav className="flex flex-col">
           <h6>Navigation</h6>
           <div className="flex flex-col text-sm">
             <Link href="/" className="hover:text-brownish">
@@ -32,7 +32,7 @@ export default function Footer() {
             </Link>
           </div>
         </nav>
-        <nav className="col-span-2">
+        <nav className="">
           <h6>Contact</h6>
           <p className="text-sm">
             Address
@@ -42,7 +42,7 @@ export default function Footer() {
             Email
           </p>
         </nav>
-        <nav className="col-span-2">
+        <nav className="">
           <h6>Social Media Links</h6>
           <p className="text-sm">
             Address

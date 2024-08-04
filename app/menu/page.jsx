@@ -34,20 +34,20 @@ export default function Menu() {
         <aside role="search bar" className="relative group">
           <input
             name="searchbar"
-            placeholder="Search the menu"
-            className="w-[25vw] rounded-full py-3 px-5 mb-4 shadow border-[1px]
+            placeholder="Search the menu..."
+            className="w-[32vw] xl:w-[25vw] rounded-full py-2 px-3 xl:px-5 mb-2 xl:mb-4 shadow border-[1px]
                  border-ash bg-[white]/15 outline-1 outline-[#9fb3a9]"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
-          <span className="absolute right-3 bottom-[37%] text-[2rem] text-[#82958b96] group-focus-within:text-[#9fb3a9] group-focus-within:hover:text-brownish">
+          <span className="hidden md:block absolute right-2 bottom-[35%] text-[2rem] text-[#82958b96] group-focus-within:text-[#9fb3a9] group-focus-within:hover:text-brownish">
             <BiSearchAlt />
           </span>
         </aside>
       </header>
 
       <main>
-        <div className="mt-14 col-span-full grid grid-cols-3 gap-10 min-h-[50vh]">
+        <div className="mt-14 col-span-full space-y-10 md:space-y-0 md:grid md:grid-cols-2 lg:grid-cols-3 gap-10 min-h-[50vh]">
           {searchResult.length == 0 && search ? ( // && search adds a check to ensure that the search bar is not empty
             <p className="text-xl text-[#9cab99] place-self-center col-span-full flex gap-6 items-center">
               <span className="text-3xl text-brownish/60">

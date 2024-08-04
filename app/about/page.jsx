@@ -2,12 +2,12 @@ import Image from "next/image"
 
 export default function About() {
   return (
-    <main className="wrapper">
-      <h1 className="border-b-2 border-yellow/45 text-2xl text-green">
+    <main className="wrapper !my-0">
+      <h1 className="border-b-2 border-yellow/45 text-green">
         About Little Lemon
       </h1>
-      <div className="mt-8 text-justify flex gap-10">
-        <p className="w-[53%]">
+      <div className="mt-8 text-justify lg:flex gap-10">
+        <p className="lg:w-[53%]">
           Little Lemon is a vibrant Mediterranean restaurant founded by Mario
           and Adrian, two culinary enthusiasts with a passion for blending
           traditional flavors with innovative twists. Nestled in the heart of
@@ -30,20 +30,11 @@ export default function About() {
           height={400}
           src="/restaurant.jpg"
           alt="Restaurant pic"
-          objectFit="cover"
-          className="w-[47%]"
+          className="lg:w-[47%] object-cover"
         />
       </div>
-      <div className="mt-12 flex gap-10">
-        <Image
-          width={400}
-          height={400}
-          src="/restaurantfood.jpg"
-          alt="Restaurant food pic"
-          className="w-[53%] h-[revert-layer] object-cover"
-        />
-
-        <p className="w-[47%] text-justify">
+      <div className="mt-12 lg:flex gap-10 flex-row-reverse">
+        <p className="lg:w-[47%] text-justify">
           With a commitment to using only the freshest ingredients sourced from
           local farmers and producers, Little Lemon ensures that every dish
           bursts with flavor and authenticity.
@@ -57,6 +48,14 @@ export default function About() {
           succulent kebabs to zesty salads, each dish is meticulously crafted to
           tantalize the taste buds and evoke a sense of culinary adventure.
         </p>
+
+        <Image
+          width={400}
+          height={400}
+          src="/restaurantfood.jpg"
+          alt="Restaurant food pic"
+          className="lg:w-[53%] h-[revert-layer] object-cover"
+        />
       </div>
     </main>
   )

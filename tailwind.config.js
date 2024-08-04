@@ -6,6 +6,11 @@ module.exports = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    extend: {
+      screens: {
+        xs: "475px",
+      },
+    },
     colors: {
       yellow: "#F4CE14",
       green: "#495E57",
@@ -25,8 +30,8 @@ module.exports = {
       xs: "14px",
       sm: "1rem",
       base: "1.2rem",
-      lg: "1.25rem",
-      xl: "1.5rem",
+      lg: "1.5rem",
+      xl: "2rem",
     },
   },
   plugins: [],

@@ -23,7 +23,7 @@ export default function Cart() {
           </button>
         ) : null}
       </header>
-      <main className="mt-14 grid gap-10">
+      <main className="mt-14 lg:w-2/3 mx-auto space-y-6">
         {cartNumber == 0 ? (
           <div className="min-h-[50vh] grid place-self-center align-middle">
             <p className="text-xl text-[#9cab99] flex gap-6 items-center group">
@@ -38,7 +38,7 @@ export default function Cart() {
           </div>
         ) : (
           cartData.map((menu) => (
-            <article className="w-2/3 mx-auto flex" key={menu.id}>
+            <article className="flex" key={menu.id}>
               <div className="relative w-1/2 h-[30vh]">
                 <Image
                   src={menu.img.src}

@@ -11,6 +11,7 @@ import { doc, setDoc } from "firebase/firestore"
 import { db } from "../firebase"
 import { LoggedinUserParams } from "../login/LoginChecker"
 import { OrderQuantity } from "@/components/OrderQuantity"
+import { FormSubmitBtn } from "@/components/LoginOrCreateAccountTemplate"
 
 export default function OrderOnline() {
   const [selectedDish, setDish] = useState("select")
@@ -20,7 +21,7 @@ export default function OrderOnline() {
 
   return (
     <div className="wrapper space-y-4">
-      <h1 className="border-b-2 border-yellow/45 text-2xl text-green">
+      <h1 className="border-b-2 border-yellow/45 text-green">
         What would you like to order?
       </h1>
       <Formik
@@ -52,7 +53,7 @@ export default function OrderOnline() {
           address: Yup.string().required("Please enter a delivery address"),
         })}
       >
-        <Form className="grid grid-cols-12">
+        <Form className="md:grid grid-cols-12">
           <article className="col-span-6 space-y-16 my-12">
             <div>
               <Field
@@ -149,17 +150,12 @@ export default function OrderOnline() {
               placeholder="House number, street, city and state."
             />
 
-            <button
-              className="w-full mx-auto text-base bg-yellow/65 hover:bg-yellow active:translate-y-1 transition-all"
-              type="submit"
-            >
-              Go to Payment
-            </button>
+            <FormSubmitBtn buttonText="Go to Payment" />
           </div>
         </Form>
       </Formik>
     </div>
-  );
+  )
 }
 
 export const addOrderToDb = async (currentUser, orderNum, values) => {

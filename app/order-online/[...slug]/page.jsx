@@ -10,13 +10,14 @@ import { addOrderToDb } from "../page"
 import { LoggedinUserParams } from "@/app/login/LoginChecker"
 import { OrderQuantity } from "@/components/OrderQuantity"
 import { useState } from "react"
+import { FormSubmitBtn } from "@/components/LoginOrCreateAccountTemplate"
 
 export default function Order({ params }) {
   const { currentUser } = LoggedinUserParams()
   const [orderNum, setOrderNum] = useState(1)
 
   return (
-    <div className="wrapper space-y-2 grid grid-cols-12">
+    <div className="wrapper !my-0 space-y-2 md:grid grid-cols-12">
       <article className="col-span-6">
         {menus.map((menu) =>
           params.slug[0] == menu.id ? (
@@ -112,12 +113,7 @@ export default function Order({ params }) {
               label="Delivery address"
               placeholder="House number, street, city and state."
             />
-            <button
-              className="block w-full mt-5 text-base bg-yellow/65 hover:bg-yellow active:translate-y-1 transition-all"
-              type="submit"
-            >
-              <Link href="/payment">Go to Payment</Link>
-            </button>
+            <FormSubmitBtn buttonText="Go to Payment" />
           </Form>
         </Formik>
         <div className="mt-4">
@@ -136,5 +132,5 @@ export default function Order({ params }) {
         </div>
       </main>
     </div>
-  );
+  )
 }

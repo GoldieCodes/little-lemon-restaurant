@@ -3,13 +3,13 @@
 @tailwind utilities;
 
 h1 {
-  @apply font-medium text-3xl font-serif;
+  @apply font-medium text-[2.2rem] lg:text-2xl font-serif;
 }
 h2 {
-  @apply text-xl font-extrabold font-sans uppercase text-dark;
+  @apply text-[1.7rem] lg:text-xl md:text-xl font-extrabold font-sans tracking-tight uppercase text-green;
 }
 h3 {
-  @apply text-[3rem] font-serif text-dark;
+  @apply text-xl font-sans font-bold text-dark;
 }
 h4 {
   @apply text-base font-sans font-extrabold text-dark;
@@ -21,20 +21,26 @@ h6 {
   @apply text-sm font-bold font-sans text-ash;
 }
 p {
-  @apply font-sans text-base text-[#4d5855];
+  @apply font-sans text-sm lg:text-base text-[#4d5855];
 }
 .price-tag {
   @apply text-base font-bold text-brownish;
 }
 button {
-  @apply bg-yellow/60 text-base text-dark hover:bg-yellow active:translate-y-1 transition-all font-bold rounded-2xl py-3 px-4 shadow-xl;
+  @apply bg-yellow/60 text-sm md:text-base text-dark hover:bg-yellow active:translate-y-1 transition-all font-bold rounded-2xl py-3 px-4 shadow-xl;
+}
+img {
+  @apply mt-6 md:mt-0;
 }
 footer > main a,
 footer > main p {
   @apply text-ash/75;
 }
 .wrapper {
-  @apply w-[1120px] m-auto;
+  @apply w-[87%] xl:w-[1120px] mx-auto;
+}
+section.wrapper {
+  @apply my-20 lg:my-36;
 }
 .star-rating {
   @apply flex text-yellow text-[2rem] font-bold;

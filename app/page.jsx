@@ -7,12 +7,14 @@ import Reviews from "@/components/Reviews"
 export default function Home() {
   return (
     <>
-      <main className="h-[70vh] bg-green">
-        <div className="wrapper flex gap-10 justify-between">
-          <div className="w-[40%] place-self-center">
-            <h1 className="text-yellow leading-7">Little Lemon</h1>
+      <main className="py-[20vh] md:py-0 md:h-[70vh] bg-green">
+        <div className="wrapper flex gap-10 justify-between items-center">
+          <div className="md:w-[40%] text-center md:text-start md:place-self-center">
+            <h1 className="text-yellow leading-7 text-[4rem] lg:text-3xl">
+              Little Lemon
+            </h1>
             <h3 className="text-ash">Chicago</h3>
-            <p className="text-ash mt-4 mb-[3rem]">
+            <p className="text-ash mt-4 mb-5 lg:mb-[3rem]">
               We are a family owned Mediterranean restaurant focused on
               traditional recipes served with a modern twist.
             </p>
@@ -29,26 +31,24 @@ export default function Home() {
             placeholder="blur"
             blurDataURL="/restaurantfood.jpg"
             alt="restaurant food"
-            className="mt-16 h-[70vh] w-[35%] object-cover rounded-3xl mr-20"
+            className="hidden md:block mt-16 h-[70vh] w-[35%] object-cover rounded-3xl mr-20"
           />
         </div>
       </main>
-      <section className="w-[1120px] mt-28 mx-auto grid grid-cols-7 items-center">
-        <h2 className="col-span-5">This Week's Specials!</h2>
-        <Button
-          url="/menu"
-          text="Online Menu"
-          styles="col-span-1 justify-self-end"
-        />
-        <div className="mt-14 col-span-full grid grid-cols-3 gap-10">
+      <section className="wrapper">
+        <div className="flex justify-between items-center">
+          <h2 className="col-span-5">The Week Specials</h2>
+          <Button url="/menu" text="Online Menu" styles="" />
+        </div>
+        <div className="mt-14 space-y-10 md:space-y-0 md:grid md:grid-cols-2 lg:grid-cols-3 gap-10 min-h-[50vh]">
           <MenuItems menus={menus} />
         </div>
       </section>
-      <section className="w-[1120px] mt-36 mb-80 mx-auto">
+      <section className="wrapper">
         <h2 className="mb-10 text-center">Testimonials</h2>
         <Reviews />
       </section>
-      <section className="wrapper grid grid-cols-12 h-[50vh] grid-rows-[10vh] !mb-48">
+      <section className="wrapper !mt-32 md:!mt-60 md:grid grid-cols-12 md:h-[50vh]">
         <div className="col-span-6">
           <h2 className="mb-1">Little Lemon</h2>
           <h5 className="text-brownish mb-5">Chicago</h5>
@@ -62,15 +62,18 @@ export default function Home() {
           </p>
         </div>
 
-        <div className="relative h-[70vh] w-[32vw]">
+        <div className="relative h-[40vh] md:h-[63vh] md:w-[32vw]">
           <Image
             layout="fill"
             src="/Mario and Adrian A.jpg"
             alt="Mario and Adrian in the kitchen"
-            className="col-span-3 mt-[-20vh] mr-[-40px] object-cover border-4 border-dark justify-self-end z-10"
+            className="col-span-3 md:mt-[-10vh] md:mr-[-40px] object-cover border-4 border-dark justify-self-end z-10"
           />
         </div>
-        <div className="relative h-[70vh] w-[31vw] mt-[-14vh] col-span-3 border-[3px] border-dark self-start justify-self-start"></div>
+        <div
+          aria-label="hidden"
+          className="hidden md:block relative h-[63vh] w-[31vw] mt-[-14vh] col-span-3 border-[3px] border-dark self-start justify-self-start"
+        ></div>
       </section>
     </>
   )

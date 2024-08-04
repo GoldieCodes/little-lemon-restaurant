@@ -51,7 +51,7 @@ export default function MenuItems({ menus }) {
     <>
       {menus.map((menu) => (
         <article
-          className="max-h-[67vh] shadow-lg bg-ash rounded-lg"
+          className="lg:max-h-[67vh] shadow-lg bg-ash rounded-lg"
           key={menu.id}
         >
           <Image
@@ -59,7 +59,7 @@ export default function MenuItems({ menus }) {
             width={250}
             height={200}
             alt={menu.img.alt}
-            className="w-full h-2/5 object-cover rounded-t-lg"
+            className="w-full h-[33vh] lg:h-2/5 object-cover rounded-t-lg"
           />
           <div className="p-5 space-y-4">
             <span className="flex justify-between">
