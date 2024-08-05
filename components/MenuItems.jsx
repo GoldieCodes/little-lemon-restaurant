@@ -59,7 +59,7 @@ export default function MenuItems({ menus }) {
             width={250}
             height={200}
             alt={menu.img.alt}
-            className="w-full h-[33vh] lg:h-2/5 object-cover rounded-t-lg"
+            className="w-full h-[25vh] lg:h-2/5 object-cover rounded-t-lg"
           />
           <div className="p-5 space-y-4">
             <span className="flex justify-between">

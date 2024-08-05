@@ -30,7 +30,6 @@ button {
   @apply bg-yellow/60 text-sm md:text-base text-dark hover:bg-yellow active:translate-y-1 transition-all font-bold rounded-2xl py-3 px-4 shadow-xl;
 }
 img {
-  @apply mt-6 md:mt-0;
 }
 footer > main a,
 footer > main p {

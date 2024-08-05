@@ -7,7 +7,7 @@ import Reviews from "@/components/Reviews"
 export default function Home() {
   return (
     <>
-      <main className="py-[20vh] md:py-0 md:h-[70vh] bg-green">
+      <main className="py-[15vh] md:py-0 md:h-[70vh] bg-green">
         <div className="wrapper flex gap-10 justify-between items-center">
           <div className="md:w-[40%] text-center md:text-start md:place-self-center">
             <h1 className="text-yellow leading-7 text-[4rem] lg:text-3xl">
@@ -36,9 +36,9 @@ export default function Home() {
         </div>
       </main>
       <section className="wrapper">
-        <div className="flex justify-between items-center">
-          <h2 className="col-span-5">The Week Specials</h2>
-          <Button url="/menu" text="Online Menu" styles="" />
+        <div className="md:flex justify-between items-center">
+          <h2 className="text-center">This Week's Specials</h2>
+          <Button url="/menu" text="Online Menu" styles="hidden md:block" />
         </div>
         <div className="mt-14 space-y-10 md:space-y-0 md:grid md:grid-cols-2 lg:grid-cols-3 gap-10 min-h-[50vh]">
           <MenuItems menus={menus} />
@@ -67,7 +67,7 @@ export default function Home() {
             layout="fill"
             src="/Mario and Adrian A.jpg"
             alt="Mario and Adrian in the kitchen"
-            className="col-span-3 md:mt-[-10vh] md:mr-[-40px] object-cover border-4 border-dark justify-self-end z-10"
+            className="col-span-3 mt-6 md:mt-[-10vh] md:mr-[-40px] object-cover border-4 border-dark justify-self-end z-10"
           />
         </div>
         <div

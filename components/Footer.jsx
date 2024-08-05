@@ -10,7 +10,7 @@ export default function Footer() {
           alt="Little Lemon Logo"
           width={250}
           height={250}
-          className="xs:hidden md:flex self-center"
+          className="hidden md:flex self-center"
         />
         <nav className="flex flex-col">
           <h6>Navigation</h6>

@@ -27,20 +27,22 @@ export default function Menu() {
 
   return (
     <div className="wrapper">
-      <header className="flex justify-between items-center border-b-2 border-yellow/45">
-        <h1 className="text-2xl text-green">Our Menu</h1>
+      <header className="md:flex justify-between items-center md:border-b-2 md:border-yellow/45">
+        <h1 className="text-2xl text-green border-b-2 md:border-b-0 border-yellow/45">
+          Our Menu
+        </h1>
 
         {/* this is the search bar */}
         <aside role="search bar" className="relative group">
           <input
             name="searchbar"
-            placeholder="Search the menu..."
-            className="w-[32vw] xl:w-[25vw] rounded-full py-2 px-3 xl:px-5 mb-2 xl:mb-4 shadow border-[1px]
+            placeholder="Search the menu"
+            className="w-full xl:w-[23vw] rounded-full py-3 px-5 mt-5 md:mt-0 md:mb-4 shadow border-[1px]
                  border-ash bg-[white]/15 outline-1 outline-[#9fb3a9]"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
-          <span className="hidden md:block absolute right-2 bottom-[35%] text-[2rem] text-[#82958b96] group-focus-within:text-[#9fb3a9] group-focus-within:hover:text-brownish">
+          <span className="absolute right-2 bottom-[12%] md:bottom-[40%] text-[2rem] text-[#82958b96] group-focus-within:text-[#9fb3a9] group-focus-within:hover:text-brownish">
             <BiSearchAlt />
           </span>
         </aside>

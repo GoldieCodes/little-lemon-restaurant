@@ -6,7 +6,14 @@ export default function About() {
       <h1 className="border-b-2 border-yellow/45 text-green">
         About Little Lemon
       </h1>
-      <div className="mt-8 text-justify lg:flex gap-10">
+      <div className="mt-8 text-justify lg:flex gap-10 flex-row-reverse">
+        <Image
+          width={400}
+          height={400}
+          src="/restaurant.jpg"
+          alt="Restaurant pic"
+          className="w-full lg:w-[47%] mb-6 lg:mb-0 object-cover"
+        />
         <p className="lg:w-[53%]">
           Little Lemon is a vibrant Mediterranean restaurant founded by Mario
           and Adrian, two culinary enthusiasts with a passion for blending
@@ -25,15 +32,15 @@ export default function About() {
           celebrates the timeless allure of Mediterranean cuisine with a modern
           twist.
         </p>
+      </div>
+      <div className="mt-12 lg:flex gap-10">
         <Image
           width={400}
           height={400}
-          src="/restaurant.jpg"
-          alt="Restaurant pic"
-          className="lg:w-[47%] object-cover"
+          src="/restaurantfood.jpg"
+          alt="Restaurant food pic"
+          className="w-full lg:w-[53%] mb-6 lg:mb-0 h-[revert-layer] object-cover"
         />
-      </div>
-      <div className="mt-12 lg:flex gap-10 flex-row-reverse">
         <p className="lg:w-[47%] text-justify">
           With a commitment to using only the freshest ingredients sourced from
           local farmers and producers, Little Lemon ensures that every dish
@@ -48,14 +55,6 @@ export default function About() {
           succulent kebabs to zesty salads, each dish is meticulously crafted to
           tantalize the taste buds and evoke a sense of culinary adventure.
         </p>
-
-        <Image
-          width={400}
-          height={400}
-          src="/restaurantfood.jpg"
-          alt="Restaurant food pic"
-          className="lg:w-[53%] h-[revert-layer] object-cover"
-        />
       </div>
     </main>
   )
