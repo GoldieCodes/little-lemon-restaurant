@@ -45,7 +45,7 @@ export default function LoginOrCreateAccountTemplate({
 
   return (
     <main className="min-h-[50vh] wrapper">
-      <div className="lg:w-2/3 my-28 mx-auto bg-[white]/70 rounded-md p-12 backdrop-blur-[7px]">
+      <div className="lg:w-2/3 my-28 mx-auto bg-[white]/70 rounded-md p-6 md:p-12 backdrop-blur-[7px]">
         <h1 className="mb-4 font-bold text-2xl text-dark text-center leading-10">
           {heading}
         </h1>

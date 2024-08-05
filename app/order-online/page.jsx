@@ -26,7 +26,7 @@ export default function OrderOnline() {
       </h1>
       <Formik
         initialValues={{
-          products: "",
+          products: selectedDish,
           name: "",
           phone_number: "",
           email: "",
@@ -37,9 +37,9 @@ export default function OrderOnline() {
           router.push("/payment")
         }}
         validationSchema={Yup.object({
-          products: Yup.string()
-            .required("You need to select a dish to place an order")
-            .notOneOf(["select"], "You haven't selected a dish"),
+          products: Yup.string().required(
+            "You need to select a dish to place an order"
+          ),
           name: Yup.string().required("Enter your name"),
           phone_number: Yup.string()
             .required("Please enter a phone number")
@@ -60,9 +60,10 @@ export default function OrderOnline() {
                 id="products"
                 name="products"
                 as="select"
-                onClick={(event) => {
+                onChange={(event) => {
                   setDish(event.target.value)
                 }}
+                value={selectedDish}
                 className="w-full rounded-full p-6 my-4 shadow-md border-2
                  border-[green] bg-[white]/15 outline-1 outline-brownish"
               >

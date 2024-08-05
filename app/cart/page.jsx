@@ -26,7 +26,7 @@ export default function Cart() {
       <main className="mt-14 lg:w-2/3 mx-auto space-y-6">
         {cartNumber == 0 ? (
           <div className="min-h-[50vh] grid place-self-center align-middle">
-            <p className="text-xl text-[#9cab99] flex gap-6 items-center group">
+            <p className="text-base lg:text-lg text-[#9cab99] flex gap-6 items-center group">
               <span className="text-3xl text-green/40 group-hover:animate-bounce">
                 <BsCartDash />
               </span>

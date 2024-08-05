@@ -51,7 +51,7 @@ export default function Menu() {
       <main>
         <div className="mt-14 col-span-full space-y-10 md:space-y-0 md:grid md:grid-cols-2 lg:grid-cols-3 gap-10 min-h-[50vh]">
           {searchResult.length == 0 && search ? ( // && search adds a check to ensure that the search bar is not empty
-            <p className="text-xl text-[#9cab99] place-self-center col-span-full flex gap-6 items-center">
+            <p className="text-base lg:text-lg text-[#9cab99] place-self-center col-span-full flex gap-6 items-center">
               <span className="text-3xl text-brownish/60">
                 <FaSadCry />
               </span>
