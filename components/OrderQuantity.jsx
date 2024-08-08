@@ -4,13 +4,11 @@ export function OrderQuantity({ orderNum, setOrderNum, text }) {
 
   return (
     <p>
-      {text}
-      {"  "}
       <span
         onClick={() =>
           orderNum === 0 ? null : setOrderNum((prev) => prev - 1)
         }
-        className="cursor-pointer bg-ash px-4 py-2 rounded-lg mr-4 ml-2 hover:bg-green/30"
+        className="cursor-pointer bg-ash px-4 py-2 rounded-lg mr-4 hover:bg-green/30"
       >
         -
       </span>{" "}

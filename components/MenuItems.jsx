@@ -50,25 +50,22 @@ export default function MenuItems({ menus }) {
   return (
     <>
       {menus.map((menu) => (
-        <article
-          className="lg:max-h-[67vh] shadow-lg bg-ash rounded-lg"
-          key={menu.id}
-        >
+        <article className="shadow-lg bg-ash rounded-lg" key={menu.id}>
           <Image
             src={menu.img.src}
             width={250}
             height={200}
             alt={menu.img.alt}
-            className="w-full h-[25vh] lg:h-2/5 object-cover rounded-t-lg"
+            className="w-full h-[25vh] object-cover rounded-t-xl"
           />
-          <div className="p-5 space-y-4">
+          <div className="p-5 space-y-2">
             <span className="flex justify-between">
               <h4>{menu.title}</h4>
               <p role="price-tag" className="price-tag">
                 ${menu.price}
               </p>
             </span>
-            <p className="text-green text-[1.1rem]">{menu.description}</p>
+            <p className="text-green text-[1.03rem]">{menu.description}</p>
             <div className="flex justify-between items-center">
               <Link
                 href={`/order-online/${menu.id}/${menu.title
@@ -80,7 +77,7 @@ export default function MenuItems({ menus }) {
                 <BiCycling className="text-[22px] font-bold group-hover:translate-x-2 duration-500 transition-all" />
               </Link>
               <button
-                className="flex gap-2 items-center rounded-lg shadow-none bg-opacity-55 group hover:bg-opacity-100"
+                className="flex text-sm gap-2 items-center rounded-lg shadow-none bg-opacity-55 group hover:bg-opacity-100"
                 onClick={() => addToCart(menu)}
               >
                 {" "}

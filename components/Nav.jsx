@@ -8,6 +8,9 @@ import { useEffect, useState } from "react"
 import { FaCaretDown } from "react-icons/fa"
 import { FaBasketShopping } from "react-icons/fa6"
 import { CartContextParams } from "@/app/cart/CartContext"
+import { RxHamburgerMenu } from "react-icons/rx"
+import { MdClose } from "react-icons/md"
+import { useMediaQuery } from "react-responsive"
 
 export default function Nav() {
   const currentPath = usePathname()
@@ -42,6 +45,8 @@ export const NavLinks = () => {
   const [hideLogOutBtn, setLogOutBtn] = useState(true)
   const userParams = LoggedinUserParams()
   const { cartNumber, newItemAdded } = CartContextParams(null)
+  const [toggleMenu, setToggleMenu] = useState()
+  const isMobile = useMediaQuery({ maxWidth: 800 })
 
   //I used useEffect here because the UI was always showing the logout button whenever a new login is done
   //So the useEffect here always fires whenever the currentUser state changes, to hide the button (in case it is not hidden)
@@ -50,78 +55,93 @@ export const NavLinks = () => {
     setLogOutBtn(true)
   }, [userParams.currentUser])
 
+  useEffect(() => {
+    if (isMobile) setToggleMenu(true)
+    else setToggleMenu(false)
+  }, [isMobile])
+
   return (
     <nav className="font-semibold text-sm font-sans text-green flex items-center">
-      <Link
-        href="/"
-        className={`p-3
-          ${
-            currentPath === "/"
-              ? "activeNav"
-              : currentPath === "/login" || currentPath === "/create-account"
-              ? "loginNav"
-              : "navHover"
-          }
-        `}
+      <div
+        className={` ${isMobile ? "mobileNav" : null} ${
+          toggleMenu ? "left-full opacity-0" : "left-0 opacity-100"
+        } ${
+          currentPath === "/login" || currentPath === "/create-account"
+            ? "!bg-green/60"
+            : null
+        }`}
       >
-        Home
-      </Link>
-      <Link
-        href="/about"
-        className={`p-3
-          ${
-            currentPath === "/about"
-              ? "activeNav"
-              : currentPath === "/login" || currentPath === "/create-account"
-              ? "loginNav"
-              : "navHover"
-          }
-        `}
-      >
-        About
-      </Link>
-      <Link
-        href="/reservation"
-        className={`p-3
-          ${
-            currentPath === "/reservation"
-              ? "activeNav"
-              : currentPath === "/login" || currentPath === "/create-account"
-              ? "loginNav"
-              : "navHover"
-          }
-        `}
-      >
-        Reservation
-      </Link>
-      <Link
-        href="/menu"
-        className={`p-3
-          ${
-            currentPath === "/menu"
-              ? "activeNav"
-              : currentPath === "/login" || currentPath === "/create-account"
-              ? "loginNav"
-              : "navHover"
-          }
-        `}
-      >
-        Menu
-      </Link>
-      <Link
-        href="/order-online"
-        className={`p-3
-          ${
-            currentPath === "/order-online"
-              ? "activeNav"
-              : currentPath === "/login" || currentPath === "/create-account"
-              ? "loginNav"
-              : "navHover"
-          }
-        `}
-      >
-        Order Online
-      </Link>
+        <Link
+          href="/"
+          className={`p-3
+            ${
+              currentPath === "/"
+                ? "activeNav"
+                : currentPath === "/login" || currentPath === "/create-account"
+                ? "loginNav"
+                : "navHover"
+            }
+          `}
+        >
+          Home
+        </Link>
+        <Link
+          href="/about"
+          className={`p-3
+            ${
+              currentPath === "/about"
+                ? "activeNav"
+                : currentPath === "/login" || currentPath === "/create-account"
+                ? "loginNav"
+                : "navHover"
+            }
+          `}
+        >
+          About
+        </Link>
+        <Link
+          href="/reservation"
+          className={`p-3
+            ${
+              currentPath === "/reservation"
+                ? "activeNav"
+                : currentPath === "/login" || currentPath === "/create-account"
+                ? "loginNav"
+                : "navHover"
+            }
+          `}
+        >
+          Reservation
+        </Link>
+        <Link
+          href="/menu"
+          className={`p-3
+            ${
+              currentPath === "/menu"
+                ? "activeNav"
+                : currentPath === "/login" || currentPath === "/create-account"
+                ? "loginNav"
+                : "navHover"
+            }
+          `}
+        >
+          Menu
+        </Link>
+        <Link
+          href="/order-online"
+          className={`p-3
+            ${
+              currentPath === "/order-online"
+                ? "activeNav"
+                : currentPath === "/login" || currentPath === "/create-account"
+                ? "loginNav"
+                : "navHover"
+            }
+          `}
+        >
+          Order Online
+        </Link>
+      </div>
       {/*   
         userParams is the value object from the Context API I defined in the LoginChecker file
         currentUser is one of the values gotten from the Context provider 
@@ -131,7 +151,7 @@ export const NavLinks = () => {
           <span className="p-3 relative">
             <Link
               href="/cart"
-              className={`text-xl 
+              className={`text-lg
             ${
               currentPath === "/cart"
                 ? "activeNav"
@@ -195,6 +215,18 @@ export const NavLinks = () => {
           Login
         </Link>
       )}
+      {isMobile ? (
+        <span
+          className={`ml-5 text-lg cursor-pointer ${
+            currentPath === "/login" || currentPath === "/create-account"
+              ? "loginNav"
+              : null
+          }`}
+          onClick={() => setToggleMenu(!toggleMenu)}
+        >
+          {toggleMenu ? <RxHamburgerMenu /> : <MdClose />}
+        </span>
+      ) : null}
     </nav>
   )
 }

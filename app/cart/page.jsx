@@ -18,7 +18,7 @@ export default function Cart() {
       <header className="flex justify-between items-center border-b-2 border-yellow/45">
         <h1 className="text-2xl text-green">Your Cart</h1>
         {cartNumber > 0 ? (
-          <button className="shadow-none rounded-lg px-6">
+          <button className="shadow-none rounded-lg px-6 mb-2">
             <Link href="/menu">Continue shopping</Link>
           </button>
         ) : null}
@@ -27,7 +27,7 @@ export default function Cart() {
         {cartNumber == 0 ? (
           <div className="min-h-[50vh] grid place-self-center align-middle">
             <p className="text-base lg:text-lg text-[#9cab99] flex gap-6 items-center group">
-              <span className="text-3xl text-green/40 group-hover:animate-bounce">
+              <span className="text-2xl text-green/40 group-hover:animate-bounce">
                 <BsCartDash />
               </span>
               Your cart is empty.{" "}

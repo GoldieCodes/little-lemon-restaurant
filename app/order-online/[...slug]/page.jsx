@@ -23,7 +23,7 @@ export default function Order({ params }) {
           params.slug[0] == menu.id ? (
             <>
               <h3 className="my-3 text-[green]">{menu.title}</h3>
-              <div className="relative h-[50vh]">
+              <div className="relative h-[25vh] md:h-[50vh]">
                 <Image
                   src={menu.img.src}
                   alt={menu.img.alt}
@@ -43,7 +43,6 @@ export default function Order({ params }) {
                   <OrderQuantity
                     orderNum={orderNum}
                     setOrderNum={setOrderNum}
-                    text={"Quantity:"}
                   />
                   <p role="price-tag" className="font-bold">
                     Total: ${(menu.price * orderNum).toFixed(2)}
@@ -70,6 +69,7 @@ export default function Order({ params }) {
           }}
           onSubmit={(values) => {
             addOrderToDb(currentUser, orderNum, values)
+            router.push("/payment")
           }}
           validationSchema={Yup.object({
             products: Yup.string()
@@ -117,7 +117,7 @@ export default function Order({ params }) {
           </Form>
         </Formik>
         <div className="mt-4">
-          <p className="flex items-center gap-2 text-sm mt-5">
+          <p className="flex items-center gap-2 text-sm mt-3">
             Want to change this item?{" "}
             <span className="bg-brownish text-lg p-1 font-extrabold text-[white] rounded-full shadow-lg">
               <IoMdArrowRoundBack />

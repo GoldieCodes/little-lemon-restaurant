@@ -30,8 +30,12 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${karla.variable} ${markazi.variable}`}>
+    <html
+      lang="en"
+      className={`${karla.variable} ${markazi.variable} overflow-x-hidden`}
+    >
       <body>
+        <link rel="icon" href="/dish_icon.svg" sizes="any" />
         <LoginChecker>
           <CartContext>
             <Background>

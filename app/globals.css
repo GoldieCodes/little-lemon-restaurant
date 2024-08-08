@@ -27,7 +27,7 @@ p {
   @apply text-base font-bold text-brownish;
 }
 button {
-  @apply bg-yellow/60 text-sm md:text-base text-dark hover:bg-yellow active:translate-y-1 transition-all font-bold rounded-2xl py-3 px-4 shadow-xl;
+  @apply bg-yellow/60 text-sm md:text-[1.1rem] text-dark hover:bg-yellow active:translate-y-1 transition-all font-bold rounded-2xl py-3 px-4 shadow-xl;
 }
 footer > main a,
 footer > main p {
@@ -84,4 +84,10 @@ section.wrapper {
 }
 .Toastify__close-button.Toastify__close-button--colored {
   @apply !text-dark;
+}
+.mobileNav {
+  @apply flex flex-col px-10 py-5 items-start absolute top-20 z-10 h-[calc(100vh-5rem)] w-full bg-ash/85 backdrop-blur-3xl transition-all duration-500 divide-y-[1px] divide-green/20;
+}
+.mobileNav a {
+  @apply block w-full bg-[initial];
 }

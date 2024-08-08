@@ -90,7 +90,6 @@ export default function Reviews() {
         <Image
           width={100}
           height={100}
-          objectFit="cover"
           src={review.pic}
           alt={`${review.name} profile pic`}
           className="rounded-full"
@@ -122,7 +121,7 @@ export default function Reviews() {
   var settings = {
     dots: true,
     infinite: true,
-    speed: 5000,
+    speed: 2000,
     autoplay: true,
     autoplaySpeed: 8000,
     slidesToShow: 3,

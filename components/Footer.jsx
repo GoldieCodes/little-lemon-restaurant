@@ -3,8 +3,8 @@ import Link from "next/link"
 
 export default function Footer() {
   return (
-    <footer className="bg-green py-12 mt-16">
-      <main className="wrapper flex flex-wrap justify-between space-y-5">
+    <footer className="bg-green pt-5 pb-10 mt-16">
+      <main className="wrapper flex flex-wrap justify-between space-y-5 gap-5">
         <Image
           src="/logo-white.png"
           alt="Little Lemon Logo"
