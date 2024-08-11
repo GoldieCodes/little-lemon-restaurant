@@ -43,13 +43,13 @@ export default function Footer() {
           </p>
         </nav>
         <nav className="">
-          <h6>Social Media Links</h6>
+          <h6>Social Media</h6>
           <p className="text-sm">
-            Address
+            Instagram
             <br />
-            Phone number
+            Facebook
             <br />
-            Email
+            Twitter
           </p>
         </nav>
       </main>

@@ -14,28 +14,45 @@ import { useMediaQuery } from "react-responsive"
 
 export default function Nav() {
   const currentPath = usePathname()
+  const [hasScrolled, setHasScrolled] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setHasScrolled(window.scrollY > 50)
+    }
+
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
 
   return (
-    <header className="wrapper flex justify-between items-center py-4">
-      <Link href="/">
-        {currentPath === "/login" || currentPath === "/create-account" ? (
-          <Image
-            src="/logo-white.png"
-            alt="Little Lemon logo"
-            width={150}
-            height={150}
-          />
-        ) : (
-          <Image
-            src="/logo.svg"
-            alt="Little Lemon logo"
-            width={150}
-            height={150}
-          />
-        )}
-      </Link>
-
-      <NavLinks />
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all ${
+        hasScrolled
+          ? "bg-[white]/80 backdrop-blur-md shadow-md py-2"
+          : "bg-transparent py-4"
+      }`}
+    >
+      <div className="wrapper flex justify-between items-center">
+        <Link href="/">
+          {currentPath === "/login" || currentPath === "/create-account" ? (
+            <Image
+              src="/logo-white.png"
+              alt="Little Lemon logo"
+              width={150}
+              height={150}
+            />
+          ) : (
+            <Image
+              src="/logo.svg"
+              alt="Little Lemon logo"
+              width={150}
+              height={150}
+            />
+          )}
+        </Link>
+        <NavLinks />
+      </div>
     </header>
   )
 }
@@ -45,8 +62,8 @@ export const NavLinks = () => {
   const [hideLogOutBtn, setLogOutBtn] = useState(true)
   const userParams = LoggedinUserParams()
   const { cartNumber, newItemAdded } = CartContextParams(null)
-  const [toggleMenu, setToggleMenu] = useState()
-  const isMobile = useMediaQuery({ maxWidth: 800 })
+  const [hideMenu, setHideMenu] = useState()
+  const isMobile = useMediaQuery({ maxWidth: 1024 })
 
   //I used useEffect here because the UI was always showing the logout button whenever a new login is done
   //So the useEffect here always fires whenever the currentUser state changes, to hide the button (in case it is not hidden)
@@ -56,18 +73,18 @@ export const NavLinks = () => {
   }, [userParams.currentUser])
 
   useEffect(() => {
-    if (isMobile) setToggleMenu(true)
-    else setToggleMenu(false)
-  }, [isMobile])
+    if (isMobile) setHideMenu(true)
+    else setHideMenu(false)
+  }, [isMobile, currentPath])
 
   return (
     <nav className="font-semibold text-sm font-sans text-green flex items-center">
       <div
-        className={` ${isMobile ? "mobileNav" : null} ${
-          toggleMenu ? "left-full opacity-0" : "left-0 opacity-100"
+        className={` ${isMobile && "mobileNav"} ${
+          hideMenu ? "left-full opacity-0" : "left-0 opacity-100"
         } ${
           currentPath === "/login" || currentPath === "/create-account"
-            ? "!bg-green/60"
+            ? "!bg-dark/60"
             : null
         }`}
       >
@@ -151,7 +168,7 @@ export const NavLinks = () => {
           <span className="p-3 relative">
             <Link
               href="/cart"
-              className={`text-lg
+              className={`text-base md:text-lg
             ${
               currentPath === "/cart"
                 ? "activeNav"
@@ -171,7 +188,7 @@ export const NavLinks = () => {
                   className={`absolute leading-[1] rounded-full ${
                     newItemAdded
                       ? "animate-ping absolute inline-flex h-full w-full text-[0px] p-[0.3rem] bg-orange opacity-75"
-                      : "-top-1 text-xs py-[0.3rem] px-[0.4rem] bg-[#fcd860e7]"
+                      : "-top-1 font-bold text-xs px-[4px] py-[2px] md:py-[0.3rem] md:px-[0.4rem] bg-dark/80 text-[white]"
                   }`}
                 >
                   {cartNumber}
@@ -183,16 +200,17 @@ export const NavLinks = () => {
             ) : null}
           </span>
 
-          <div
-            className="relative group inline-block min-w-32 p-3"
-            onMouseLeave={() => setLogOutBtn(true)}
-          >
+          <div className="relative group inline-block p-3">
             <p
-              className=" flex items-center gap-1 cursor-pointer text-sm font-sans text-green"
-              onMouseEnter={() => setLogOutBtn(false)}
+              className="text-xs flex items-center gap-1 cursor-pointer md:text-sm font-sans text-green"
+              onClick={() => setLogOutBtn(!hideLogOutBtn)}
             >
               Hi, {userParams.username}{" "}
-              <span className="group-hover:rotate-180 transition-all duration-300">
+              <span
+                className={`${
+                  !hideLogOutBtn && "rotate-180"
+                } transition-all duration-300`}
+              >
                 <FaCaretDown />
               </span>
             </p>
@@ -217,14 +235,14 @@ export const NavLinks = () => {
       )}
       {isMobile ? (
         <span
-          className={`ml-5 text-lg cursor-pointer ${
+          className={`text-base cursor-pointer ${
             currentPath === "/login" || currentPath === "/create-account"
               ? "loginNav"
               : null
           }`}
-          onClick={() => setToggleMenu(!toggleMenu)}
+          onClick={() => setHideMenu(!hideMenu)}
         >
-          {toggleMenu ? <RxHamburgerMenu /> : <MdClose />}
+          {hideMenu ? <RxHamburgerMenu /> : <MdClose />}
         </span>
       ) : null}
     </nav>

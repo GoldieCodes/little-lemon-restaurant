@@ -3,6 +3,7 @@ import { CartContextParams } from "./CartContext"
 import Link from "next/link"
 import Image from "next/image"
 import { BsCartDash } from "react-icons/bs"
+import { GoTrash } from "react-icons/go"
 
 export default function Cart() {
   const {
@@ -19,7 +20,7 @@ export default function Cart() {
         <h1 className="text-2xl text-green">Your Cart</h1>
         {cartNumber > 0 ? (
           <button className="shadow-none rounded-lg px-6 mb-2">
-            <Link href="/menu">Continue shopping</Link>
+            <Link href="/menu">Back to shop</Link>
           </button>
         ) : null}
       </header>
@@ -39,7 +40,7 @@ export default function Cart() {
         ) : (
           cartData.map((menu) => (
             <article className="flex" key={menu.id}>
-              <div className="relative w-1/2 h-[30vh]">
+              <div className="relative w-1/2">
                 <Image
                   src={menu.img.src}
                   alt={menu.img.alt}
@@ -48,31 +49,31 @@ export default function Cart() {
                 />
               </div>
               <div className="bg-[white] w-1/2 shadow-md p-4 space-y-3 grid content-center">
-                <span className="flex justify-between">
+                <span className="md:flex justify-between">
                   <h4>{menu.title}</h4>
                   <p role="price-tag" className="price-tag">
                     ${menu.numOfOrderPrice}
                   </p>
                 </span>
                 <p className="line-clamp-2 text-sm">{menu.description}</p>
-                <div className="py-2 flex justify-between items-center">
-                  <button
-                    className="shadow-none bg-ash hover:bg-green/30 rounded-lg text-sm"
+                <div className="flex justify-between items-center">
+                  <span
+                    className="cursor-pointer text-dark/70 hover:text-[green] text-md md:text-lg"
                     onClick={() => removeFromCart(menu.id)}
                   >
-                    Remove item
-                  </button>
+                    <GoTrash />
+                  </span>
                   <p>
                     <span
                       onClick={() => decreaseOrderNum(menu.id)}
-                      className="cursor-pointer bg-pinkish/50 hover:bg-pinkish px-4 py-2 rounded-lg mr-4 ml-2"
+                      className="cursor-pointer bg-ash hover:bg-pinkish py-[0.2rem] px-[0.6rem] md:px-4 md:py-2 md:rounded-lg mr-4 ml-2"
                     >
                       -
                     </span>{" "}
                     <span className="font-bold">{menu.quantity} </span>
                     <span
                       onClick={() => increaseOrderNum(menu.id)}
-                      className="cursor-pointer bg-pinkish/50 hover:bg-pinkish px-4 py-2 rounded-lg ml-4"
+                      className="cursor-pointer bg-ash hover:bg-pinkish py-[0.2rem] px-[0.6rem] md:px-4 md:py-2 md:rounded-lg ml-4"
                     >
                       +
                     </span>

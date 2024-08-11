@@ -83,7 +83,7 @@ export default function Reviews() {
   const testimonials = customerReviews.map((review) => (
     <article
       key={review.pic}
-      className="bg-ash/5 px-5 pt-7 rounded-lg space-y-4 h-[55vh] shadow-md"
+      className="h-full bg-ash/5 p-4 rounded-lg space-y-4 shadow-md"
     >
       <div className="grid justify-center">{review.rating}</div>
       <div className="flex justify-around items-center">
@@ -133,20 +133,13 @@ export default function Reviews() {
         breakpoint: 1024,
         settings: {
           slidesToShow: 2,
-          slidesToScroll: 1,
-          dots: true,
         },
       },
       {
         breakpoint: 600,
         settings: {
           slidesToShow: 1,
-          slidesToScroll: 1,
-          initialSlide: 1,
-          speed: 3000,
           autoplaySpeed: 5000,
-          nextArrow: "",
-          prevArrow: "",
         },
       },
     ],

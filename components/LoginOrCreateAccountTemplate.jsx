@@ -44,8 +44,8 @@ export default function LoginOrCreateAccountTemplate({
   const router = useRouter()
 
   return (
-    <main className="min-h-[50vh] wrapper">
-      <div className="lg:w-2/3 mt-4 md:mt-10 mx-auto bg-[white]/70 rounded-md p-6 md:p-12 backdrop-blur-[7px]">
+    <main className="min-h-[70vh] flex items-center wrapper">
+      <div className="lg:w-2/3 md:mt-8 mx-auto bg-[white]/70 rounded-md p-6 md:p-12 backdrop-blur-[7px]">
         <h1 className="mb-4 font-bold text-2xl text-dark text-center leading-10">
           {heading}
         </h1>

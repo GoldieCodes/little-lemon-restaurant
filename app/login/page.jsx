@@ -59,7 +59,7 @@ export function LogOutBtn({ hideLogOutBtn }) {
 
   return (
     <button
-      className={`absolute top-12 z-50 py-[6px] px-6 bg-pinkish hover:bg-yellow ${
+      className={`absolute top-12 z-50 py-[6px] bg-pinkish hover:bg-yellow ${
         hideLogOutBtn ? "invisible" : "visible"
       }`}
       onClick={() => SignOut()}

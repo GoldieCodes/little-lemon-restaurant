@@ -27,7 +27,7 @@ p {
   @apply text-base font-bold text-brownish;
 }
 button {
-  @apply bg-yellow/60 text-sm md:text-[1.1rem] text-dark hover:bg-yellow active:translate-y-1 transition-all font-bold rounded-2xl py-3 px-4 shadow-xl;
+  @apply bg-yellow/60 text-[1rem] md:text-[1.1rem] text-dark hover:bg-yellow active:translate-y-1 transition-all font-bold rounded-2xl py-3 px-4 shadow-xl;
 }
 footer > main a,
 footer > main p {
@@ -58,13 +58,16 @@ section.wrapper {
   @apply !text-[green];
 }
 .slick-dots {
-  @apply !bottom-[-45px];
+  @apply !bottom-[-25px];
 }
-.slick-slide {
-  @apply !pr-8;
+.slick-list {
+  @apply !p-4;
 }
-.slick-slide:last-child {
-  @apply !pr-0;
+.slick-track {
+  @apply !flex !gap-8;
+}
+.slick-slide > div {
+  @apply !h-[52vh];
 }
 .slick-prev:before,
 .slick-next:before {
