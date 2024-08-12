@@ -24,15 +24,15 @@ export default function Cart() {
           </button>
         ) : null}
       </header>
-      <main className="mt-14 lg:w-2/3 mx-auto space-y-6">
+      <main className="min-h-[50vh] mt-20 lg:w-2/3 mx-auto space-y-6">
         {cartNumber == 0 ? (
-          <div className="min-h-[50vh] grid place-self-center align-middle">
-            <p className="text-base lg:text-lg text-[#9cab99] flex gap-6 items-center group">
+          <div className="mt-14">
+            <p className="text-base lg:text-lg text-[#9cab99] flex items-center justify-center gap-2 md:gap-6 group">
               <span className="text-2xl text-green/40 group-hover:animate-bounce">
                 <BsCartDash />
               </span>
               Your cart is empty.{" "}
-              <button className="text-base">
+              <button className="p-2 md:p-3">
                 <Link href="/menu">Start shopping</Link>
               </button>
             </p>
