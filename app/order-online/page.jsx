@@ -20,7 +20,7 @@ export default function OrderOnline() {
   const router = useRouter()
 
   return (
-    <div className="wrapper space-y-4">
+    <div className="wrapper space-y-4 mt-4">
       <h1 className="border-b-2 border-yellow/45 text-green">
         What would you like to order?
       </h1>

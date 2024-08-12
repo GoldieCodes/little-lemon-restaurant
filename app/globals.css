@@ -61,7 +61,7 @@ section.wrapper {
   @apply !bottom-[-25px];
 }
 .slick-list {
-  @apply !p-4;
+  @apply !py-4;
 }
 .slick-track {
   @apply !flex !gap-8;

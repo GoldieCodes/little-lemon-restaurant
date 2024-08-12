@@ -1,13 +1,11 @@
 import Image from "next/image"
-import MenuItems from "@/components/MenuItems"
-import { menus } from "@/components/MenuItems"
-import { Button } from "@/components/MenuItems"
+import MenuItems, { Button, menus } from "@/components/MenuItems"
 import Reviews from "@/components/Reviews"
 
 export default function Home() {
   return (
     <>
-      <main className="py-[15vh] md:py-0 md:h-[70vh] bg-green">
+      <main className="py-[13vh] md:py-0 md:h-[70vh] bg-green">
         <div className="wrapper flex gap-10 justify-between items-center">
           <div className="md:w-[40%] text-center md:text-start md:place-self-center">
             <h1 className="text-yellow leading-7 text-[4rem] lg:text-3xl">

@@ -2,7 +2,7 @@ import Image from "next/image"
 
 export default function About() {
   return (
-    <main className="wrapper !my-0">
+    <main className="wrapper mt-4">
       <h1 className="border-b-2 border-yellow/45 text-green">
         About Little Lemon
       </h1>

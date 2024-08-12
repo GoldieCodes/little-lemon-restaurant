@@ -77,7 +77,7 @@ export default function Reservation() {
   }
 
   return (
-    <div className="wrapper !my-0">
+    <div className="wrapper mt-4">
       <header className="mb-8">
         <h1 className="border-b-2 border-yellow/45 text-green">
           Make a Table Reservation
