@@ -13,8 +13,8 @@ export default function Footer() {
           className="hidden md:flex self-center"
         />
         <nav className="flex flex-col">
-          <h6>Navigation</h6>
-          <div className="flex flex-col text-sm">
+          <h6 className="text-xs">Navigation</h6>
+          <div className="flex flex-col text-xs">
             <Link href="/" className="hover:text-brownish">
               Home
             </Link>
@@ -33,8 +33,8 @@ export default function Footer() {
           </div>
         </nav>
         <nav className="">
-          <h6>Contact</h6>
-          <p className="text-sm">
+          <h6 className="text-xs">Contact</h6>
+          <p className="text-xs">
             Address
             <br />
             Phone number
@@ -43,8 +43,8 @@ export default function Footer() {
           </p>
         </nav>
         <nav className="">
-          <h6>Social Media</h6>
-          <p className="text-sm">
+          <h6 className="text-xs">Social Media</h6>
+          <p className="text-xs">
             Instagram
             <br />
             Facebook
