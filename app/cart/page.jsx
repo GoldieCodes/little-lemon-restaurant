@@ -31,7 +31,7 @@ export default function Cart() {
               <span className="text-2xl text-green/40 group-hover:animate-bounce">
                 <BsCartDash />
               </span>
-              Your cart is empty.{" "}
+              Empty cart!{" "}
               <button className="p-2 md:p-3">
                 <Link href="/menu">Start shopping</Link>
               </button>
