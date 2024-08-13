@@ -11,7 +11,7 @@ export default function Footer() {
           className="hidden md:flex self-center bg-[url('/croppedlogo.png')] bg-contain bg-no-repeat bg-left"
         >
           <Link href="/">
-            <p className="ml-7 text-ash text-base tracking-widest font-serif">
+            <p className="ml-7 font-bold text-ash text-base tracking-widest font-serif">
               LITTLE LEMON
             </p>
           </Link>
