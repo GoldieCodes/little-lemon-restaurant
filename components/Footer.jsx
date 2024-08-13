@@ -5,13 +5,17 @@ export default function Footer() {
   return (
     <footer className="bg-green pt-5 pb-10 mt-16">
       <main className="wrapper flex flex-wrap justify-between space-y-5 gap-5">
-        <Image
-          src="/logo-white.png"
-          alt="Little Lemon Logo"
-          width={250}
-          height={250}
-          className="hidden md:flex self-center"
-        />
+        <span
+          role="site logo"
+          aria-label="logo"
+          className="hidden md:flex self-center bg-[url('/croppedlogo.png')] bg-contain bg-no-repeat bg-left"
+        >
+          <Link href="/">
+            <p className="ml-7 text-ash text-base tracking-widest font-serif">
+              LITTLE LEMON
+            </p>
+          </Link>
+        </span>
         <nav className="flex flex-col">
           <h6 className="text-xs">Navigation</h6>
           <div className="flex flex-col text-xs">

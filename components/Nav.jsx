@@ -10,7 +10,6 @@ import { FaBasketShopping } from "react-icons/fa6"
 import { CartContextParams } from "@/app/cart/CartContext"
 import { RxHamburgerMenu } from "react-icons/rx"
 import { MdClose } from "react-icons/md"
-import { useMediaQuery } from "react-responsive"
 
 export default function Nav() {
   const [hasScrolled, setHasScrolled] = useState(false)
@@ -52,8 +51,14 @@ export const NavLinks = () => {
   const [hideLogOutBtn, setLogOutBtn] = useState(true)
   const userParams = LoggedinUserParams()
   const { cartNumber, newItemAdded } = CartContextParams(null)
-  const [hideMenu, setHideMenu] = useState()
-  const isMobile = useMediaQuery({ maxWidth: 1024 })
+  const [hideMenu, setHideMenu] = useState(true)
+  const navlinks = [
+    { name: "Home", href: "/" },
+    { name: "About", href: "/about" },
+    { name: "Reservation", href: "/reservation" },
+    { name: "Menu", href: "/menu" },
+    { name: "Order Online", href: "/order-online" },
+  ]
 
   //I used useEffect here because the UI was always showing the logout button whenever a new login is done
   //So the useEffect here always fires whenever the currentUser state changes, to hide the button (in case it is not hidden)
@@ -63,57 +68,40 @@ export const NavLinks = () => {
   }, [userParams.currentUser])
 
   useEffect(() => {
-    if (isMobile) setHideMenu(true)
-    else setHideMenu(false)
-  }, [isMobile, currentPath])
+    setHideMenu(true)
+  }, [currentPath])
 
   return (
     <nav className="font-semibold text-sm font-sans text-green flex items-center">
+      <div className="hidden md:block">
+        {navlinks.map((link) => (
+          <Link
+            key={link.name}
+            href={link.href}
+            className={`p-3
+            ${currentPath === link.href ? "activeNav" : "navHover"}
+          `}
+          >
+            {link.name}
+          </Link>
+        ))}
+      </div>
       <div
-        className={` ${isMobile && "mobileNav"} ${
+        className={`mobileNav md:hidden ${
           hideMenu ? "left-full opacity-0" : "left-0 opacity-100"
         }`}
       >
-        <Link
-          href="/"
-          className={`p-3
-            ${currentPath === "/" ? "activeNav" : "navHover"}
+        {navlinks.map((link) => (
+          <Link
+            key={link.name}
+            href={link.href}
+            className={`p-3
+            ${currentPath === link.href ? "activeNav" : "navHover"}
           `}
-        >
-          Home
-        </Link>
-        <Link
-          href="/about"
-          className={`p-3
-            ${currentPath === "/about" ? "activeNav" : "navHover"}
-          `}
-        >
-          About
-        </Link>
-        <Link
-          href="/reservation"
-          className={`p-3
-            ${currentPath === "/reservation" ? "activeNav" : "navHover"}
-          `}
-        >
-          Reservation
-        </Link>
-        <Link
-          href="/menu"
-          className={`p-3
-            ${currentPath === "/menu" ? "activeNav" : "navHover"}
-          `}
-        >
-          Menu
-        </Link>
-        <Link
-          href="/order-online"
-          className={`p-3
-            ${currentPath === "/order-online" ? "activeNav" : "navHover"}
-          `}
-        >
-          Order Online
-        </Link>
+          >
+            {link.name}
+          </Link>
+        ))}
       </div>
       {/*   
         userParams is the value object from the Context API I defined in the LoginChecker file
@@ -177,14 +165,14 @@ export const NavLinks = () => {
           Login
         </Link>
       )}
-      {isMobile ? (
-        <span
-          className="text-base cursor-pointer"
-          onClick={() => setHideMenu(!hideMenu)}
-        >
-          {hideMenu ? <RxHamburgerMenu /> : <MdClose />}
-        </span>
-      ) : null}
+
+      {/* this is the hamburger menu icon for mobileNav */}
+      <span
+        className="md:hidden text-lg cursor-pointer"
+        onClick={() => setHideMenu(!hideMenu)}
+      >
+        {hideMenu ? <RxHamburgerMenu /> : <MdClose />}
+      </span>
     </nav>
   )
 }

@@ -33,7 +33,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${karla.variable} ${markazi.variable}`}>
       <body className="overflow-x-hidden">
-        <link rel="icon" href="/dish_icon.svg" sizes="any" />
+        <link rel="icon" href="/croppedlogo.png" sizes="any" />
         <LoginChecker>
           <CartContext>
             <Background>

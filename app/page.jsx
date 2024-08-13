@@ -46,7 +46,7 @@ export default function Home() {
         <h2 className="mb-10 text-center">Testimonials</h2>
         <Reviews />
       </section>
-      <section className="wrapper !mt-32 md:!mt-60 md:grid grid-cols-12 md:h-[50vh]">
+      <section className="wrapper relative !mt-32 md:!mt-60 md:grid grid-cols-12 md:h-[50vh]">
         <div className="col-span-6">
           <h2 className="mb-1">Little Lemon</h2>
           <h5 className="text-brownish mb-5">Chicago</h5>
@@ -60,17 +60,17 @@ export default function Home() {
           </p>
         </div>
 
-        <div className="relative h-[40vh] md:h-[63vh] md:w-[32vw]">
+        <div className="relative h-[40vh] md:h-[63vh] md:w-[32vw] col-start-8 col-end-13 mt-6 md:mt-[-10vh] md:mr-[-40px] z-10">
           <Image
-            layout="fill"
+            fill
             src="/Mario and Adrian A.jpg"
             alt="Mario and Adrian in the kitchen"
-            className="col-span-3 mt-6 md:mt-[-10vh] md:mr-[-40px] object-cover border-4 border-dark justify-self-end z-10"
+            style={{ objectFit: "cover" }}
           />
         </div>
         <div
           aria-label="hidden"
-          className="hidden md:block relative h-[63vh] w-[31vw] mt-[-14vh] col-span-3 border-[3px] border-dark self-start justify-self-start"
+          className="hidden md:block absolute top-0 right-0 h-[63vh] w-[31vw] mt-[-14vh] border-[3px] border-dark self-start justify-self-start"
         ></div>
       </section>
     </>

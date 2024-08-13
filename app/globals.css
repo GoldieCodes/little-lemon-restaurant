@@ -48,9 +48,6 @@ section.wrapper {
 .navHover {
   @apply hover:text-brownish transition-all;
 }
-.loginNav {
-  @apply text-ash hover:text-brownish transition-all;
-}
 .formError {
   @apply text-[red] font-semibold text-xs;
 }
