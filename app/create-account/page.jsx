@@ -3,6 +3,7 @@ import { createUserWithEmailAndPassword } from "firebase/auth"
 import { doc, setDoc } from "firebase/firestore"
 import { db } from "@/app/firebase"
 import { app, auth } from "@/app/firebase"
+import { toast } from "react-toastify"
 
 export default function CreateAccount() {
   return (
@@ -23,25 +24,20 @@ export const handleCreateUser = async (
   email,
   password,
   router,
-  setErrors,
-  setSuccess,
   setSubmitting
 ) => {
   createUserWithEmailAndPassword(auth, email, password)
     .then(async (userCredential) => {
       // Signed in
-      setSuccess("Account created")
-      setTimeout(() => {
-        router.push("/menu")
-      }, 500)
+      toast.success("Account created")
+      router.push("/menu")
       setSubmitting(false)
       // these lines below, save the user's entered details to Firebase Firestore db
       const userRef = userCredential.user.uid
       await setDoc(doc(db, "users", userRef), { username: name, email: email })
     })
     .catch((error) => {
-      setErrors(error.message)
-      setTimeout(() => setErrors(null), 8000)
+      toast.error(error.message)
       setSubmitting(false)
     })
 }

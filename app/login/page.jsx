@@ -4,6 +4,7 @@ import { signInWithEmailAndPassword } from "firebase/auth"
 import { app, auth } from "@/app/firebase"
 import { signOut } from "firebase/auth"
 import useRedirectToLogin from "@/hooks/useRedirectToLogin"
+import { toast } from "react-toastify"
 
 export default function Login() {
   return (
@@ -19,26 +20,18 @@ export default function Login() {
   )
 }
 
-export function handleLogin(
-  email,
-  password,
-  router,
-  setErrors,
-  setSuccess,
-  setSubmitting
-) {
+export function handleLogin(email, password, router, setSubmitting) {
   signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       // Signed in
       const user = userCredential.user
-      setSuccess("Signed in...")
-      setTimeout(() => router.push("/menu"), 500)
+      toast.success("Signed in")
+      router.push("/menu")
       setSubmitting(false)
       // ...
     })
     .catch((error) => {
-      setErrors(error.message)
-      setTimeout(() => setErrors(null), 8000)
+      toast.error(error.message)
       setSubmitting(false)
     })
 }

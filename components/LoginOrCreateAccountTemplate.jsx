@@ -4,7 +4,6 @@ import { useState } from "react"
 import * as Yup from "yup"
 import { Formik, Form, useField } from "formik"
 import { usePathname, useRouter } from "next/navigation"
-import { ImWarning, ImUserCheck } from "react-icons/im"
 import { handleCreateUser } from "@/app/create-account/page"
 import { handleLogin } from "@/app/login/page"
 
@@ -39,8 +38,6 @@ export default function LoginOrCreateAccountTemplate({
   redirectLink,
 }) {
   const path = usePathname()
-  const [hasErrors, setErrors] = useState(null)
-  const [success, setSuccess] = useState(null)
   const router = useRouter()
 
   return (
@@ -85,24 +82,9 @@ export default function LoginOrCreateAccountTemplate({
           onSubmit={({ name, email, password }, { setSubmitting }) => {
             setSubmitting(true)
             path === "/create-account"
-              ? handleCreateUser(
-                  name,
-                  email,
-                  password,
-                  router,
-                  setErrors,
-                  setSuccess,
-                  setSubmitting
-                )
+              ? handleCreateUser(name, email, password, router, setSubmitting)
               : path === "/login"
-              ? handleLogin(
-                  email,
-                  password,
-                  router,
-                  setErrors,
-                  setSuccess,
-                  setSubmitting
-                )
+              ? handleLogin(email, password, router, setSubmitting)
               : null
           }}
         >
@@ -142,21 +124,6 @@ export default function LoginOrCreateAccountTemplate({
             {redirectText}
           </Link>
         </p>
-        {/* This is responsible for the box that shows up when the form has a submission error from Firebase or indicates success to the user */}
-        {hasErrors !== null ? (
-          <p
-            role="error message"
-            className="w-4/6 flex gap-2 items-center absolute top-[-20%] bg-pinkish text-[red] font-bold text-sm p-2 pl-4 rounded-md my-5"
-          >
-            <ImWarning />
-            {hasErrors}
-          </p>
-        ) : success !== null ? (
-          <div className="w-4/6 flex gap-2 items-center absolute top-[-20%] bg-pinkish text-[black] font-bold text-sm p-2 pl-4 rounded-md my-5">
-            <ImUserCheck />
-            {success}
-          </div>
-        ) : null}
       </div>
     </main>
   )

@@ -168,7 +168,7 @@ export const NavLinks = () => {
 
       {/* this is the hamburger menu icon for mobileNav */}
       <span
-        className="md:hidden text-lg cursor-pointer"
+        className="md:hidden text-[1.3rem] cursor-pointer"
         onClick={() => setHideMenu(!hideMenu)}
       >
         {hideMenu ? <RxHamburgerMenu /> : <MdClose />}
