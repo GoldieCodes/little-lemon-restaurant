@@ -19,7 +19,7 @@ export const InputField = ({ label, ...props }) => {
         {label}
       </label>
       <input
-        className="w-full rounded-lg p-3 my-2 border-2 border-ash font-sans outline-2 outline-pinkish"
+        className="w-full rounded-lg p-3 border-2 border-ash font-sans outline-2 outline-pinkish"
         {...field}
         {...props}
       />
@@ -44,12 +44,24 @@ export default function LoginOrCreateAccountTemplate({
   const router = useRouter()
 
   return (
-    <main className="min-h-[70vh] flex items-center wrapper">
-      <div className="lg:w-2/3 md:mt-8 mx-auto bg-[white]/70 rounded-md p-6 md:p-12 backdrop-blur-[7px]">
-        <h1 className="mb-4 font-bold text-2xl text-dark text-center leading-10">
-          {heading}
-        </h1>
-        <p className="text-center text-green mb-2">{subheading}</p>
+    <main className="h-screen pt-8 bg-dark/60 grid place-content-center backdrop-blur-[7px]">
+      <span
+        role="site logo"
+        aria-label="logo"
+        className="absolute top-7 left-5 md:left-10 bg-[url('/logo.svg')] bg-contain bg-no-repeat bg-left"
+      >
+        <Link href="/">
+          <p className="ml-7 text-ash text-base tracking-widest font-serif">
+            LITTLE LEMON
+          </p>
+        </Link>
+      </span>
+
+      <div className="px-5">
+        <h1 className="text-[white] text-center mb-4">{heading}</h1>
+        <p className="text-center text-[white] md:w-3/4 mx-auto">
+          {subheading}
+        </p>
         <Formik
           initialValues={{
             name: "",
@@ -95,7 +107,7 @@ export default function LoginOrCreateAccountTemplate({
           }}
         >
           {({ isSubmitting }) => (
-            <Form>
+            <Form className="mt-5 space-y-6">
               {path === "/create-account" ? (
                 <InputField
                   name="name"
@@ -121,11 +133,11 @@ export default function LoginOrCreateAccountTemplate({
           )}
         </Formik>
         {/* This is the text beneath the form fields that will say extra stuff like "Don't have an account?" or "Forgot password?" */}
-        <p className="text-sm">
+        <p className="text-sm mt-8 text-[white]">
           {alternative + " "}
           <Link
             href={redirectLink}
-            className="text-[#f5621e] font-bold underline hover:no-underline"
+            className="text-yellow font-bold underline hover:no-underline"
           >
             {redirectText}
           </Link>
@@ -154,7 +166,7 @@ export default function LoginOrCreateAccountTemplate({
 export const FormSubmitBtn = ({ buttonText, isSubmitting }) => {
   return (
     <button
-      className="w-full mt-2 mb-4 block disabled:cursor-not-allowed disabled:hover:bg-yellow/50"
+      className="bg-yellow hover:bg-[#fde720] w-full block disabled:cursor-not-allowed disabled:hover:bg-yellow/50"
       type="submit"
       disabled={isSubmitting}
     >

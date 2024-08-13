@@ -64,7 +64,7 @@ export default function OrderOnline() {
                   setDish(event.target.value)
                 }}
                 value={selectedDish}
-                className="w-full rounded-full p-6 my-4 shadow-md border-2
+                className="w-full rounded-full p-6 shadow-md border-2
                  border-[green] bg-[white]/15 outline-1 outline-brownish"
               >
                 <option value="select">Select a menu item</option>
@@ -124,8 +124,8 @@ export default function OrderOnline() {
             )}
           </article>
 
-          <div className="col-start-8 col-end-13 space-y-5">
-            <h4 className="mb-5 mt-10">Delivery Details</h4>
+          <div className="col-start-8 col-end-13 space-y-6">
+            <h4 className="mb-5 mt-8">Delivery Details</h4>
             <InputField
               name="name"
               type="text"

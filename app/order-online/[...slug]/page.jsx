@@ -22,7 +22,7 @@ export default function Order({ params }) {
         {menus.map((menu) =>
           params.slug[0] == menu.id ? (
             <>
-              <h3 className="my-3 text-[green]">{menu.title}</h3>
+              <h1 className="my-3 text-[green]">{menu.title}</h1>
               <div className="relative h-[25vh] md:h-[50vh]">
                 <Image
                   src={menu.img.src}
@@ -88,7 +88,7 @@ export default function Order({ params }) {
             address: Yup.string().required("Please enter a delivery address"),
           })}
         >
-          <Form className="grid gap-5">
+          <Form className="space-y-8">
             <InputField
               name="name"
               type="text"

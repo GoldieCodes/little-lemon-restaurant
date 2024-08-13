@@ -13,7 +13,6 @@ import { MdClose } from "react-icons/md"
 import { useMediaQuery } from "react-responsive"
 
 export default function Nav() {
-  const currentPath = usePathname()
   const [hasScrolled, setHasScrolled] = useState(false)
 
   useEffect(() => {
@@ -35,21 +34,12 @@ export default function Nav() {
     >
       <div className="wrapper flex justify-between items-center">
         <Link href="/">
-          {currentPath === "/login" || currentPath === "/create-account" ? (
-            <Image
-              src="/logo-white.png"
-              alt="Little Lemon logo"
-              width={150}
-              height={150}
-            />
-          ) : (
-            <Image
-              src="/logo.svg"
-              alt="Little Lemon logo"
-              width={150}
-              height={150}
-            />
-          )}
+          <Image
+            src="/logo.svg"
+            alt="Little Lemon logo"
+            width={150}
+            height={150}
+          />
         </Link>
         <NavLinks />
       </div>
@@ -82,22 +72,12 @@ export const NavLinks = () => {
       <div
         className={` ${isMobile && "mobileNav"} ${
           hideMenu ? "left-full opacity-0" : "left-0 opacity-100"
-        } ${
-          currentPath === "/login" || currentPath === "/create-account"
-            ? "!bg-dark/60"
-            : null
         }`}
       >
         <Link
           href="/"
           className={`p-3
-            ${
-              currentPath === "/"
-                ? "activeNav"
-                : currentPath === "/login" || currentPath === "/create-account"
-                ? "loginNav"
-                : "navHover"
-            }
+            ${currentPath === "/" ? "activeNav" : "navHover"}
           `}
         >
           Home
@@ -105,13 +85,7 @@ export const NavLinks = () => {
         <Link
           href="/about"
           className={`p-3
-            ${
-              currentPath === "/about"
-                ? "activeNav"
-                : currentPath === "/login" || currentPath === "/create-account"
-                ? "loginNav"
-                : "navHover"
-            }
+            ${currentPath === "/about" ? "activeNav" : "navHover"}
           `}
         >
           About
@@ -119,13 +93,7 @@ export const NavLinks = () => {
         <Link
           href="/reservation"
           className={`p-3
-            ${
-              currentPath === "/reservation"
-                ? "activeNav"
-                : currentPath === "/login" || currentPath === "/create-account"
-                ? "loginNav"
-                : "navHover"
-            }
+            ${currentPath === "/reservation" ? "activeNav" : "navHover"}
           `}
         >
           Reservation
@@ -133,13 +101,7 @@ export const NavLinks = () => {
         <Link
           href="/menu"
           className={`p-3
-            ${
-              currentPath === "/menu"
-                ? "activeNav"
-                : currentPath === "/login" || currentPath === "/create-account"
-                ? "loginNav"
-                : "navHover"
-            }
+            ${currentPath === "/menu" ? "activeNav" : "navHover"}
           `}
         >
           Menu
@@ -147,13 +109,7 @@ export const NavLinks = () => {
         <Link
           href="/order-online"
           className={`p-3
-            ${
-              currentPath === "/order-online"
-                ? "activeNav"
-                : currentPath === "/login" || currentPath === "/create-account"
-                ? "loginNav"
-                : "navHover"
-            }
+            ${currentPath === "/order-online" ? "activeNav" : "navHover"}
           `}
         >
           Order Online
@@ -169,13 +125,7 @@ export const NavLinks = () => {
             <Link
               href="/cart"
               className={`text-base md:text-lg
-            ${
-              currentPath === "/cart"
-                ? "activeNav"
-                : currentPath === "/login" || currentPath === "/create-account"
-                ? "loginNav"
-                : "navHover"
-            }
+            ${currentPath === "/cart" ? "activeNav" : "navHover"}
                     `}
             >
               <FaBasketShopping />
@@ -221,13 +171,7 @@ export const NavLinks = () => {
         <Link
           href="/login"
           className={`p-3
-          ${
-            currentPath === "/login"
-              ? "activeNav"
-              : currentPath === "/login" || currentPath === "/create-account"
-              ? "loginNav"
-              : "navHover"
-          }
+          ${currentPath === "/login" ? "activeNav" : "navHover"}
         `}
         >
           Login
@@ -235,11 +179,7 @@ export const NavLinks = () => {
       )}
       {isMobile ? (
         <span
-          className={`text-base cursor-pointer ${
-            currentPath === "/login" || currentPath === "/create-account"
-              ? "loginNav"
-              : null
-          }`}
+          className="text-base cursor-pointer"
           onClick={() => setHideMenu(!hideMenu)}
         >
           {hideMenu ? <RxHamburgerMenu /> : <MdClose />}
