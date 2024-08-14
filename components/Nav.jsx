@@ -13,10 +13,11 @@ import { MdClose } from "react-icons/md"
 
 export default function Nav() {
   const [hasScrolled, setHasScrolled] = useState(false)
+  const [hideMenu, setHideMenu] = useState(true)
 
   useEffect(() => {
     const handleScroll = () => {
-      setHasScrolled(window.scrollY > 50)
+      setHasScrolled(window.scrollY > 30)
     }
 
     window.addEventListener("scroll", handleScroll)
@@ -27,7 +28,9 @@ export default function Nav() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all ${
         hasScrolled
-          ? "bg-[white]/80 backdrop-blur-md shadow-md py-2"
+          ? `${
+              hideMenu ? "backdrop-blur-md bg-[white]/80" : "bg-ash"
+            } shadow-md py-2`
           : "bg-transparent py-4"
       }`}
     >
@@ -40,18 +43,18 @@ export default function Nav() {
             height={150}
           />
         </Link>
-        <NavLinks />
+        <NavLinks hideMenu={hideMenu} setHideMenu={setHideMenu} />
       </div>
     </header>
   )
 }
 
-export const NavLinks = () => {
+export const NavLinks = ({ hideMenu, setHideMenu }) => {
   const currentPath = usePathname()
   const [hideLogOutBtn, setLogOutBtn] = useState(true)
   const userParams = LoggedinUserParams()
   const { cartNumber, newItemAdded } = CartContextParams(null)
-  const [hideMenu, setHideMenu] = useState(true)
+
   const navlinks = [
     { name: "Home", href: "/" },
     { name: "About", href: "/about" },
