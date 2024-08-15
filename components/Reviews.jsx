@@ -141,7 +141,7 @@ export default function Reviews() {
           slidesToShow: 1,
           swipeToSlide: true,
           speed: 1500,
-          pauseOnHover: true,
+          pauseOnHover: false,
           autoplaySpeed: 6000,
           arrows: false,
         },
