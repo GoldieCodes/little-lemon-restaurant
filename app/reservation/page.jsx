@@ -58,10 +58,17 @@ export default function Reservation() {
         ...values,
       })
       setSubmitting(false)
-      toast.success(
-        "Your reservation has been saved! Thank you for choosing Little Lemon."
-      )
+      router.push("/confirmed-booking")
+      setTimeout(() => {
+        router.push("/reservation")
+      }, 3000)
       setReservations((prev) => [...prev, { ...values }])
+    } else if (submitAPI(values)) {
+      setSubmitting(false)
+      router.push("/confirmed-booking")
+      setTimeout(() => {
+        router.push("/reservation")
+      }, 3000)
     } else {
       redirect()
     }
@@ -93,10 +100,15 @@ export default function Reservation() {
           }}
           onSubmit={({ ...values }, { setSubmitting }) => {
             createReservation(values, setSubmitting)
-            if (submitAPI(values)) router.push("/confirmed-booking")
           }}
           validationSchema={Yup.object({
             date: Yup.date()
+              .transform((value, originalValue) => {
+                if (originalValue) {
+                  return new Date(originalValue)
+                }
+                return value
+              })
               .min(
                 new Date().toLocaleDateString(),
                 "Date cannot be in the past"
