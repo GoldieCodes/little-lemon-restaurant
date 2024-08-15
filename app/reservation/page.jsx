@@ -63,18 +63,20 @@ export default function Reservation() {
       setSubmitting(false)
       router.push("/confirmed-booking")
       setTimeout(() => {
-        router.push("/reservation")
+        router.push("/reservation#your-reservations")
       }, 3000)
       setReservations((prev) => [...prev, { ...values }])
     } else if (submitAPI(values)) {
       setSubmitting(false)
       router.push("/confirmed-booking")
       setTimeout(() => {
-        router.push("/reservation")
+        router.push("/reservation#your-reservations")
       }, 5000)
-      toast.error(
-        "Sorry, your reservation could not be saved because you did not login or create an account."
-      )
+      setTimeout(() => {
+        toast.error(
+          "Sorry, your reservation could not be saved because you did not login or create an account."
+        )
+      }, 6000)
     } else {
       redirect()
     }
@@ -252,7 +254,9 @@ export default function Reservation() {
         </Formik>
 
         <div className="mt-14 md:mt-0 md:col-span-5">
-          <h2 className="capitalize text-lg">Your Reservations</h2>
+          <h2 id="your-reservations" className="capitalize text-lg">
+            Your Reservations
+          </h2>
           {reservations.length == 0 ? (
             <p className="text-[#9cab99] flex gap-4 items-center place-self-center mt-5">
               <span className="text-2xl text-green/40">
