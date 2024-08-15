@@ -140,6 +140,7 @@ export default function Reviews() {
         settings: {
           slidesToShow: 1,
           autoplaySpeed: 5000,
+          arrows: false,
         },
       },
     ],

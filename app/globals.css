@@ -61,7 +61,7 @@ section.wrapper {
   @apply !py-4;
 }
 .slick-track {
-  @apply !flex !gap-8;
+  @apply !flex !gap-4 md:!gap-8;
 }
 .slick-slide > div {
   @apply !h-[52vh];
