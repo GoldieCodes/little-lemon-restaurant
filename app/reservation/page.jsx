@@ -19,6 +19,9 @@ export default function Reservation() {
   const [availableTimes, setAvailableTimes] = useState([])
   const redirect = useRedirectToLogin("Please login to make a reservation")
   const router = useRouter()
+  const currentTime = new Date()
+  const currentHour = currentTime.getHours()
+  let minimumDate
 
   useEffect(() => {
     if (dateInput) {
@@ -68,7 +71,10 @@ export default function Reservation() {
       router.push("/confirmed-booking")
       setTimeout(() => {
         router.push("/reservation")
-      }, 3000)
+      }, 5000)
+      toast.error(
+        "Sorry, your reservation could not be saved because you did not login or create an account."
+      )
     } else {
       redirect()
     }
@@ -86,6 +92,17 @@ export default function Reservation() {
   const formatDateInput = (dateString) => {
     const [day, month, year] = dateString.split("/")
     return `${year}-${month}-${day}` // Converts to YYYY-MM-DD
+  }
+
+  if (currentHour >= 16) {
+    // After 4 p.m., set the minimum date to tomorrow
+    minimumDate = new Date()
+    minimumDate.setDate(minimumDate.getDate() + 1) // Add 1 day
+    minimumDate.setHours(0, 0, 0, 0) // Reset time to midnight
+  } else {
+    // Before 4 p.m., today is the minimum date
+    minimumDate = new Date()
+    minimumDate.setHours(0, 0, 0, 0) // Reset time to midnight
   }
 
   return (
@@ -114,8 +131,10 @@ export default function Reservation() {
                 return new Date(parsedDate)
               })
               .min(
-                new Date().toLocaleDateString(),
-                "Date cannot be in the past"
+                minimumDate,
+                currentHour >= 16
+                  ? "Today's booking closed after 4 p.m. Please select a future date."
+                  : "Selected date cannot be in the past"
               )
               .required("Please enter a date for your reservation"),
             time: Yup.string()
