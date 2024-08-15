@@ -136,7 +136,7 @@ export default function Reviews() {
         },
       },
       {
-        breakpoint: 800,
+        breakpoint: 700,
         settings: {
           slidesToShow: 1,
           swipeToSlide: true,

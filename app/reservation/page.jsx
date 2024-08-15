@@ -63,19 +63,19 @@ export default function Reservation() {
       router.push("/confirmed-booking")
       setTimeout(() => {
         router.push("/reservation#your-reservations")
-      }, 3000)
+      }, 4000)
       setReservations((prev) => [...prev, { ...values }])
     } else if (submitAPI(values)) {
       setSubmitting(false)
       router.push("/confirmed-booking")
       setTimeout(() => {
         router.push("/reservation#your-reservations")
-      }, 5000)
+      }, 4000)
       setTimeout(() => {
         toast.error(
           "Sorry, your reservation could not be saved because you did not login or create an account."
         )
-      }, 6000)
+      }, 5500)
     } else {
       redirect()
     }
@@ -134,7 +134,7 @@ export default function Reservation() {
               .min(
                 minimumDate,
                 currentHour >= 16
-                  ? "Today's booking closed after 4 p.m. Please select a future date."
+                  ? "The day's booking closes after 4 p.m. Please select a future date."
                   : "Selected date cannot be in the past"
               )
               .required("Please enter a date for your reservation"),
@@ -151,7 +151,7 @@ export default function Reservation() {
               .required("You haven't picked the occasion"),
           })}
         >
-          {({ isSubmitting, values }) => (
+          {({ isSubmitting, values, errors }) => (
             <Form className="md:col-span-7 space-y-5">
               <div className="field">
                 <label
@@ -166,7 +166,10 @@ export default function Reservation() {
                   id="date"
                   type="date"
                   className="w-full rounded-lg p-3 my-2 border-2 border-ash font-sans outline-2 outline-pinkish"
-                  onBlur={() => setDateInput(values.date)}
+                  onBlur={() => {
+                    if (!errors.date) setDateInput(values.date)
+                    else setDateInput(null)
+                  }}
                 />
                 <span className="formError">
                   <ErrorMessage name="date" />
