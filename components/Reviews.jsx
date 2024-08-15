@@ -136,10 +136,13 @@ export default function Reviews() {
         },
       },
       {
-        breakpoint: 600,
+        breakpoint: 800,
         settings: {
           slidesToShow: 1,
-          autoplaySpeed: 5000,
+          swipeToSlide: true,
+          speed: 1500,
+          pauseOnHover: true,
+          autoplaySpeed: 6000,
           arrows: false,
         },
       },

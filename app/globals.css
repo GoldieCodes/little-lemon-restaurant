@@ -64,7 +64,7 @@ section.wrapper {
   @apply !flex !gap-4 md:!gap-8;
 }
 .slick-slide > div {
-  @apply !h-[52vh];
+  @apply !h-[380px];
 }
 .slick-prev:before,
 .slick-next:before {

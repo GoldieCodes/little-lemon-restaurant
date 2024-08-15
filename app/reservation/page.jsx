@@ -25,7 +25,6 @@ export default function Reservation() {
 
   useEffect(() => {
     if (dateInput) {
-      console.log(dateInput)
       const initializeTimes = fetchAPI(new Date(dateInput))
       setAvailableTimes(initializeTimes)
     }
