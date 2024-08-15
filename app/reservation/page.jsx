@@ -83,6 +83,11 @@ export default function Reservation() {
     })
   }
 
+  const formatDateInput = (dateString) => {
+    const [day, month, year] = dateString.split("/")
+    return `${year}-${month}-${day}` // Converts to YYYY-MM-DD
+  }
+
   return (
     <div className="wrapper mt-4">
       <header className="mb-8">
@@ -103,11 +108,10 @@ export default function Reservation() {
           }}
           validationSchema={Yup.object({
             date: Yup.date()
-              .transform((value, originalValue) => {
-                if (originalValue) {
-                  return new Date(originalValue)
-                }
-                return value
+              .transform(function (value, originalValue) {
+                if (this.isType(value)) return value
+                const parsedDate = formatDateInput(originalValue)
+                return new Date(parsedDate)
               })
               .min(
                 new Date().toLocaleDateString(),
