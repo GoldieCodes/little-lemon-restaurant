@@ -2,7 +2,7 @@
 import { MdTableBar } from "react-icons/md"
 import { useState, useEffect } from "react"
 import { LoggedinUserParams } from "../login/LoginChecker"
-import { Formik, Form, Field, ErrorMessage } from "formik"
+import { Formik, Form, Field, ErrorMessage, useFormikContext } from "formik"
 import * as Yup from "yup"
 import useRedirectToLogin from "@/hooks/useRedirectToLogin"
 import { FormSubmitBtn } from "@/components/LoginOrCreateAccountTemplate"
@@ -14,22 +14,24 @@ import { useRouter } from "next/navigation"
 
 export default function Reservation() {
   const { currentUser } = LoggedinUserParams()
-  const [dateInput, setDateInput] = useState()
+  const [dateInput, setDateInput] = useState(null)
   const [reservations, setReservations] = useState([])
   const [availableTimes, setAvailableTimes] = useState([])
   const redirect = useRedirectToLogin("Please login to make a reservation")
   const router = useRouter()
-  const currentTime = new Date()
-  const currentHour = currentTime.getHours()
-  let minimumDate
+  const currentTime = new Date() //this will get the current date and time whenever the page loads
+  const currentHour = currentTime.getHours() //this extracts the time from the value gotten above
+  let minimumDate //this will be used below, in the business logic to limit booking to 4pm everyday
 
+  //this passes the value of the date field to the fetchAPI function given by meta's course
   useEffect(() => {
-    if (dateInput) {
+    if (dateInput !== null) {
       const initializeTimes = fetchAPI(new Date(dateInput))
       setAvailableTimes(initializeTimes)
-    }
+    } else setAvailableTimes([])
   }, [dateInput])
 
+  //this should get any reservations available for a user on page load, if there's a logged in user. The function reruns whenever the current user changes.
   useEffect(() => {
     getReservationsFromDB()
   }, [currentUser])
@@ -94,7 +96,7 @@ export default function Reservation() {
     const [day, month, year] = dateString.split("/")
     return `${year}-${month}-${day}` // Converts to YYYY-MM-DD
   }
-
+  //this is the logic that controls the business rule that needs to stop any booking after 4pm daily. The variables used here are declared at the topmost of this component.
   if (currentHour >= 16) {
     // After 4 p.m., set the minimum date to tomorrow
     minimumDate = new Date()
@@ -151,7 +153,7 @@ export default function Reservation() {
               .required("You haven't picked the occasion"),
           })}
         >
-          {({ isSubmitting, values, errors }) => (
+          {({ isSubmitting, values, errors, setFieldTouched }) => (
             <Form className="md:col-span-7 space-y-5">
               <div className="field">
                 <label
@@ -167,6 +169,7 @@ export default function Reservation() {
                   type="date"
                   className="w-full rounded-lg p-3 my-2 border-2 border-ash font-sans outline-2 outline-pinkish"
                   onBlur={() => {
+                    setFieldTouched("date", true)
                     if (!errors.date) setDateInput(values.date)
                     else setDateInput(null)
                   }}
