@@ -76,7 +76,7 @@ export const NavLinks = ({ hideMenu, setHideMenu }) => {
 
   return (
     <nav className="font-semibold text-sm font-sans text-green flex items-center">
-      <div className="hidden md:block">
+      <div className="hidden lg:block">
         {navlinks.map((link) => (
           <Link
             key={link.name}
@@ -90,7 +90,7 @@ export const NavLinks = ({ hideMenu, setHideMenu }) => {
         ))}
       </div>
       <div
-        className={`mobileNav md:hidden ${
+        className={`mobileNav lg:hidden ${
           hideMenu ? "left-full opacity-0" : "left-0 opacity-100"
         }`}
       >
@@ -171,7 +171,7 @@ export const NavLinks = ({ hideMenu, setHideMenu }) => {
 
       {/* this is the hamburger menu icon for mobileNav */}
       <span
-        className="md:hidden text-[1.3rem] cursor-pointer"
+        className="lg:hidden text-[1.3rem] cursor-pointer"
         onClick={() => setHideMenu(!hideMenu)}
       >
         {hideMenu ? <RxHamburgerMenu /> : <MdClose />}
