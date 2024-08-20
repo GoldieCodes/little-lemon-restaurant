@@ -2,8 +2,10 @@ import Image from "next/image"
 import Link from "next/link"
 
 export default function Footer() {
+  const year = new Date().getFullYear()
+
   return (
-    <footer className="bg-green pt-5 pb-10 mt-16">
+    <footer className="bg-green pt-5 mt-16">
       <main className="wrapper flex flex-wrap justify-between space-y-5 gap-5">
         <span
           role="site logo"
@@ -57,6 +59,9 @@ export default function Footer() {
           </p>
         </nav>
       </main>
+      <aside className="border-t-[1px] border-t-[#6d7c6c] mt-14 py-6 text-[13px] text-[#afafaf] text-center">
+        Copyright © {year} Little Lemon Inc.
+      </aside>
     </footer>
   )
 }
