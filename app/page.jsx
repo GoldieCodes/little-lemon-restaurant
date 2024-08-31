@@ -42,9 +42,11 @@ export default function Home() {
           <MenuItems menus={menus} />
         </div>
       </section>
-      <section className="wrapper">
-        <h2 className="mb-10 text-center">Testimonials</h2>
-        <Reviews />
+      <section className="p-24 bg-dark">
+        <div className="wrapper">
+          <h2 className="mb-12 text-center text-ash">Testimonials</h2>
+          <Reviews />
+        </div>
       </section>
       <section className="wrapper relative !mt-32 md:!mt-60 md:grid grid-cols-12 md:h-[50vh]">
         <div className="col-span-6">

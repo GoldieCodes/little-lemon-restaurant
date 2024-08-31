@@ -95,14 +95,14 @@ export default function Reviews() {
           className="rounded-full"
         />
         <div>
-          <p className="text-sm font-bold text-green">{review.name}</p>
+          <p className="text-sm font-bold text-ash">{review.name}</p>
           <p className="text-sm italic text-brownish flex items-center">
             <BiSolidMap />
             {review.locale}.
           </p>
         </div>
       </div>
-      <p className="text-sm p-2">{review.review}</p>
+      <p className="text-sm p-2 text-ash">{review.review}</p>
     </article>
   ))
 
