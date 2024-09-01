@@ -8,7 +8,7 @@ export default function Home() {
       <main className="py-[13vh] md:py-0 md:h-[70vh] bg-[#314b29] bg-[url('/lemon-icon-littlelemon.png'),url('/lemon-icon-littlelemon.png'),url('/lemon-icon-littlelemon.png')] md:bg-[url('/lemon-icon-littlelemon.png'),url('/lemon-icon-littlelemon.png'),url('/lemon-icon-littlelemon.png'),url('/lemon-icon-littlelemon.png')] bg-blend-color-burn bg-[length:15vh] lg:bg-[length:12%] bg-no-repeat bg-position-4">
         <div className="wrapper flex gap-10 justify-between items-center">
           <div className="md:w-[40%] text-center md:text-start md:place-self-center">
-            <h1 className="text-yellow leading-7 text-[4rem] lg:text-3xl">
+            <h1 className="text-yellow leading-10 text-[4rem] lg:text-3xl">
               Little Lemon
             </h1>
             <h3 className="text-ash">Chicago</h3>

@@ -30,7 +30,7 @@ export default function Nav() {
         hasScrolled
           ? `${
               hideMenu ? "backdrop-blur-md bg-[white]/80" : "bg-ash"
-            } shadow-md py-2`
+            } shadow-md py-3`
           : "bg-transparent py-4"
       }`}
     >

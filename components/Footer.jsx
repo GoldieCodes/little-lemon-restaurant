@@ -13,14 +13,14 @@ export default function Footer() {
           className="hidden md:flex self-center bg-[url('/croppedlogo.png')] bg-contain bg-no-repeat bg-left"
         >
           <Link href="/">
-            <p className="ml-7 font-bold text-ash text-base tracking-widest font-serif">
+            <p className="ml-10 font-bold text-ash text-xl tracking-widest font-serif">
               LITTLE LEMON
             </p>
           </Link>
         </span>
         <nav className="flex flex-col">
-          <h6 className="text-xs">Navigation</h6>
-          <div className="flex flex-col text-xs">
+          <h6 className="text-xs md:text-sm">Navigation</h6>
+          <div className="flex flex-col text-xs md:text-sm">
             <Link href="/" className="hover:text-brownish">
               Home
             </Link>
@@ -39,8 +39,8 @@ export default function Footer() {
           </div>
         </nav>
         <nav className="">
-          <h6 className="text-xs">Contact</h6>
-          <p className="text-xs">
+          <h6 className="text-xs md:text-sm">Contact</h6>
+          <p className="text-xs md:text-sm">
             Address
             <br />
             Phone number
@@ -49,8 +49,8 @@ export default function Footer() {
           </p>
         </nav>
         <nav className="">
-          <h6 className="text-xs">Social Media</h6>
-          <p className="text-xs">
+          <h6 className="text-xs md:text-sm">Social Media</h6>
+          <p className="text-xs md:text-sm">
             Instagram
             <br />
             Facebook
@@ -59,7 +59,7 @@ export default function Footer() {
           </p>
         </nav>
       </main>
-      <aside className="border-t-[1px] border-t-[#6d7c6c] mt-14 py-6 text-[13px] text-[#afafaf] text-center">
+      <aside className="border-t-[1px] border-t-[#6d7c6c] mt-14 py-6 text-[14px] text-[#afafaf] text-center">
         Copyright © {year} Little Lemon Inc.
       </aside>
     </footer>
