@@ -5,7 +5,7 @@ import Reviews from "@/components/Reviews"
 export default function Home() {
   return (
     <>
-      <main className="py-[13vh] md:py-0 md:h-[70vh] bg-green bg-[url('/lemon-icon-littlelemon.png'),url('/lemon-icon-littlelemon.png'),url('/lemon-icon-littlelemon.png'),url('/lemon-icon-littlelemon.png')] bg-blend-color-burn bg-[length:18vh] lg:bg-[length:18%] bg-no-repeat bg-position-4">
+      <main className="py-[13vh] md:py-0 md:h-[70vh] bg-[#314b29] bg-[url('/lemon-icon-littlelemon.png'),url('/lemon-icon-littlelemon.png'),url('/lemon-icon-littlelemon.png'),url('/lemon-icon-littlelemon.png')] bg-blend-color-burn bg-[length:18vh] lg:bg-[length:12%] bg-no-repeat bg-position-4">
         <div className="wrapper flex gap-10 justify-between items-center">
           <div className="md:w-[40%] text-center md:text-start md:place-self-center">
             <h1 className="text-yellow leading-7 text-[4rem] lg:text-3xl">
@@ -22,15 +22,16 @@ export default function Home() {
               styles="bg-yellow hover:!bg-[#ffe252]"
             />
           </div>
-          <Image
-            src="/restaurantfood.jpg"
-            width={300}
-            height={400}
-            placeholder="blur"
-            blurDataURL="/restaurantfood.jpg"
-            alt="restaurant food"
-            className="hidden md:block mt-16 h-[70vh] w-[35%] object-cover rounded-3xl mr-20"
-          />
+          <div className="relative hidden md:block mt-16 h-[55vh] lg:h-[70vh] w-[45%] object-cover shadow-2xl  md:after:w-full md:after:h-full after:border-[3px] after:border-yellow after:absolute after:bottom-5 after:right-5">
+            <Image
+              src="/Vibrant Ceviche Dish.jpg"
+              layout="fill"
+              placeholder="blur"
+              blurDataURL="/restaurantfood.jpg"
+              alt="restaurant food"
+              className="z-10"
+            />
+          </div>
         </div>
       </main>
       <section className="wrapper">
@@ -42,9 +43,9 @@ export default function Home() {
           <MenuItems menus={menus} />
         </div>
       </section>
-      <section className="p-24 bg-dark bg-[url('/lemon-icon-littlelemon.png'),url('/lemon-icon-littlelemon.png'),url('/lemon-icon-littlelemon.png'),url('/lemon-icon-littlelemon.png')] bg-blend-color-burn bg-[length:18vh] lg:bg-[length:18%] bg-no-repeat bg-position-5">
+      <section className="p-24 bg-ash bg-[url('/lemon-icon-littlelemon.png'),url('/lemon-icon-littlelemon.png'),url('/lemon-icon-littlelemon.png')] bg-blend-multiply bg-[length:18vh] lg:bg-[length:10%] bg-no-repeat bg-position-5">
         <div className="wrapper">
-          <h2 className="mb-12 text-center text-ash">Testimonials</h2>
+          <h2 className="mb-12 text-center text-dark">Testimonials</h2>
           <Reviews />
         </div>
       </section>
@@ -62,7 +63,7 @@ export default function Home() {
           </p>
         </div>
 
-        <div className="relative h-[40vh] md:h-[63vh] md:w-[32vw] col-start-8 col-end-13 mt-6 md:mt-[-10vh] md:mr-[-40px] z-10">
+        <div className="relative h-[40vh] md:h-[63vh] md:w-[32vw] col-start-8 col-end-13 mt-6 md:mt-[-10vh] md:mr-[-40px] z-10 md:shadow-2xl md:after:w-full md:after:h-full after:border-[3px] after:border-brownish after:absolute after:bottom-7 after:left-7 after:-z-10">
           <Image
             fill
             src="/Mario and Adrian A.jpg"
@@ -70,10 +71,6 @@ export default function Home() {
             style={{ objectFit: "cover" }}
           />
         </div>
-        <div
-          aria-label="hidden"
-          className="hidden md:block absolute top-0 right-0 h-[63vh] w-[31vw] mt-[-14vh] border-[3px] border-dark self-start justify-self-start"
-        ></div>
       </section>
     </>
   )

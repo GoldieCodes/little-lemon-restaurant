@@ -51,11 +51,8 @@ section.wrapper {
 .formError {
   @apply text-[red] font-semibold text-xs;
 }
-.slick-dots li button:before {
-  @apply !text-ash;
-}
 .slick-dots li.slick-active button:before {
-  @apply !text-brownish;
+  @apply !text-dark;
 }
 .slick-dots {
   @apply !bottom-[-40px];
@@ -67,11 +64,11 @@ section.wrapper {
   @apply !flex !gap-4 md:!gap-8;
 }
 .slick-slide > div {
-  @apply !h-[380px];
+  @apply !h-[370px];
 }
 .slick-prev:before,
 .slick-next:before {
-  @apply !text-2xl !text-[#cccccc];
+  @apply !text-2xl !text-[#7f8883];
 }
 .slick-next {
   @apply !w-auto;

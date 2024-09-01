@@ -5,7 +5,7 @@ export default function Footer() {
   const year = new Date().getFullYear()
 
   return (
-    <footer className="bg-green pt-5 mt-16">
+    <footer className="bg-[#2b3a35] pt-5 mt-16">
       <main className="wrapper flex flex-wrap justify-between space-y-5 gap-5">
         <span
           role="site logo"
