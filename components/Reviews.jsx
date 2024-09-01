@@ -139,8 +139,7 @@ export default function Reviews() {
         breakpoint: 700,
         settings: {
           slidesToShow: 1,
-          swipeToSlide: true,
-          speed: 1500,
+          speed: 500,
           pauseOnHover: false,
           autoplaySpeed: 6000,
           arrows: false,
