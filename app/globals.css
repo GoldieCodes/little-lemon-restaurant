@@ -86,7 +86,7 @@ section.wrapper {
   @apply !text-dark;
 }
 .mobileNav {
-  @apply flex flex-col px-10 py-5 items-start absolute top-[4.5rem] z-10 h-[calc(100vh-4.5rem)] w-full bg-ash/95 backdrop-blur-3xl transition-all duration-500 divide-y-[1px] divide-green/20;
+  @apply flex flex-col px-10 py-5 items-start absolute z-10 w-full bg-ash/95 backdrop-blur-3xl transition-all duration-500 divide-y-[1px] divide-green/20;
 }
 .mobileNav a {
   @apply block w-full bg-[initial];

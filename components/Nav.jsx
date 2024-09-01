@@ -43,13 +43,17 @@ export default function Nav() {
             height={150}
           />
         </Link>
-        <NavLinks hideMenu={hideMenu} setHideMenu={setHideMenu} />
+        <NavLinks
+          hideMenu={hideMenu}
+          setHideMenu={setHideMenu}
+          hasScrolled={hasScrolled}
+        />
       </div>
     </header>
   )
 }
 
-export const NavLinks = ({ hideMenu, setHideMenu }) => {
+export const NavLinks = ({ hideMenu, setHideMenu, hasScrolled }) => {
   const currentPath = usePathname()
   const [hideLogOutBtn, setLogOutBtn] = useState(true)
   const userParams = LoggedinUserParams()
@@ -90,9 +94,11 @@ export const NavLinks = ({ hideMenu, setHideMenu }) => {
         ))}
       </div>
       <div
-        className={`mobileNav lg:hidden ${
-          hideMenu ? "left-full opacity-0" : "left-0 opacity-100"
-        }`}
+        className={`mobileNav ${
+          hasScrolled
+            ? "top-[69px] h-[calc(100vh-69px)]"
+            : "top-[77px] h-[calc(100vh-77px)]"
+        } lg:hidden ${hideMenu ? "left-full opacity-0" : "left-0 opacity-100"}`}
       >
         {navlinks.map((link) => (
           <Link
