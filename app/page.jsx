@@ -45,11 +45,11 @@ export default function Home() {
       </section>
       <section className="py-20 md:py-24 bg-ash bg-[url('/lemon-icon-littlelemon.png'),url('/lemon-icon-littlelemon.png'),url('/lemon-icon-littlelemon.png')] bg-blend-multiply bg-[length:15vh] lg:bg-[length:10%] bg-no-repeat bg-position-5">
         <div className="wrapper">
-          <h2 className="mb-12 text-center text-dark">Testimonials</h2>
+          <h2 className="mb-9 md:mb-12 text-center text-dark">Testimonials</h2>
           <Reviews />
         </div>
       </section>
-      <section className="wrapper relative !mt-32 md:!mt-60 md:grid grid-cols-12 md:h-[50vh]">
+      <section className="wrapper relative md:!mt-60 md:grid grid-cols-12 md:h-[50vh]">
         <div className="col-span-6">
           <h2 className="mb-1">Little Lemon</h2>
           <h5 className="text-brownish mb-5">Chicago</h5>

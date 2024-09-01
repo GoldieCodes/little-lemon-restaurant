@@ -6,7 +6,7 @@ h1 {
   @apply font-medium text-[2.2rem] leading-8 lg:text-2xl font-serif;
 }
 h2 {
-  @apply text-[2.2rem] md:text-[3rem] font-extrabold font-sans tracking-tighter leading-tight text-green;
+  @apply text-[2.5rem] md:text-[3rem] font-extrabold font-sans tracking-tighter leading-tight text-green;
 }
 h3 {
   @apply text-xl font-sans font-bold text-dark;
