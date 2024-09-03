@@ -91,3 +91,39 @@ section.wrapper {
 .mobileNav a {
   @apply block w-full bg-[initial];
 }
+/* styles.css */
+@keyframes gradient-border {
+  0% {
+    border-image-source: linear-gradient(90deg, #314b29, #f4ce14, #b4e197);
+  }
+  25% {
+    border-image-source: linear-gradient(180deg, #b4e197, #314b29, #f4ce14);
+  }
+  50% {
+    border-image-source: linear-gradient(270deg, #f4ce14, #b4e197, #314b29);
+  }
+  75% {
+    border-image-source: linear-gradient(360deg, #314b29, #f4ce14, #b4e197);
+  }
+  100% {
+    border-image-source: linear-gradient(450deg, #b4e197, #314b29, #f4ce14);
+  }
+}
+
+.animated-border {
+  border-width: 4px; /* Adjust the border thickness as needed */
+  border-image-slice: 1;
+  animation: gradient-border 5s infinite; /* Adjust animation duration */
+}
+
+@keyframes dancingLeaves {
+  0% {
+    background-position: 40% 50vh, top left, center right, center top;
+  }
+  50% {
+    background-position: 43% 52vh, top left, center right, center top;
+  }
+  100% {
+    background-position: 40% 50vh, top left, center right, center top;
+  }
+}

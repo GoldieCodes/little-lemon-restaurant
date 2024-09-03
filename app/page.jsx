@@ -5,7 +5,7 @@ import Reviews from "@/components/Reviews"
 export default function Home() {
   return (
     <>
-      <main className="py-[13vh] md:py-0 md:h-[70vh] bg-[#314b29] bg-[url('/lemon-icon-littlelemon.png'),url('/lemon-icon-littlelemon.png'),url('/lemon-icon-littlelemon.png')] md:bg-[url('/lemon-icon-littlelemon.png'),url('/lemon-icon-littlelemon.png'),url('/lemon-icon-littlelemon.png'),url('/lemon-icon-littlelemon.png')] bg-blend-color-burn bg-[length:15vh] lg:bg-[length:12%] bg-no-repeat bg-position-4">
+      <main className="py-[13vh] md:py-0 md:h-[70vh] bg-[#314b29] bg-[url('/lemon-icon-littlelemon.png'),url('/lemon-icon-littlelemon.png'),url('/lemon-icon-littlelemon.png')] md:bg-[url('/lemon-icon-littlelemon.png'),url('/lemon-icon-littlelemon.png'),url('/lemon-icon-littlelemon.png'),url('/lemon-icon-littlelemon.png')] bg-blend-color-burn bg-[length:15vh] lg:bg-[length:12%] bg-no-repeat bg-position-4 animate-[dancingLeaves_7s_ease_infinite]">
         <div className="wrapper flex gap-10 justify-between items-center">
           <div className="md:w-[40%] text-center md:text-start md:place-self-center">
             <h1 className="text-yellow leading-10 text-[4rem] lg:text-3xl">
@@ -22,13 +22,17 @@ export default function Home() {
               styles="bg-yellow hover:!bg-[#ffe252]"
             />
           </div>
-          <div className="relative hidden md:block mt-16 h-[55vh] lg:h-[70vh] w-[45%] object-cover shadow-2xl  md:after:w-full md:after:h-full after:border-[3px] after:border-yellow after:absolute after:bottom-5 after:right-5">
+          <div className="relative hidden md:block mt-16 h-[55vh] lg:h-[70vh] w-[45%] object-cover shadow-2xl">
+            <div
+              aria-hidden
+              className="animated-border absolute w-full h-full bottom-5 right-5"
+            ></div>
             <Image
-              src="/Vibrant Ceviche Dish.jpg"
-              layout="fill"
+              src="/Vibrant Carrot Dish.jpg"
+              fill
               placeholder="blur"
               blurDataURL="/restaurantfood.jpg"
-              alt="restaurant food"
+              alt="Vibrant Carrot Ribbon Salad with Chilies, Herbs, and Sesame Seeds"
               className="z-10"
             />
           </div>
@@ -63,7 +67,11 @@ export default function Home() {
           </p>
         </div>
 
-        <div className="relative h-[40vh] md:h-[63vh] md:w-[32vw] col-start-8 col-end-13 mt-6 md:mt-[-10vh] md:mr-[-40px] z-10 md:shadow-2xl md:after:w-full md:after:h-full after:border-[3px] after:border-brownish after:absolute after:bottom-7 after:left-7 after:-z-10">
+        <div className="relative h-[40vh] md:h-[63vh] md:w-[32vw] col-start-8 col-end-13 mt-6 md:mt-[-10vh] md:mr-[-40px] z-10 md:shadow-2xl">
+          <div
+            aria-hidden
+            className="animated-border absolute md:w-full md:h-full bottom-5 left-5"
+          ></div>
           <Image
             fill
             src="/Mario and Adrian A.jpg"
