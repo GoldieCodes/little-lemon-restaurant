@@ -22,16 +22,16 @@ export default function Home() {
               styles="bg-yellow hover:!bg-[#ffe252]"
             />
           </div>
-          <div className="relative hidden md:block mt-16 h-[55vh] lg:h-[70vh] w-[45%] object-cover shadow-2xl">
+          <div className="relative hidden md:block mt-16 h-[55vh] lg:h-[70vh] w-[45%] 2xl:w-[51%] object-cover shadow-2xl">
             <div
               aria-hidden
               className="animated-border absolute w-full h-full bottom-5 right-5"
             ></div>
             <Image
-              src="/greek_salad.jpg"
+              src="/Vibrant Ceviche Dish.jpg"
               fill
               placeholder="blur"
-              blurDataURL="/restaurantfood.jpg"
+              blurDataURL="/greek_salad.jpg"
               alt="Greek Salad"
               className="z-10 object-cover"
             />
