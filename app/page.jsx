@@ -31,8 +31,8 @@ export default function Home() {
               src="/Vibrant Ceviche Dish.jpg"
               fill
               placeholder="blur"
-              blurDataURL="/greek_salad.jpg"
-              alt="Greek Salad"
+              blurDataURL="/Vibrant Ceviche Dish.jpg"
+              alt="Vibrant Ceviche Dish"
               className="z-10 object-cover"
             />
           </div>
