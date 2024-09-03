@@ -13,7 +13,10 @@ import { CartContextParams } from "@/app/cart/CartContext"
 export const menus = [
   {
     id: 0,
-    img: { src: "/greek_salad.jpg", alt: "Greek Salad dish" },
+    img: {
+      src: "/Vibrant Carrot Dish.jpg",
+      alt: "Vibrant Carrot Ribbon Salad with Chilies, Herbs, and Sesame Seeds",
+    },
     title: "Greek Salad",
     price: 32.12,
     description:

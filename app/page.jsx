@@ -28,12 +28,12 @@ export default function Home() {
               className="animated-border absolute w-full h-full bottom-5 right-5"
             ></div>
             <Image
-              src="/Vibrant Carrot Dish.jpg"
+              src="/greek_salad.jpg"
               fill
               placeholder="blur"
               blurDataURL="/restaurantfood.jpg"
-              alt="Vibrant Carrot Ribbon Salad with Chilies, Herbs, and Sesame Seeds"
-              className="z-10"
+              alt="Greek Salad"
+              className="z-10 object-cover"
             />
           </div>
         </div>
