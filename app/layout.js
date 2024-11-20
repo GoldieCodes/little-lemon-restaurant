@@ -1,7 +1,5 @@
 import { Markazi_Text, Karla } from "next/font/google"
 import "./globals.css"
-import Nav from "../components/Nav"
-import Footer from "../components/Footer"
 import Background from "@/components/Background"
 import LoginChecker from "./login/LoginChecker"
 import CartContext from "./cart/CartContext"
