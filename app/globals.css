@@ -118,19 +118,12 @@ section.wrapper {
 
 @keyframes dancingLeaves {
   0% {
-    background-position: 35% 50vh, top left, center right, center top;
+    background-position: 35% 50vh, top left, center right, 60% 0%;
   }
-  25% {
-    background-position: 43% 52vh, 2% 10%, 100% 95%, 60% 0%;
-  }
-
   50% {
-    background-position: 35% 50vh, top left, center right, center top;
-  }
-  75% {
-    background-position: 43% 52vh, 2% 10%, 100% 95%, 60% 0%;
+    background-position: 43% 52vh, 2% 22%, 100% 95%, center top;
   }
   100% {
-    background-position: 35% 50vh, top left, center right, center top;
+    background-position: 35% 50vh, top left, center right, 60% 0%;
   }
 }
