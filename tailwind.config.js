@@ -8,8 +8,8 @@ module.exports = {
   theme: {
     extend: {
       backgroundPosition: {
-        "position-4": "40% 50vh, top left, center right, center top",
-        "position-5": "60% 80vh, top left, center right",
+        "position-4-elements": "40% 50vh, top left, center right, center top",
+        "position-3-elements": "60% 80vh, top left, center right",
       },
       screens: {
         xs: "475px",

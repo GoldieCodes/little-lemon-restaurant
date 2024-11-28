@@ -263,11 +263,11 @@ export default function Reservation() {
             Your Reservations
           </h2>
           {reservations.length == 0 ? (
-            <p className="text-[#9cab99] flex gap-4 items-center place-self-center mt-5">
+            <p className="text-[#9cab99] flex gap-4 items-center mt-5">
               <span className="text-2xl text-green/40">
                 <MdTableBar />
               </span>
-              No reservations to see
+              It's so empty here. Make a reservation.
             </p>
           ) : (
             reservations.map((each) => (

@@ -5,7 +5,7 @@ import Reviews from "@/components/Reviews"
 export default function Home() {
   return (
     <>
-      <main className="py-[13vh] md:py-0 md:h-[475px] bg-[#314b29] bg-[url('/lemon-icon-littlelemon.png'),url('/lemon-icon-littlelemon.png'),url('/lemon-icon-littlelemon.png')] md:bg-[url('/lemon-icon-littlelemon.png'),url('/lemon-icon-littlelemon.png'),url('/lemon-icon-littlelemon.png'),url('/lemon-icon-littlelemon.png')] bg-blend-color-burn bg-[length:15vh] lg:bg-[length:12%] bg-no-repeat bg-position-4 animate-[dancingLeaves_7s_ease_infinite]">
+      <main className="py-[13vh] md:py-0 md:h-[475px] bg-[#314b29] bg-[url('/lemon-icon-littlelemon.png'),url('/lemon-icon-littlelemon.png'),url('/lemon-icon-littlelemon.png')] md:bg-[url('/lemon-icon-littlelemon.png'),url('/lemon-icon-littlelemon.png'),url('/lemon-icon-littlelemon.png'),url('/lemon-icon-littlelemon.png')] bg-blend-color-burn bg-[length:15vh] lg:bg-[length:12%] bg-no-repeat bg-position-4-elements animate-[dancingLeaves_20s_ease_infinite]">
         <div className="wrapper flex gap-10 justify-between items-center">
           <div className="md:w-[40%] text-center md:text-start md:place-self-center">
             <h1 className="text-yellow leading-10 text-[4rem] lg:text-3xl">
@@ -47,7 +47,7 @@ export default function Home() {
           <MenuItems menus={menus} />
         </div>
       </section>
-      <section className="py-20 md:py-24 bg-ash bg-[url('/lemon-icon-littlelemon.png'),url('/lemon-icon-littlelemon.png'),url('/lemon-icon-littlelemon.png')] bg-blend-multiply bg-[length:15vh] lg:bg-[length:10%] bg-no-repeat bg-position-5">
+      <section className="py-20 md:py-24 bg-ash bg-[url('/lemon-icon-littlelemon.png'),url('/lemon-icon-littlelemon.png'),url('/lemon-icon-littlelemon.png')] bg-blend-multiply bg-[length:15vh] lg:bg-[length:10%] bg-no-repeat bg-position-3-elements">
         <div className="wrapper">
           <h2 className="mb-9 md:mb-12 text-center text-dark">Testimonials</h2>
           <Reviews />
